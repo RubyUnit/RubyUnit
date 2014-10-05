@@ -56,9 +56,9 @@ module UnitTest
 
         puts "#{@@failures.length} Failures:\n" if @@failures.length.positive?
         @@failures.each_with_index do |failure, i|
-          puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
-          puts error[3].message
-          puts error[3].backtrace.join("\n")
+          puts "#{i + 1}) #{failure[0]}::#{failure[1]}(#{failure[2]})"
+          puts failure[3].message
+          puts failure[3].backtrace.join("\n")
         end
         
         elapsed  = @@finish - @@start
