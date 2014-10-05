@@ -1,8 +1,8 @@
+# Test for RealNumber mixin
+require_relative 'RealNumber'
 require 'UnitTest'
 
-require_relative 'RealNumber'
-
-class SuitTest < UnitTest::TestCase
+class RealNumberTest < UnitTest::TestCase
   public
   def positiveData
     [
