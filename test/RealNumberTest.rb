@@ -6,14 +6,16 @@ class RealNumberTest < UnitTest::TestCase
   public
   def positiveData
     [
-      [       Integer(1),],
-      [    Integer(4242),],
-      [       Float(0.1),],
-      [       Float(1.0),],
-      [     Float(42.42),],
-      [   Rational(1,42),],
-      [    Rational(1,1),],
-      [Rational(4242,42),],
+      [           Integer(1),],
+      [        Integer(4242),],
+      [Integer(100000000000),],
+      [Integer(424200000000),],
+      [           Float(0.1),],
+      [           Float(1.0),],
+      [         Float(42.42),],
+      [       Rational(1,42),],
+      [        Rational(1,1),],
+      [    Rational(4242,42),],
     ]
   end
 
@@ -27,14 +29,16 @@ class RealNumberTest < UnitTest::TestCase
 
   def negativeData
     [
-      [       Integer(-1),],
-      [    Integer(-4242),],
-      [       Float(-0.1),],
-      [       Float(-1.0),],
-      [     Float(-42.42),],
-      [   Rational(-1,42),],
-      [    Rational(-1,1),],
-      [Rational(-4242,42),],
+      [           Integer(-1),],
+      [        Integer(-4242),],
+      [Integer(-100000000000),],
+      [Integer(-424200000000),],
+      [           Float(-0.1),],
+      [           Float(-1.0),],
+      [         Float(-42.42),],
+      [       Rational(-1,42),],
+      [        Rational(-1,1),],
+      [    Rational(-4242,42),],
     ]
   end
 
