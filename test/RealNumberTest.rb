@@ -37,12 +37,12 @@ class RealNumberTest < UnitTest::TestCase
       [Rational.new(-4242,42),],
     ]
   end
-  
-  def notPositive
+
+  def notPositiveData
     zeroData | negativeData
   end
 
-  def notNegative
+  def notNegativeData
     zeroData | positiveData
   end
 
@@ -51,7 +51,7 @@ class RealNumberTest < UnitTest::TestCase
   end
 
   def notPositiveTest value
-    assert(not value.positive?, "#{value.class}:(#{value}) should not be positive!")
+    assert((not value.positive?), "#{value.class}:(#{value}) should not be positive!")
   end
 
   def negativeTest value
@@ -59,6 +59,6 @@ class RealNumberTest < UnitTest::TestCase
   end
 
   def notNegativeTest value
-    assert(not value.negative?, "#{value.class}:(#{value}) should not be negative!")
+    assert((not value.negative?), "#{value.class}:(#{value}) should not be negative!")
   end
 end
