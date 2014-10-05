@@ -1,4 +1,4 @@
-$LOAD_PATH << "#{Dir.pwd}/lib"
+$LOAD_PATH << "#{File.dirname(__FILE__)}/lib"
 
 # Sample Test
-require './test/RealNumberTest'
+require_relative 'test/RealNumberTest'
