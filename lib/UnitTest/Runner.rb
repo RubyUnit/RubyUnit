@@ -40,6 +40,7 @@ module UnitTest
 
       protected
       def report
+        # haven't figured out what I want to do for reporting yet
         puts @@failures
         puts @@errors
       end
