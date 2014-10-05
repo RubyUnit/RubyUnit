@@ -6,35 +6,35 @@ class RealNumberTest < UnitTest::TestCase
   public
   def positiveData
     [
-      [       Integer.new(1),],
-      [    Integer.new(4242),],
-      [       Float.new(0.1),],
-      [       Float.new(1.0),],
-      [     Float.new(42.42),],
-      [   Rational.new(1,42),],
-      [    Rational.new(1,1),],
-      [Rational.new(4242,42),],
+      [       Integer(1),],
+      [    Integer(4242),],
+      [       Float(0.1),],
+      [       Float(1.0),],
+      [     Float(42.42),],
+      [   Rational(1,42),],
+      [    Rational(1,1),],
+      [Rational(4242,42),],
     ]
   end
 
   def zeroData
     [
-      [   Integer.new(0)],
-      [   Float.new(0.0)],
-      [Rational.new(0,1)],
+      [   Integer(0)],
+      [   Float(0.0)],
+      [Rational(0,1)],
     ]
   end
 
   def negativeData
     [
-      [       Integer.new(-1),],
-      [    Integer.new(-4242),],
-      [       Float.new(-0.1),],
-      [       Float.new(-1.0),],
-      [     Float.new(-42.42),],
-      [   Rational.new(-1,42),],
-      [    Rational.new(-1,1),],
-      [Rational.new(-4242,42),],
+      [       Integer(-1),],
+      [    Integer(-4242),],
+      [       Float(-0.1),],
+      [       Float(-1.0),],
+      [     Float(-42.42),],
+      [   Rational(-1,42),],
+      [    Rational(-1,1),],
+      [Rational(-4242,42),],
     ]
   end
 
