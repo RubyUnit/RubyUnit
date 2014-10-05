@@ -8,10 +8,13 @@ module UnitTest
     @@failures   = []
     @@errors     = []
     @@tests      = 0
+    @@start      = nil
+    @@finish     = nil
 
     class << self
       public
       def run
+        @@start = Time.new
         runner = new
         TestCase.descendents.each do |object|
           @@test_cases << object
@@ -35,14 +38,36 @@ module UnitTest
             end
           end
         end
+        @@finish = Time.new
         report
       end
 
       protected
       def report
-        # haven't figured out what I want to do for reporting yet
-        puts @@failures
-        puts @@errors
+        # haven't figured out what I want to do for reporting yet but I need some results
+        puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
+
+        puts "#{@@errors.length} Errors:\n" if @@errors.length.positive?
+        @@errors.each_with_index do |error, i|
+          puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
+          puts error[3].message
+          puts error[3].backtrace.join("\n")
+        end
+
+        puts "#{@@failures.length} Failures:\n" if @@failures.length.positive?
+        @@failures.each_with_index do |failure, i|
+          puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
+          puts error[3].message
+          puts error[3].backtrace.join("\n")
+        end
+        
+        elapsed  = @@finish - @@start
+        invert   = Rational(elapsed.to_r.denominator/elapsed.to_r.numerator)
+        # inverse  = Rational(rational.denominator/rational.numerator)
+        puts
+        puts "Tests Complete! #{elapsed} seconds elapsed, #{(@@tests * invert).to_f} tests/s"
+        puts "#{@@tests} Tests, #{@@errors.length} Errors, #{@@failures.length} Failures"
+        puts
       end
     end
 
@@ -58,8 +83,8 @@ module UnitTest
         test_case.send test, *params
       rescue AssertionFailure => failure
         @@failures << [test_case.class.name, test, params, failure]
-      rescue Exception => e
-        @@errors << [test_case.class.name, test, params, failure]
+      rescue Exception => error
+        @@errors << [test_case.class.name, test, params, error]
       end
 
       test_case.teardown
