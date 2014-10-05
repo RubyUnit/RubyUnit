@@ -1,5 +1,5 @@
 # Real Numbers (not complex)
-class RealNumber
+module RealNumber
   # determines if a number is greater than zero
   def positive?
     self > 0
