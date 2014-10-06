@@ -64,6 +64,13 @@ module UnitTest
     end
 
     def assertNothingRaised message = nil, &block
+      assertion do
+        begin
+          yield
+        rescue
+          raise AssertionFailure, message
+        end
+      end
     end
 
     def assertInstance instance, object, message = nil
