@@ -47,14 +47,14 @@ module UnitTest
         # haven't figured out what I want to do for reporting yet but I need some results
         puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
 
-        puts "#{@@errors.length} Errors:\n" if @@errors.length.positive?
+        puts "#{@@errors.length} Errors:\n" if @@errors.length > 0
         @@errors.each_with_index do |error, i|
           puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
           puts error[3].message
           puts error[3].backtrace.join("\n")
         end
 
-        puts "#{@@failures.length} Failures:\n" if @@failures.length.positive?
+        puts "#{@@failures.length} Failures:\n" if @@failures.length > 0
         @@failures.each_with_index do |failure, i|
           puts "#{i + 1}) #{failure[0]}::#{failure[1]}(#{failure[2]})"
           puts failure[3].message
