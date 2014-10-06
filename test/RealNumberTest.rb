@@ -51,18 +51,18 @@ class RealNumberTest < UnitTest::TestCase
   end
 
   def positiveTest value
-    assert(value.positive?, "#{value.class}:(#{value}) should be positive!")
+    assert value.positive?, "#{value.class}:(#{value}) should be positive!"
   end
 
   def notPositiveTest value
-    assert((not value.positive?), "#{value.class}:(#{value}) should not be positive!")
+    assertNot value.positive?, "#{value.class}:(#{value}) should not be positive!"
   end
 
   def negativeTest value
-    assert(value.negative?, "#{value.class}:(#{value}) should be negative!")
+    assert value.negative?, "#{value.class}:(#{value}) should be negative!"
   end
 
   def notNegativeTest value
-    assert((not value.negative?), "#{value.class}:(#{value}) should not be negative!")
+    assertNot value.negative?, "#{value.class}:(#{value}) should not be negative!"
   end
 end

@@ -85,9 +85,9 @@ module UnitTest
         @@failures << [test_case.class.name, test, params, failure]
       rescue Exception => error
         @@errors << [test_case.class.name, test, params, error]
+      ensure
+        test_case.teardown
       end
-
-      test_case.teardown
     end
   end
 end

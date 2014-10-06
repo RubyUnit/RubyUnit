@@ -30,6 +30,12 @@ module UnitTest
       end
     end
 
+    def assertNot expected, message = nil
+      assertion do
+        raise AssertionFailure, message if expected
+      end
+    end
+
     def assertEqual expected, actual, message = nil
       assertion do
         raise AssertionFailure, message unless expected == actual
