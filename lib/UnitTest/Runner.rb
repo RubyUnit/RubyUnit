@@ -65,8 +65,8 @@ module UnitTest
         invert   = Rational(elapsed.to_r.denominator/elapsed.to_r.numerator)
         # inverse  = Rational(rational.denominator/rational.numerator)
         puts
-        puts "Tests Complete! #{elapsed} seconds elapsed, #{(@@tests * invert).to_f} tests/s"
-        puts "#{@@tests} Tests, #{@@errors.length} Errors, #{@@failures.length} Failures"
+        puts "Tests Complete! #{elapsed} seconds elapsed, #{(@@tests * invert).to_f} tests/s, #{(TestCase.assertions * invert).to_f} assertions/s"
+        puts "#{@@tests} Tests, #{TestCase.assertions} Assertions, #{@@errors.length} Errors, #{@@failures.length} Failures"
         puts
       end
     end
