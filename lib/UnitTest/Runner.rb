@@ -73,7 +73,7 @@ module UnitTest
 
     public
     def run object, test, params = []
-      raise ArgumentError, "Parameter list must be an array" unless params.is_a? Array
+      raise ArgumentError, "Parameter list for #{object.class}::#{test} must be an array" unless params.is_a? Array
 
       test_case = object.new
 
