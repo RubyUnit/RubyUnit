@@ -63,9 +63,24 @@ module UnitTest
       end
     end
 
-    def assertInstance instance, object, message
+    def assertNothingRaised message = nil, &block
+    end
+
+    def assertInstance instance, object, message = nil
       assertion do
         raise AssertionFailure, message unless object.instance_of? instance
+      end
+    end
+
+    def assertSame expected, actual, message = nil
+      assertion do
+        raise AssertionFailure, message unless expected.equal? actual
+      end
+    end
+
+    def assertNotSame expected, actual, message = nil
+      assertion do
+        raise AssertionFailure, message if expected.equal? actual
       end
     end
 

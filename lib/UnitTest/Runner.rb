@@ -28,9 +28,9 @@ module UnitTest
               test_case = object.new
               data      = test_case.send data_method
 
-              raise "Data methods must return and array" unless data.is_a? Array
+              raise "Data method #{data_method} must return an array" unless data.is_a? Array
               data.each do |params|
-                raise "Data methods must return an array of arrays" unless data.is_a? Array
+                raise "Data method #{data_method} must return an array of arrays" unless data.is_a? Array
                 runner.run object, test, params
               end
             else
