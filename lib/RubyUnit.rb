@@ -1,14 +1,14 @@
-require 'UnitTest/TestCase'
+require 'RubyUnit/TestCase'
 
-module UnitTest
+module RubyUnit
 end
 
-require 'UnitTest/Runner'
+require 'RubyUnit/Runner'
 # Automatically run test cases
 Module.new do
   if $ERROR_INFO.nil?
     at_exit do
-      UnitTest::Runner.run
+      RubyUnit::Runner.run
     end
   end
 end

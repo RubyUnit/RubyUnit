@@ -1,6 +1,6 @@
-require 'UnitTest/AssertionFailure'
+require 'RubyUnit/AssertionFailure'
 
-module UnitTest
+module RubyUnit
   class TestCase
     @@assertions = 0
     

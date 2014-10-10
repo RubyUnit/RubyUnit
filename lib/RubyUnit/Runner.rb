@@ -1,7 +1,7 @@
-require 'UnitTest/TestCase'
-require 'UnitTest/AssertionFailure'
+require 'RubyUnit/TestCase'
+require 'RubyUnit/AssertionFailure'
 
-module UnitTest
+module RubyUnit
   class Runner
     protected
     @@test_cases = []
