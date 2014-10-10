@@ -16,7 +16,6 @@ A simple Unit Test framework for Ruby
 * Add comments to existing code
 * Build documentation
 * Build better robust data driven test functionality
-* Build configuration mechanism
-  Also need to decide what is configurable
+* Build configuration mechanism (also need to decide what is configurable)
 * Build code coverage reporting
 * Implement multi-threaded testing
