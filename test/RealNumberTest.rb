@@ -1,6 +1,5 @@
 # Test for RealNumber mixin
 require_relative 'RealNumber'
-require 'RubyUnit'
 
 class RealNumberTest < RubyUnit::TestCase
   public
