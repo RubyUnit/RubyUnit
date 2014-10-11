@@ -1,6 +1,7 @@
-# RubyUnit
+RubyUnit
+========
 
-* https://github.com/matthewclower/RubyUnit
+* https://github.com/RubyUnit/RubyUnit
 
 ## Description
 
