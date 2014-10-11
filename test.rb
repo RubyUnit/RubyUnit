@@ -2,4 +2,4 @@
 
 # Sample Test
 require_relative 'RubyUnit'
-require_relative 'test/RealNumberTest'
+require_relative 'example/RealNumberTest'
