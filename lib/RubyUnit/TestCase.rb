@@ -79,9 +79,16 @@ module RubyUnit
       end
     end
 
-    def assertInstance instance, object, message = nil
+    def assertIsA klass, object, message = nil
       assertion do
-        raise AssertionFailure, message unless object.instance_of? instance
+        raise AssertionFailure, message unless klass.is_a? Class
+      end
+    end
+
+    def assertInstanceOf klass, object, message = nil
+      assertion do
+        assertIsA Class, klass, message
+        raise AssertionFailure, message unless object.instance_of? klass
       end
     end
 
@@ -94,6 +101,15 @@ module RubyUnit
     def assertNotSame expected, actual, message = nil
       assertion do
         raise AssertionFailure, message if expected.equal? actual
+      end
+    end
+
+    def assertConst expected, klass, konstant, message = nil
+      assertion do
+        assertIsA Class, klass, message
+        value = klass.const_get konstant
+        assertIsA expected.class, value, message
+        assertEqual expected, value, message
       end
     end
 
