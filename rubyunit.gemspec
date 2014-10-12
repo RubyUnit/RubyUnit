@@ -1,17 +1,29 @@
-Gem::Specification.new do |s|
-  s.name        = 'rubyunit'
-  s.version     = '0.0.1'
-  s.date        = '2014-10-11'
-  s.summary     = 'Unit Test Framework'
-  s.description = 'Unit Test Framework'
-  s.authors     = ['Matthew Clower']
-  s.email       = ['matthewclower@gmail.com']
-  # Static files
-  s.files       = ['README.md', 'LICENSE']
+Gem::Specification.new do |spec|
+  # REQUIRED ATTRIBUTES
+  spec.author               = 'Matthew Clower'
+  spec.authors              = ['Matthew Clower']
+
+  # static files
+  spec.files                = ['README.md', 'LICENSE', 'test.rb']
   # lib files
-  s.files      += Dir.glob 'lib/**/*.rb'
+  spec.files               += Dir['lib/**/*.rb']
   # example files
-  s.files      += Dir.glob 'example/**/*.rb'
-  s.homepage    = ['http://github.com/RubyUnit/RubyUnit']
-  s.license     = 'LGPL'
+  spec.files               += Dir['example/**/*.rb']
+
+  spec.name                 = 'rubyunit'
+  spec.require_paths        = ['lib']
+  spec.summary              = 'Unit Test Framework'
+  spec.version              = '0.0.1'
+
+  # RECOMMENDED ATTRIBUTES
+  spec.licenses             = 'LGPL'
+  spec.licenses             = ['LGPL']
+
+  # OPTIONAL ATTRIBUTES
+  spec.description          = 'Unit Test Framework'
+  spec.email                = ['matthewclower@gmail.com']
+  spec.extra_rdoc_files     = ['README.md']
+  spec.homepage             = 'http://github.com/RubyUnit/RubyUnit'
+
+  spec.post_install_message = 'Happy Testing!'
 end
