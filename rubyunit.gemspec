@@ -1,10 +1,12 @@
+require_relative 'lib/RubyUnit/version'
+
 Gem::Specification.new do |spec|
   # REQUIRED ATTRIBUTES
   spec.author               = 'Matthew Clower'
   spec.authors              = ['Matthew Clower']
 
   # static files
-  spec.files                = ['README.md', 'LICENSE', 'test.rb']
+  spec.files                = ['README.md', 'LICENSE']
   # lib files
   spec.files               += Dir['lib/**/*.rb']
   # example files
@@ -13,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.name                 = 'rubyunit'
   spec.require_paths        = ['lib']
   spec.summary              = 'Unit Test Framework'
-  spec.version              = '0.0.1'
+  spec.version              = RubyUnit::VERSION
 
   # RECOMMENDED ATTRIBUTES
   spec.licenses             = 'LGPL'

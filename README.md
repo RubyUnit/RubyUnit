@@ -1,29 +1,22 @@
 RubyUnit
 ========
 
+[![Gem Version](https://badge.fury.io/rb/rubyunit.svg)](http://badge.fury.io/rb/rubyunit)
+
+
+<!-- This isn't up yet...
+* http://rubyunit.github.io/ -->
 * https://github.com/RubyUnit/RubyUnit
 
 ## Description
 
-A simple Unit Test framework for Ruby
+A simple Unit Test framework for Ruby.
+- Currently tested with Ruby 2.1.1
 
-## TODO:
+## Install
 
-* Flesh out assertion list
-* Improve error/failure handling and reporting
-* Build mock object and fixture templates
-* Build tests for framework
-* Add comments to existing code
-* Build documentation
-* Build better robust data driven test functionality
-* Build configuration mechanism (also need to decide what is configurable)
-* Build code coverage reporting
-* Implement multi-threaded testing
-* Add test dependencies for test
+```bash
+$ gem install rubyunit
+```
 
-### Ruby Gem
-* Get gem version from library
-* Update summary and description to pull a doc
-
-### In Progress
-* Create Ruby Gem from unit test framework
+## License LGPL
