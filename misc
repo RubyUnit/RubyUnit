@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Unit Test Framework'
   s.description = 'Unit Test Framework'
   s.authors     = ['Matthew Clower']
-  s.emails      = ['matthewclower@gmail.com']
+  s.email       = ['matthewclower@gmail.com']
   # Static files
   s.files       = ['README.md', 'LICENSE']
   # lib files
