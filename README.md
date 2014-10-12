@@ -1,12 +1,16 @@
 RubyUnit
 ========
 
-[![Gem Version](https://badge.fury.io/rb/rubyunit.svg)](http://badge.fury.io/rb/rubyunit)
-
+[![Gem Version](https://badge.fury.io/rb/rubyunit@2x.png)](http://badge.fury.io/rb/rubyunit)
 
 <!-- This isn't up yet...
 * http://rubyunit.github.io/ -->
+
 * https://github.com/RubyUnit/RubyUnit
+
+
+# Practical Examples
+* https://github.com/matthewclower/PlayingCards
 
 ## Description
 
