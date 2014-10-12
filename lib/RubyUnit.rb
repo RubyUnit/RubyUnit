@@ -1,5 +1,3 @@
-require 'RubyUnit/TestCase'
-
 module RubyUnit
 end
 

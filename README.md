@@ -20,7 +20,6 @@ A simple Unit Test framework for Ruby
 * Build configuration mechanism (also need to decide what is configurable)
 * Build code coverage reporting
 * Implement multi-threaded testing
-* Move current "test" into "example"
 * Create Ruby Gem from unit test framework
 * Create pre commit hooks that run tests before committing
 * Add test dependencies for test
