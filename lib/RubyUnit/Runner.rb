@@ -1,21 +1,23 @@
-require 'RubyUnit/TestCase'
-require 'RubyUnit/AssertionFailure'
+require_relative 'TestCase'
+require_relative 'AssertionFailure'
 
 module RubyUnit
   class Runner
-    protected
-    @@test_cases = []
-    @@failures   = []
-    @@errors     = []
-    @@tests      = 0
-    @@start      = nil
-    @@finish     = nil
-
     class << self
+      protected
+      @@test_cases = []
+      @@failures   = []
+      @@errors     = []
+      @@tests      = 0
+      @@start      = nil
+      @@finish     = nil
+      @@autorun    = true
+
       public
       def run
-        @@start = Time.new
-        runner = new
+        @@autorun = false
+        @@start   = Time.new
+        runner    = new
         TestCase.descendents.each do |object|
           @@test_cases << object
 
@@ -39,12 +41,18 @@ module RubyUnit
           end
         end
         @@finish = Time.new
-        report
+        report unless @@tests.zero?
+        @@failures.count + @@errors.count
+      end
+
+      def autorun?
+        @@autorun
       end
 
       protected
       def report
         # haven't figured out what I want to do for reporting yet but I need some results
+        puts "RubyUnit #{RubyUnit::version}"
         puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
 
         puts "#{@@errors.count} Errors:\n" if @@errors.count > 0
@@ -68,6 +76,7 @@ module RubyUnit
         puts "%.3f tests/s, %.3f assertions/s" % [(@@tests * inverse).to_f, (TestCase.assertions * inverse).to_f]
         puts "%d Tests, %d Assertions, %d Errors, %d Failures" % [@@tests, TestCase.assertions, @@errors.count, @@failures.count]
         puts
+        
       end
     end
 

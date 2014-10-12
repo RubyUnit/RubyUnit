@@ -1,4 +1,4 @@
-require 'RubyUnit/AssertionFailure'
+require_relative 'AssertionFailure'
 
 module RubyUnit
   class TestCase
