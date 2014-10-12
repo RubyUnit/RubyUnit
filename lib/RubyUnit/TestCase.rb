@@ -2,8 +2,6 @@ require 'RubyUnit/AssertionFailure'
 
 module RubyUnit
   class TestCase
-    @@assertions = 0
-    
     public
     def setup
     end
@@ -120,6 +118,8 @@ module RubyUnit
     end
 
     class << self
+      @@assertions = 0
+
       def descendents
         ObjectSpace.each_object(Class).select do |object|
           object < self
