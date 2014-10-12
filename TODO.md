@@ -16,7 +16,6 @@ RubyUnit
 * Add test dependencies for test
 
 ### Ruby Gem
-* Get gem version from library
 * Update summary and description to pull a doc
 
 ### In Progress

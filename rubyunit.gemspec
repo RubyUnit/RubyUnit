@@ -1,3 +1,5 @@
+require 'RubyUnit'
+
 Gem::Specification.new do |spec|
   # REQUIRED ATTRIBUTES
   spec.author               = 'Matthew Clower'
@@ -13,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.name                 = 'rubyunit'
   spec.require_paths        = ['lib']
   spec.summary              = 'Unit Test Framework'
-  spec.version              = '0.0.1'
+  spec.version              = RubyUnit::VERSION
 
   # RECOMMENDED ATTRIBUTES
   spec.licenses             = 'LGPL'
