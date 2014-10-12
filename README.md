@@ -19,4 +19,4 @@ A simple Unit Test framework for Ruby.
 $ gem install rubyunit
 ```
 
-## License {file:LICENSE}
+## License LGPL
