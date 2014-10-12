@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.licenses             = ['LGPL']
 
   # OPTIONAL ATTRIBUTES
-  spec.description          = 'Unit Test Framework'
+  spec.description          = 'Framework for Unit Testing in Ruby'
   spec.email                = ['matthewclower@gmail.com']
   spec.extra_rdoc_files     = ['README.md']
   spec.homepage             = 'http://github.com/RubyUnit/RubyUnit'
