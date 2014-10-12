@@ -47,14 +47,14 @@ module RubyUnit
         # haven't figured out what I want to do for reporting yet but I need some results
         puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
 
-        puts "#{@@errors.length} Errors:\n" if @@errors.length > 0
+        puts "#{@@errors.count} Errors:\n" if @@errors.count > 0
         @@errors.each_with_index do |error, i|
           puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
           puts error[3].message
           puts error[3].backtrace.join("\n")
         end
 
-        puts "#{@@failures.length} Failures:\n" if @@failures.length > 0
+        puts "#{@@failures.count} Failures:\n" if @@failures.count > 0
         @@failures.each_with_index do |failure, i|
           puts "#{i + 1}) #{failure[0]}::#{failure[1]}(#{failure[2]})"
           puts failure[3].message
@@ -62,11 +62,11 @@ module RubyUnit
         end
         
         elapsed  = @@finish - @@start
-        invert   = Rational(elapsed.to_r.denominator/elapsed.to_r.numerator)
-        # inverse  = Rational(rational.denominator/rational.numerator)
+        inverse  = Rational(elapsed.to_r.denominator,elapsed.to_r.numerator)
         puts
-        puts "Tests Complete! #{elapsed} seconds elapsed, #{(@@tests * invert).to_f} tests/s, #{(TestCase.assertions * invert).to_f} assertions/s"
-        puts "#{@@tests} Tests, #{TestCase.assertions} Assertions, #{@@errors.length} Errors, #{@@failures.length} Failures"
+        puts "Tests Complete in #{elapsed} seconds!"
+        puts "%.3f tests/s, %.3f assertions/s" % [(@@tests * inverse).to_f, (TestCase.assertions * inverse).to_f]
+        puts "%d Tests, %d Assertions, %d Errors, %d Failures" % [@@tests, TestCase.assertions, @@errors.count, @@failures.count]
         puts
       end
     end
