@@ -20,7 +20,10 @@ A simple Unit Test framework for Ruby
 * Build code coverage reporting
 * Implement multi-threaded testing
 * Add test dependencies for test
+
+### Ruby Gem
 * Get gem version from library
+* Update summary and description to pull a doc
 
 ### In Progress
 * Create Ruby Gem from unit test framework
