@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'RubyUnit'
+  s.name        = 'rubyunit'
   s.version     = '0.0.1'
   s.date        = '2014-10-11'
   s.summary     = 'Unit Test Framework'
