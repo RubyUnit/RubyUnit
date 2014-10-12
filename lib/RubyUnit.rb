@@ -1,6 +1,7 @@
 module RubyUnit
 end
 
+require 'RubyUnit/TestCase'
 require 'RubyUnit/Runner'
 # Automatically run test cases
 Module.new do
