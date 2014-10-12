@@ -1,4 +1,4 @@
-require 'RubyUnit'
+require_relative 'lib/RubyUnit/version'
 
 Gem::Specification.new do |spec|
   # REQUIRED ATTRIBUTES
@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors              = ['Matthew Clower']
 
   # static files
-  spec.files                = ['README.md', 'LICENSE', 'test.rb']
+  spec.files                = ['README.md', 'LICENSE']
   # lib files
   spec.files               += Dir['lib/**/*.rb']
   # example files
