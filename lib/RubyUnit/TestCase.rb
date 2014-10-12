@@ -42,6 +42,12 @@ module RubyUnit
       end
     end
 
+    def assertNotEqual expected, actual, message = nil
+      assertion do
+        raise AssertionFailure, message if expected == actual
+      end
+    end
+
     def assertMatch pattern, actual, message = nil
       assertion do
         raise AssertionFailure, message unless actual =~ pattern
