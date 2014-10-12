@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
-# Sample Test
+# require RubyUnit framework
 require 'RubyUnit'
+
+# Example test for RealNumber mixin
 require_relative 'RealNumberTest'
