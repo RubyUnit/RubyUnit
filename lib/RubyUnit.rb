@@ -1,5 +1,5 @@
 module RubyUnit
-  @@build = 5
+  @@build = 6
   VERSION = '0.0'
 
   protected
