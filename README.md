@@ -1,11 +1,12 @@
 RubyUnit
 ========
 
-[![Gem Version](https://badge.fury.io/rb/rubyunit@2x.png)](http://badge.fury.io/rb/rubyunit)
+[![Gem Version](https://badge.fury.io/rb/rubyunit.png)](http://badge.fury.io/rb/rubyunit)
+[![Code Climate](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/gpa.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit)
+[![Test Coverage](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/coverage.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit)
 
-<!-- This isn't up yet...
-* http://rubyunit.github.io/ -->
 
+* http://rubyunit.github.io/
 * https://github.com/RubyUnit/RubyUnit
 
 
