@@ -22,8 +22,7 @@ if RubyUnit::Runner.run.zero?
     spec.version               = RubyUnit::VERSION
 
     # RECOMMENDED ATTRIBUTES
-    spec.licenses              = 'LGPL'
-    spec.licenses              = ['LGPL']
+    spec.licenses              = ['Ruby', 'LGPL']
 
     # OPTIONAL ATTRIBUTES
     spec.description           = RubyUnit::GemInfo.description
