@@ -13,6 +13,7 @@ RubyUnit
 * Add test dependencies for test
 * Implement multi-threaded testing
 * Alias exit functionality in autorun so it adheres to existing defined exit functionality
+* Create method for tracking message/failure indicator
 
 ### Ruby Gem
 * Automatically kick build number
