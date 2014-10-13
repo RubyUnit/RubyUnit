@@ -36,7 +36,7 @@ module RubyUnit
     #  spec.description = RubyUnit::GemInfo.description
     #
     def self.description
-      'Unit testing and test-driven development is a crucial part of the software ' +
+      'Unit testing and test-driven development are crucial parts of the software ' +
       'development life cycle. This tool is intended to make development and ' +
       'testing in Ruby easier on everyone.'
     end
