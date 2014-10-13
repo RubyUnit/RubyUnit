@@ -377,6 +377,7 @@ module RubyUnit
     def assertConst expected, klass, konstant, message = nil
       raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
       __assertion do
+        assertConstDefined klass, konstant, message
         value = klass.const_get konstant
         assertIsA expected.class, value, message
         assertEqual expected, value, message
@@ -427,7 +428,7 @@ module RubyUnit
     def assertConstNotDefined klass, konstant, message = nil
       raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
       __assertion do
-        raise AssertionFailure, message, unless klass.const_defined? konstant
+        raise AssertionFailure, message, if klass.const_defined? konstant
       end
     end
 
