@@ -217,13 +217,13 @@ module RubyUnit
     #  end
     #
     def assertRaiseExpected *args, &block
-      __assertion do
-        raise ArgumentError, "wrong number of arguments (#{args.count} for 2..3)" unless args.count > 0 
-        expected, pattern, message = args
-        raise ArgumentError, "expected exception must be a subclass of Exception" unless expected < Exception
-        raise ArgumentError, "exception message must be a Regexp or String" unless pattern.is_a? Regexp or pattern.is_a? String or pattern.nil?
-        raise ArguemntError, "message must be a String or nil" unless message.is_a? String or message.nil?
+      raise ArgumentError, "wrong number of arguments (#{args.count} for 2..3)" unless args.count > 0 
+      expected, pattern, message = args
+      raise ArgumentError, "expected exception must be a subclass of Exception" unless expected < Exception
+      raise ArgumentError, "exception message must be a Regexp or String" unless pattern.is_a? Regexp or pattern.is_a? String or pattern.nil?
+      raise ArguemntError, "message must be a String or nil" unless message.is_a? String or message.nil?
 
+      __assertion do
         begin
           yield
           raise AssertionFailure, message
@@ -358,6 +358,7 @@ module RubyUnit
     # Assert that a constant is defined correctly in the correct class
     # * raises RubyUnit::AssertionFailure unless the constant is defined in
     #   the specified class and it is the correct type and value
+    # * raises ArgumentError if _konstant_ is not a string
     #
     # expected::
     #   The value that is expected for the constant
@@ -366,8 +367,7 @@ module RubyUnit
     #   The class where the constant should be defined
     #
     # konstant::
-    #   The name of the constant expressed as a String so that it can be
-    #   validated in the class
+    #   The name of the constant
     #
     # message::
     #   The message provided to be reported for a failure
@@ -375,10 +375,59 @@ module RubyUnit
     #  assertConst 42, Numbers, 'TWENTYFOUR', 'So dyslexic.'  # => fail
     #
     def assertConst expected, klass, konstant, message = nil
+      raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
       __assertion do
         value = klass.const_get konstant
         assertIsA expected.class, value, message
         assertEqual expected, value, message
+      end
+    end
+
+    #
+    # Assert that a constant is defined in the specified class
+    # * raises RubyUnit::AssertionFailure unless the constant is defined in
+    #   the specified class
+    # * raises ArgumentError if _konstant_ is not a string
+    #
+    # klass::
+    #   The class where the constant should be defined
+    #
+    # konstant::
+    #   The name of the constant
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertConstDefined Numbers, 'FORTYTWO', 'Mystery.'  # => ??
+    #
+    def assertConstDefined klass, konstant, message = nil
+      raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
+      __assertion do
+        raise AssertionFailure, message, unless klass.const_defined? konstant
+      end
+    end
+
+    #
+    # Assert that a constant is not defined in the specified class
+    # * raises RubyUnit::AssertionFailure if the constant is defined in
+    #   the specified class
+    # * raises ArgumentError if _konstant_ is not a string
+    #
+    # klass::
+    #   The class where the constant should not be defined
+    #
+    # konstant::
+    #   The name of the constant
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertConstNotDefined Numbers, 'TWENTYFOUR', 'Mystery.'  # => ??
+    #
+    def assertConstNotDefined klass, konstant, message = nil
+      raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
+      __assertion do
+        raise AssertionFailure, message, unless klass.const_defined? konstant
       end
     end
 
