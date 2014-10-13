@@ -1,6 +1,18 @@
 require_relative 'AssertionFailure'
 
 module RubyUnit
+  #
+  # = TestCase
+  # A class for tests!
+  #
+  # classes derrived from the RubyUnit::TestCase will automatically be run by
+  # the test runner.  Any 
+  #
+  # @example
+  #  MyTest < RubyUnit::TestCase
+  #    def simpleTest
+  #  end
+  #
   class TestCase
     public
     def setup

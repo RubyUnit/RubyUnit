@@ -1,18 +1,20 @@
-# == RubyUnit
-# RubyUnit is the base module for all classes and modules.
+#
+# = RubyUnit
+# A Simple Unit Test Framework for Ruby
+#
+# The RubyModule is the root object for all RubyUnit modules and classes
+#
 module RubyUnit
-  #
-  # = RubyUnit
-  #   A Simple Unit Test Framework for Ruby
-  #
-  
-  # RubyUnit version you are using
+  # Current RubyUnit version
   VERSION = '0.0.6'
 
-  # Module which contains data used when compiling Ruby gem
+  # Module that contains data and functionality needed when building the RubyUnit
+  # gem.
   module GemInfo
 
     # Provides a list of all the files required by this gem
+    # @example
+    #  spec.files = RubyUnit::GemInfo.files
     def self.files
       # local one-off directory
       static   = ['README.md', 'LICENSE']
@@ -23,6 +25,15 @@ module RubyUnit
 
       static + libs + examples
     end
+    
+    # Provides a longer description of the RubyUnit gem
+    # @example
+    #  spec.description = RubyUnit::GemInfo.description
+    def self.description
+      'Unit testing and test-driven development is a crucial part of the software ' +
+      'development life cycle. This tool is intended to make development and ' +
+      'testing in Ruby easier on everyone.'
+    end
   end
 end
 
@@ -31,7 +42,7 @@ require_relative 'RubyUnit/Runner'
 
 # Automatically Run Test Cases if they haven't been run already
 Module.new do
-  # Run autorunner
+  # Automatically run defined Test Cases
   #--
   # TODO: add alias and call the alias so that the function doesn't break any
   # functionality that may have also extended this event.  Before/After?
