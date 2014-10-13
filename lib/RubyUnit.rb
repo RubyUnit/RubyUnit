@@ -6,7 +6,7 @@
 #
 module RubyUnit
   # Current RubyUnit version
-  VERSION = '0.1.6'
+  VERSION = '0.1.7'
 
   #
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
@@ -21,7 +21,7 @@ module RubyUnit
     #
     def self.files
       # local one-off directory
-      static   = ['README.md', 'LICENSE']
+      static   = ['README.md']
       # libraries
       libs     = Dir['lib/**/*.rb']
       # examples

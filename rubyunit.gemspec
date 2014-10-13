@@ -23,7 +23,7 @@ if RubyUnit::Runner.run.zero?
 
     # RECOMMENDED ATTRIBUTES
     spec.licenses              = ['Ruby', 'LGPL']
-
+    spec.rdoc_options          = ['--all', '--main', 'README.md']
     # OPTIONAL ATTRIBUTES
     spec.description           = RubyUnit::GemInfo.description
     spec.email                 = ['matthewclower@gmail.com']
