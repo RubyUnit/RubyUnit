@@ -13,20 +13,20 @@ if RubyUnit::Runner.run.zero?
     spec.author                = 'Matthew Clower'
     spec.authors               = ['Matthew Clower']
 
-    # static files
+    # required files
     spec.files                 = RubyUnit::GemInfo.files
 
     spec.name                  = 'rubyunit'
     spec.require_paths         = ['lib']
-    spec.summary               = 'Unit Test Framework'
-    spec.version               = RubyUnit::version
+    spec.summary               = 'A Simple Unit Test Framework'
+    spec.version               = RubyUnit::VERSION
 
     # RECOMMENDED ATTRIBUTES
     spec.licenses              = 'LGPL'
     spec.licenses              = ['LGPL']
 
     # OPTIONAL ATTRIBUTES
-    spec.description           = 'Framework for Unit Testing in Ruby, examples: https://github.com/matthewclower/PlayingCards'
+    spec.description           = RubyUnit::GemInfo.description
     spec.email                 = ['matthewclower@gmail.com']
     spec.extra_rdoc_files      = ['README.md']
     spec.homepage              = 'http://github.com/RubyUnit/RubyUnit'
