@@ -1,30 +1,27 @@
+# == RubyUnit
+# RubyUnit is the base module for all classes and modules.
 module RubyUnit
-  @@build = 6
-  VERSION = '0.0'
-
-  protected
-  public
-  def self.debug?
-    @@debug
-  end
+  #
+  # = RubyUnit
+  #   A Simple Unit Test Framework for Ruby
+  #
   
-  def self.build
-    @@build
-  end
+  # RubyUnit version you are using
+  VERSION = '0.0.6'
 
-  def self.version
-    "#{VERSION}.#{build}"
-  end
+  # Module which contains data used when compiling Ruby gem
+  module GemInfo
 
-  class GemInfo
-    class << self
-      def files
-        static   = ['README.md', 'LICENSE']
-        libs     = Dir['lib/**/*.rb']
-        examples = Dir['example/*.rb']
+    # Provides a list of all the files required by this gem
+    def self.files
+      # local one-off directory
+      static   = ['README.md', 'LICENSE']
+      # libraries
+      libs     = Dir['lib/**/*.rb']
+      # examples
+      examples = Dir['example/*.rb']
 
-        static + libs + examples
-      end
+      static + libs + examples
     end
   end
 end
@@ -32,8 +29,13 @@ end
 require_relative 'RubyUnit/TestCase'
 require_relative 'RubyUnit/Runner'
 
-# Automatically run test cases
+# Automatically Run Test Cases if they haven't been run already
 Module.new do
+  # Run autorunner
+  #--
+  # TODO: add alias and call the alias so that the function doesn't break any
+  # functionality that may have also extended this event.  Before/After?
+  #++
   at_exit do
     if $ERROR_INFO.nil? and RubyUnit::Runner.autorun?
       RubyUnit::Runner.run

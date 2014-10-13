@@ -52,7 +52,7 @@ module RubyUnit
       protected
       def report
         # haven't figured out what I want to do for reporting yet but I need some results
-        puts "RubyUnit #{RubyUnit::version}"
+        puts "RubyUnit #{RubyUnit::VERSION}"
         puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
 
         puts "#{@@errors.count} Errors:\n" if @@errors.count > 0

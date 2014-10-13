@@ -19,7 +19,7 @@ if RubyUnit::Runner.run.zero?
     spec.name                  = 'rubyunit'
     spec.require_paths         = ['lib']
     spec.summary               = 'Unit Test Framework'
-    spec.version               = RubyUnit::version
+    spec.version               = RubyUnit::VERSION
 
     # RECOMMENDED ATTRIBUTES
     spec.licenses              = 'LGPL'
