@@ -12,8 +12,8 @@ RubyUnit
 * Build better robust data driven test functionality
 * Build configuration mechanism (also need to decide what is configurable)
 * Build code coverage reporting
-* Implement multi-threaded testing
 * Add test dependencies for test
+* Implement multi-threaded testing
 * Alias exit functionality in autorun so it adheres to existing defined exit functionality
 
 ### Ruby Gem
