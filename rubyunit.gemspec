@@ -5,7 +5,11 @@ $LOAD_PATH.unshift (File.dirname(__FILE__) + '/lib')
 require 'RubyUnit'
 
 # Validate the package is good.
+# This is just the example test the real ones aren't fleshed out.
 require_relative 'example/TestSet'
+
+# RubyUnit Test Suite
+require_relative 'tests/TestSuite'
 
 if RubyUnit::Runner.run.zero?
   Gem::Specification.new do |spec|
@@ -14,7 +18,7 @@ if RubyUnit::Runner.run.zero?
     spec.authors               = ['Matthew Clower']
 
     # required files
-    spec.files                 = RubyUnit::GemInfo.files
+    spec.files                 = RubyUnit::GemInfo::FILES
 
     spec.name                  = 'rubyunit'
     spec.require_paths         = ['lib']
@@ -25,7 +29,7 @@ if RubyUnit::Runner.run.zero?
     spec.licenses              = ['Ruby', 'LGPL']
     spec.rdoc_options          = ['--all', '--main', 'README.md']
     # OPTIONAL ATTRIBUTES
-    spec.description           = RubyUnit::GemInfo.description
+    spec.description           = RubyUnit::GemInfo::DESCRIPTION
     spec.email                 = ['matthewclower@gmail.com']
     spec.extra_rdoc_files      = ['README.md']
     spec.homepage              = 'http://github.com/RubyUnit/RubyUnit'

@@ -13,33 +13,14 @@ module RubyUnit
   # when building and distributing the RubyUnit gem.
   #
   module GemInfo
+    FILES       = ['README.md', 'LICENSE'] +   # base files at root level
+                  Dir['lib/**/*.rb'] +         # library files
+                  Dir['example/*.rb'] +        # example files
+                  Dir['tests/**/*.rb']         # TESTS
 
-    #
-    # Provides a list of all the files required by this gem
-    #
-    #  spec.files = RubyUnit::GemInfo.files
-    #
-    def self.files
-      # local one-off directory
-      static   = ['README.md']
-      # libraries
-      libs     = Dir['lib/**/*.rb']
-      # examples
-      examples = Dir['example/*.rb']
-
-      static + libs + examples
-    end
-
-    #
-    # Provides a longer description of the RubyUnit gem
-    #
-    #  spec.description = RubyUnit::GemInfo.description
-    #
-    def self.description
-      'Unit testing and test-driven development are crucial parts of the software ' +
-      'development life cycle. This tool is intended to make development and ' +
-      'testing in Ruby easier on everyone.'
-    end
+    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of' +
+                  'the software development life cycle. This tool is intended to' +
+                  'make development and testing in Ruby easier on everyone.'
   end
 end
 
