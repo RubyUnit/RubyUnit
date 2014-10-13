@@ -14,3 +14,6 @@ require_relative 'TEST_RubyUnit'
 
 # GemInfo module => lib/RubyUnit.rb
 require_relative 'TEST_GemInfo'
+
+# TestCase class => lib/RubyUnit/TestCase.rb
+require_relative 'TEST_TestCase'

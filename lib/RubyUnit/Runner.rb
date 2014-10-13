@@ -3,6 +3,8 @@ require_relative 'AssertionFailure'
 
 module RubyUnit
   #
+  # = RubyUnit::Runner
+  #  
   # This is the test runner.
   # Done, and done.
   #
