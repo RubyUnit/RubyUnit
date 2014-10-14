@@ -26,6 +26,38 @@ module RubyUnit
   #  end
   #
   class TestCase
+    private
+    #
+    # Builds the message that will be used with the assertion
+    # * raises RubyUnit::AssertionFailure
+    # * raises ArgumentError unless error is a String
+    # * raises ArgumentError unless message is nil or a String
+    # * raises ArgumentError unless data is a Hash
+    #
+    # error::
+    #   The assertion failure
+    #
+    # message::
+    #   The message provided by the test for the assertion
+    #
+    # data::
+    #   The data associated with assertion failure
+    #
+    #  build_message 'Failing Test', message, {'expected' => expected, 'actual' => actual }
+    #
+    def build_message error, message, data = {} # :nodoc:
+      raise ArgumentError, 'Error message must be a String' unless error.is_a? String
+      raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
+      raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
+
+      error_message  = error
+      error_message << "\n#{message}" if not message.nil?
+      data.each do |index, value|
+        error_message << "\n%10s: #{value.inspect}" % index
+      end
+      raise AssertionFailure, error_message
+    end
+
     public
 
     #
@@ -77,43 +109,43 @@ module RubyUnit
     #
     def fail message = nil
       __assertion do
-        raise AssertionFailure, message
+        build_message 'Failing test', message
       end
     end
 
     #
     # Assert that a test condition is true.
-    # * raises RubyUnit::AssertionFailure unless _expected_ is true
+    # * raises RubyUnit::AssertionFailure if _value_ is false or nil
     #
-    # expected::
-    #   The value that is being checked for the assertion
+    # value::
+    #   The value that is being checked by the assertion
     #
     # message::
     #   The message provided to be reported for a failure
     #
-    #  assert false "This will fail"  # => fail
+    #  assert false, "This will fail"  # => fail
     #
-    def assert expected, message = nil
+    def assert value, message = nil
       __assertion do
-        raise AssertionFailure, message unless expected
+        build_message 'Failed to assert that value is false or nil', message, {:value=>value} unless value
       end
     end
 
     #
     # Assert that a test condition is false.
-    # * raises RubyUnit::AssertionFailure if _expected_ is true
+    # * raises RubyUnit::AssertionFailure unless _value_ is false or nil
     #
-    # expected::
-    #   The value that is being checked for the assertion
+    # value::
+    #   The value that is being checked by the assertion
     #
     # message::
     #   The message provided to be reported for a failure
     #
-    #  assertNot true "This will fail"  # => fail
+    #  assertNot true, "This will fail"  # => fail
     #
-    def assertNot expected, message = nil
+    def assertNot value, message = nil
       __assertion do
-        raise AssertionFailure, message if expected
+        build_message 'Value should NOT be false or nil', message, {:value=>value} if value
       end
     end
 
@@ -121,55 +153,52 @@ module RubyUnit
     # Assert that two values are equal.
     # * raises RubyUnit::AssertionFailure unless _expected_ equals _actual_
     #
-    #--
-    # TODO It probably makes sense to rename _expected_ here
-    #++
     # expected::
-    #   The value that is expected by the assertion
+    #   The value that is forbidden by the assertion
     #
     # actual::
-    #   The value that is being checked for the assertion
+    #   The value that is being checked by the assertion
     #
     # message::
     #   The message provided to be reported for a failure
     #
-    #  assertEqual 42, 24 "This will fail"  # => fail
+    #  assertEqual 42, 24, "This will fail"  # => fail
     #
     def assertEqual expected, actual, message = nil
       __assertion do
-        raise AssertionFailure, message unless expected == actual
+        build_message 'Failed to assert that values are equal', message, {:expected=>expected, :actual=>actual} unless expected == actual
       end
     end
 
     #
     # Assert that two values are NOT equal.
-    # * raises RubyUnit::AssertionFailure if _expected_ equals _actual_
+    # * raises RubyUnit::AssertionFailure if _illegal_ equals _actual_
     #
-    # expected::
+    # illegal::
     #   The value that is not allowed by the assertion
     #
     # actual::
-    #   The value that is being checked for the assertion
+    #   The value that is being checked by the assertion
     #
     # message::
     #   The message provided to be reported for a failure
     #
-    #  assertNotEqual 3.14, 3.14 "This will fail"  # => fail
+    #  assertNotEqual 3.14, 3.14, "This will fail"  # => fail
     #
-    def assertNotEqual expected, actual, message = nil
+    def assertNotEqual illegal, actual, message = nil
       __assertion do
-        raise AssertionFailure, message if expected == actual
+        build_message 'Values should NOT be equal', message, {:illegal=>illegal, :actual=>actual} if illegal == actual 
       end
     end
 
     #
     # Assert that a value matches a Regexp pattern.
-    # * raises RubyUnit::AssertionFailure unless _actual_ matches _pattern_
+    # * raises RubyUnit::AssertionFailure unless _value_ matches _pattern_
     #
     # pattern::
     #   A Regexp pattern expected by the assertion
     #
-    # actual::
+    # value::
     #   The value that is being checked for the assertion
     #
     # message::
@@ -177,37 +206,27 @@ module RubyUnit
     #
     #  assertMatch /^Hello/, 'Goodbye!', "This will fail"  # => fail
     #
-    def assertMatch pattern, actual, message = nil
+    def assertMatch pattern, value, message = nil
       __assertion do
-        raise AssertionFailure, message unless actual =~ pattern
+        build_message 'Failed to assert value matches regular expression', message, {:pattern=>pattern, :value=>value} unless value =~ pattern
       end
     end
 
     #
     # Assert that a specified exception is raised.
     # * raises RubyUnit::AssertionFailure unless the correct Exception is raised
-    # * raises ArgumentError unless the parameter count is positive
-    # * raises ArgumentError unless the first parameter is a descendent of the
-    #   Exception class
-    # * raises ArgumentError if the second parameter is provided and is not a
-    #   String, Regexp or nil
-    # * raises ArgumentError if the third parameter is provided and is not a
-    #   String or nil
+    # * raises ArgumentError unless _exception_ is a descendent of the Exception class
+    # * raises ArgumentError if _pattern_ is not a String or Regexp
+    # * raises ArgumentError if _message_ is not a String or nil
     #
-    # *args::
-    #   List of arguments passed in as [expected, pattern, message]. Additional
-    #   parameters are ignored.
-    #
-    # expected::
-    #   *required*: The Exception class that is expected.  The Exception must be a
-    #   descendent of the Exception class.
+    # exception::
+    #   The Exception class that is expected.
     #
     # pattern::
-    #   _optional_: The String or Regexp that will be used to validate the Exception
-    #   message
+    #   The String or Regexp that will be used to validate the Exception message
     #
     # message::
-    #   _optional_: The message provided to be reported for a failure
+    #   The message provided to be reported for a failure
     #
     # &block::
     #   The code block that is expected to throw the Exception
@@ -216,23 +235,18 @@ module RubyUnit
     #    raise 'Invalid Retroincabulator'
     #  end
     #
-    def assertRaiseExpected *args, &block
-      raise ArgumentError, "wrong number of arguments (#{args.count} for 2..3)" unless args.count > 0 
-      expected, pattern, message = args
-      raise ArgumentError, "expected exception must be a subclass of Exception" unless expected < Exception
-      raise ArgumentError, "exception message must be a Regexp or String" unless pattern.is_a? Regexp or pattern.is_a? String or pattern.nil?
+    def assertRaiseExpected exception, pattern, message = nil, &block
+      raise ArgumentError, "Exception must be a subclass of Exception" unless exception < Exception
+      raise ArgumentError, "exception message must be a Regexp or String" unless pattern.is_a? Regexp or pattern.is_a? String
       raise ArguemntError, "message must be a String or nil" unless message.is_a? String or message.nil?
 
       __assertion do
         begin
           yield
-          raise AssertionFailure, message
-        rescue expected => e
-          if pattern.is_a? String
-            assertEqual pattern, e.message
-          elsif pattern.is_a? Regexp
-            assertMatch pattern, e.message
-          end
+          build_message 'Expected exception was not raised', message, {:exception=>exception, :pattern=>pattern}
+        rescue exception => e
+          assertEqual pattern, e.message if pattern.is_a? String
+          assertMatch pattern, e.message if pattern.is_a? Regexp
         end
       end
     end
@@ -255,8 +269,8 @@ module RubyUnit
       __assertion do
         begin
           yield
-        rescue
-          raise AssertionFailure, message
+        rescue Exception => e
+          build_message 'Exception was thrown but not expected', message, {:exception=>e.message}
         end
       end
     end
@@ -280,14 +294,13 @@ module RubyUnit
     #
     def assertIsA klass, object, message = nil
       __assertion do
-        raise AssertionFailure, message unless object.is_a? klass
+        build_message 'Failed to assert object heritage', message, {:klass=>klass, :object=>object} unless object.is_a? klass
       end
     end
 
     #
     # Assert that an object is an instance of a specified class
-    # * raises RubyUnit::AssertionFailure unless _object_ is an instance of
-    #   _klass_.
+    # * raises RubyUnit::AssertionFailure unless _object_ is an instance of _klass_.
     #
     # klass::
     #   The class that is expected
@@ -302,7 +315,7 @@ module RubyUnit
     #
     def assertInstanceOf klass, object, message = nil
       __assertion do
-        raise AssertionFailure, message unless object.instance_of? klass
+        build_message 'Failed to assert correct instance', message, {:klass=>klass, :object=>object} unless object.instance_of? klass
       end
     end
 
@@ -324,33 +337,29 @@ module RubyUnit
     #
     def assertSame expected, actual, message = nil
       __assertion do
-        raise AssertionFailure, message unless expected.equal? actual
+        build_message 'Failed to assert object are the same', message, {:expected=>expected, :actual=>actual} unless expected.equal? actual
       end
     end
 
     #
     # Assert that two objects are not the same object
-    # * raises RubyUnit::AssertionFailure if _expected_ and _actual_ are the
+    # * raises RubyUnit::AssertionFailure if _illegal_ and _actual_ are the
     #   same object.
     #
-    #--
-    # TODO It probably makes sense to rename this one too
-    #++
-    # expected::
+    # illegal::
     #   The expected that it shouldn't be
     #
     # actual::
-    #   The object that is being checked against _expected_
+    #   The object that is being checked against _illegal_
     #
     # message::
     #   The message provided to be reported for a failure
     #
-    #  value = 42
-    #  assertSame value, value, 'Imagine that!'  # => fail
+    #  assertNotSame value, value, 'Imagine that!'  # => fail
     #
-    def assertNotSame expected, actual, message = nil
+    def assertNotSame illegal, actual, message = nil
       __assertion do
-        raise AssertionFailure, message if expected.equal? actual
+        build_message 'Failed to assert objects are NOT the same', message, {:illegal=>illegal, :actual=>actual} if illegal.equal? actual
       end
     end
 
@@ -404,7 +413,7 @@ module RubyUnit
     def assertConstDefined klass, konstant, message = nil
       raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
       __assertion do
-        raise AssertionFailure, message unless klass.const_defined? konstant
+        build_message 'Failed to assert constant is defined', message, {:klass=>klass, :konstant=>konstant} unless klass.const_defined? konstant
       end
     end
 
@@ -428,7 +437,7 @@ module RubyUnit
     def assertConstNotDefined klass, konstant, message = nil
       raise ArgumentError, 'Constant name must be given as a String' unless konstant.is_a? String
       __assertion do
-        raise AssertionFailure, message if klass.const_defined? konstant
+        build_message 'Constant should not be defined', message, {:klass=>klass, :konstant=>konstant} if klass.const_defined? konstant
       end
     end
 
