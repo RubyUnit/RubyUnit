@@ -31,8 +31,8 @@ module RubyUnit
     # Builds the message that will be used with the assertion
     # * raises ArgumentError unless error is a String
     # * raises ArgumentError unless message is nil or a String
-    # * raises ArgumentError unless data is nil or a Hash
-    # * returns the error message as a String
+    # * raises ArgumentError unless data is a Hash
+    # * raises RubyUnit::AssertionFailure
     #
     # error::
     #   The assertion failure
@@ -45,19 +45,17 @@ module RubyUnit
     #
     #  build_message 'Failing Test', message, {'expected' => expected, 'actual' => actual }
     #
-    def build_message error, message, data = nil # :nodoc:
+    def build_message error, message, data = {} # :nodoc:
       raise ArgumentError, 'Error message must be a String' unless error.is_a? String
       raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
-      raise ArgumentError, 'Failure data must be Hash' unless data.nil? or data.is_a? Hash
+      raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
 
       error_message  = error
       error_message << "\n#{message}" if not message.nil?
-      unless data.is_a? Hash
-        data.each do |index, value|
-          error_message << "#{index}: #{value.inspect}"
-        end
+      data.each do |index, value|
+        error_message << "\n%10s: #{value.inspect}" % index
       end
-      error_message
+      raise AssertionFailure, error_message
     end
 
     public
@@ -110,10 +108,8 @@ module RubyUnit
     #  fail "I wasn't expecting the moon to fall into Lake Michigan"  # => fail
     #
     def fail message = nil
-      error = 'Failing test'
-      _m    = build_message error, message
       __assertion do
-        raise AssertionFailure, _m
+        build_message 'Failing test', message
       end
     end
 
@@ -130,11 +126,10 @@ module RubyUnit
     #  assert false, "This will fail"  # => fail
     #
     def assert value, message = nil
-      _m = build_message 'Failed to assert that value is false or nil',
-        message,
-        { 'value' => value }
       __assertion do
-        raise AssertionFailure, _m unless value
+        unless value
+          build_message 'Failed to assert that value is false or nil', message, {:value=>value}
+        end
       end
     end
 
@@ -151,11 +146,10 @@ module RubyUnit
     #  assertNot true, "This will fail"  # => fail
     #
     def assertNot value, message = nil
-      _m = build_message 'Value should NOT be false or nil',
-        message,
-        { 'value' => value }
       __assertion do
-        raise AssertionFailure, message if value
+        if value
+          build_message 'Value should NOT be false or nil', message, {:value=>value}
+        end
       end
     end
 
@@ -175,14 +169,10 @@ module RubyUnit
     #  assertEqual 42, 24, "This will fail"  # => fail
     #
     def assertEqual expected, actual, message = nil
-      _m = build_message 'Failed to assert that values are equal',
-        message,
-        {
-          'expected' => expected,
-          'actual'   => actual,
-        }
       __assertion do
-        raise AssertionFailure, _m unless expected == actual
+        unless expected == actual
+          build_message 'Failed to assert that values are equal', message, {:expected=>expected, :actual=>actual}
+        end
       end
     end
 
@@ -201,15 +191,11 @@ module RubyUnit
     #
     #  assertNotEqual 3.14, 3.14, "This will fail"  # => fail
     #
-    def assertNotEqual expected, actual, message = nil
-      _m = build_message 'Values should NOT be equal',
-        message,
-        {
-          'expected' => expected,
-          'actual'   => actual,
-        }
+    def assertNotEqual illegal, actual, message = nil
       __assertion do
-        raise AssertionFailure, message if expected == actual
+        if illegal == actual
+          build_message 'Values should NOT be equal', message, {:illegal=>illegal, :actual=>actual}
+        end
       end
     end
 
@@ -229,14 +215,10 @@ module RubyUnit
     #  assertMatch /^Hello/, 'Goodbye!', "This will fail"  # => fail
     #
     def assertMatch pattern, value, message = nil
-      _m = build_message 'Failed to assert value matches regular expression',
-        message,
-        {
-          'pattern' => pattern,
-          'value'   => value,
-        }
       __assertion do
-        raise AssertionFailure, message unless actual =~ pattern
+        # unless value =~ pattern
+          build_message 'Failed to assert value matches regular expression', message, {:pattern=>pattern, :value=>value}
+        # end
       end
     end
 
