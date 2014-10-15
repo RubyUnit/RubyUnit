@@ -1,5 +1,4 @@
 #
-# = RubyUnit
 # A Simple Unit Test Framework for Ruby
 #
 # The RubyModule is the root object for all RubyUnit modules and classes.
