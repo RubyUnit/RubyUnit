@@ -1,26 +1,7 @@
 
 module RubyUnit
   #
-  # All classes derrived from the RubyUnit::TestCase will automatically be run by
-  # the test runner.
-  # * Test methods must currently be named ending in 'Test'
-  # * Data methods must currently be named ending in 'Data'
-  #   All data methods must return an array of arrays as param lists to passed to
-  #   the corresponding test method.
-  # * Exceptions raised in this class are generally caught by the RubyUnit::Runner
-  #
-  #  MyTest < RubyUnit::TestCase
-  #    def simpleData
-  #      [
-  #        [       1,   3],
-  #        ['string', nil],
-  #      ],
-  #    end
-  #
-  #    def simpleTest param1, param2
-  #      # run assertions
-  #    end
-  #  end
+  # Assertions that can be used by RubyUnit::TestCase
   #
   module Assertions
     # Tracks the total number of assertions made during the tests
