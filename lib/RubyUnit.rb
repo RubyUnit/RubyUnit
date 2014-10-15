@@ -5,17 +5,17 @@
 #
 module RubyUnit
   # Current RubyUnit version
-  VERSION = '0.2.10'
+  VERSION = '0.2.11'
 
   #
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
   # when building and distributing the RubyUnit gem.
   #
   module GemInfo
-    FILES       = ['README.md', 'LICENSE'] +   # base files at root level
-                  Dir['lib/**/*.rb'] +         # library files
-                  Dir['example/*.rb'] +        # example files
-                  Dir['tests/**/*.rb']         # TESTS
+    FILES       = ['README.md', 'LICENSE.md'] +  # base files at root level
+                  Dir['lib/**/*.rb'] +           # library files
+                  Dir['example/*.rb'] +          # example files
+                  Dir['tests/**/*.rb']           # TESTS
 
     DESCRIPTION = 'Unit testing and test-driven development are crucial parts of' +
                   'the software development life cycle. This tool is intended to' +

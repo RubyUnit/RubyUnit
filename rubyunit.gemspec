@@ -26,7 +26,7 @@ if RubyUnit::Runner.run.zero?
     spec.version               = RubyUnit::VERSION
 
     # RECOMMENDED ATTRIBUTES
-    spec.licenses              = ['Ruby', 'LGPL']
+    spec.licenses              = ['Ruby']
     spec.rdoc_options          = ['--all', '--main', 'README.md']
     # OPTIONAL ATTRIBUTES
     spec.description           = RubyUnit::GemInfo::DESCRIPTION
