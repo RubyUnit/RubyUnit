@@ -1,12 +1,11 @@
 #
-# = RubyUnit
 # A Simple Unit Test Framework for Ruby
 #
 # The RubyModule is the root object for all RubyUnit modules and classes.
 #
 module RubyUnit
   # Current RubyUnit version
-  VERSION = '0.1.10'
+  VERSION = '0.2.10'
 
   #
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
