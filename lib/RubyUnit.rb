@@ -17,8 +17,8 @@ module RubyUnit
                   Dir['example/*.rb'] +          # example files
                   Dir['tests/**/*.rb']           # TESTS
 
-    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of' +
-                  'the software development life cycle. This tool is intended to' +
+    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of ' +
+                  'the software development life cycle. This tool is intended to ' +
                   'make development and testing in Ruby easier on everyone.'
   end
 end
