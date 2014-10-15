@@ -20,7 +20,7 @@ module RubyUnit
       # Verify that the list of files contains the LICENSE file
       #
       def validateFilesIncludesLicenseTest
-        assert (RubyUnit::GemInfo::FILES.include? 'LICENSE'), 'Gem MUST be distributed with the license!'
+        assert (RubyUnit::GemInfo::FILES.include? 'LICENSE.md'), 'Gem MUST be distributed with the license!'
       end
     end
   end
