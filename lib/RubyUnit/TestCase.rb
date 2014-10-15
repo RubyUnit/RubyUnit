@@ -53,7 +53,7 @@ module RubyUnit
       error_message  = error
       error_message << "\n#{message}" if not message.nil?
       data.each do |index, value|
-        error_message << "\n%10s: #{value.inspect}" % index
+        error_message << "\n#{index}:\n\t#{value.inspect}"
       end
       raise AssertionFailure, error_message
     end
