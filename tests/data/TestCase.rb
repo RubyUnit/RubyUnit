@@ -10,4 +10,13 @@ module TestCaseData
       [ :assertions],
     ]
   end
+
+  def instanceMethodData
+    [
+      [          :setup],
+      [       :teardown],
+      [    :markSkipped],
+      [ :markIncomplete],
+    ]
+  end
 end
