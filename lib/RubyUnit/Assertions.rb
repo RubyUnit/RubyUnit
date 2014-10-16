@@ -214,7 +214,7 @@ module RubyUnit
     #  assertNotKindOf Numeric, 25, 'Nope, try again.'  # => fail
     #
     def assertNotKindOf exclusion, object, message = nil
-      __reject (object.is_a? exclusion), 'Object should not be a descendent', message, {:exclusion=>exclusion, :object=>object}
+      __reject (object.is_a? exclusion), 'Object should NOT be a descendent', message, {:exclusion=>exclusion, :object=>object}
     end
 
     [:assertNotIsA, :assertIsNotA].each do |method|
@@ -335,6 +335,44 @@ module RubyUnit
     def assertNotInclude collection, value, message = nil
       assertRespondTo collection, :include?, message
       __reject (collection.include? value), 'Collection should NOT include value', message, {:collection=>collection, :value=>value}
+    end
+
+    #
+    # Assert that a class is a descendent of another class
+    # * raises RubyUnit::AssertionFailure unless _descendent_ is a descendent of _klass_
+    #
+    # klass::
+    #   The parent class
+    #
+    # descendent::
+    #   The descendent class
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertDescendent Numeric, Exception, 'Nope'  # => fail
+    #
+    def assertDescendent klass, descendent, message = nil
+      __assert (descendent < klass), 'Failed to assert class heritage', message, {:klass=>klass, :descendent=>descendent}
+    end
+
+    #
+    # Assert that a class is not a descendent of another class
+    # * raises RubyUnit::AssertionFailure if _illegal_ is a descendent of _klass_
+    #
+    # klass::
+    #   The parent class
+    #
+    # descendent::
+    #   The illegal descendent class
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertDescendent StandardError, Exception, 'It is'  # => fail
+    #
+    def assertNotDescendent klass, illegal, message = nil
+      __reject (descendent < klass), 'Class should NOT be a descendent', message, {:klass=>klass, :descendent=>descendent}
     end
 
     #

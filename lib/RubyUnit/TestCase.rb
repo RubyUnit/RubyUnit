@@ -25,9 +25,7 @@ module RubyUnit
   #  end
   #
   class TestCase
-
     public
-
     #
     # The setup helper that is run before each test in the test case.
     #
