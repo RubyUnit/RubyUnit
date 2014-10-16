@@ -72,6 +72,13 @@ class TEST_TestCase < RubyUnit::TestCase
   end
 
   #
+  # Test that descendents method includes this class
+  #
+  def descendentsTest
+    assertInclude RubyUnit::TestCase.descendents, self.name, 'Should be a descendent of RubyUnit::TestCase'
+  end
+
+  #
   # Test that the correct instance methods are defined
   #
   def instanceMethodTest method
