@@ -1,5 +1,7 @@
 require_relative 'AssertionFailure'
 require_relative 'Assertions'
+require_relative 'IncompleteTest'
+require_relative 'SkippedTest'
 
 module RubyUnit
   #
