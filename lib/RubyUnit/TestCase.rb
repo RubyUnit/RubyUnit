@@ -58,7 +58,7 @@ module RubyUnit
     end
 
     #
-    # Mark the test as skipped
+    # Mark the test as incomplete
     #
     #  markIncomplete 'Implementation of this test is not finished'
     #
