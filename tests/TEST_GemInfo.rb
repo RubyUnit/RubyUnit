@@ -8,14 +8,14 @@ require_relative 'data/GemInfo'
 #
 class TEST_GemInfo < RubyUnit::TestCase
   include GemInfoData
-  
+
   #
   # Verify that the required constants are defined
   #
   def constantsDefinedTest konstant
     assertConstDefined RubyUnit::GemInfo, konstant, "missing constant in GemInfo: #{konstant}!"
   end
-  
+
   #
   # Verify that the list of files contains the LICENSE file
   #

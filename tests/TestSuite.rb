@@ -9,11 +9,24 @@ require 'RubyUnit'
 
 # Test Cases
 
-# Ruby module => lib/RubyUnit.rb
+# RubyUnit module => RubyUnit.rb
 require_relative 'TEST_RubyUnit'
-
-# GemInfo module => lib/RubyUnit.rb
 require_relative 'TEST_GemInfo'
 
-# TestCase class => lib/RubyUnit/TestCase.rb
+# AssertionFailure exception => RubyUnit/AssertionFailure.rb
+require_relative 'TEST_AssertionFailure'
+
+# Assertions module => RubyUnit/Assertions.rb
+require_relative 'TEST_Assertions'
+
+# IncompleteTest exception => RubyUnit/IncompleteTest.rb
+require_relative 'TEST_IncompleteTest'
+
+# Runner class => RubyUnit/Runner.rb
+require_relative 'TEST_Runner'
+
+# SkippedTest exception => RubyUnit/SkippedTest.rb
+require_relative 'TEST_SkippedTest'
+
+# TestCase class => RubyUnit/TestCase.rb
 require_relative 'TEST_TestCase'
