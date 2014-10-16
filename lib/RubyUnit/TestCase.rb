@@ -48,6 +48,24 @@ module RubyUnit
     def teardown
     end
 
+    #
+    # Mark the test as skipped
+    #
+    #  markSkipped 'This test is being refactored'
+    #
+    def markSkipped message = nil
+      raise SkippedTest, message
+    end
+
+    #
+    # Mark the test as skipped
+    #
+    #  markIncomplete 'Implementation of this test is not finished'
+    #
+    def markIncomplete message = nil
+      raise IncompleteTest, message
+    end
+
     protected
     include Assertions
     
