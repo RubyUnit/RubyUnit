@@ -53,7 +53,7 @@ module RubyUnit
         TestCase.descendents.each do |test_case|
           @@test_cases << test_case
           object = test_case.new
-          object.setup
+          test_case.setup
 
           data_methods = test_case.instance_methods.grep /Data\Z/
           test_methods = test_case.instance_methods.grep /Test\Z/

@@ -37,7 +37,7 @@ module RubyUnit
     #  assert false, "This will fail"  # => fail
     #
     def assert value, message = nil
-      __assert value, 'Failed to assert that value is false or nil', message, {:value=>value}
+      __assert value, 'Failed to assert that value is not false or nil', message, {:value=>value}
     end
 
     #
@@ -565,7 +565,7 @@ module RubyUnit
       raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
       raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
 
-      error_message  = error
+      error_message  = "\n\n#{error}"
       error_message << "\n#{message}" if not message.nil?
       data.each do |index, value|
         error_message << "\n#{index}:\n\t#{value.inspect}"
