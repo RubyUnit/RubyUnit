@@ -14,22 +14,28 @@ module RubyUnit
       # be used, but it's not very far along.
       #++
       # The list of Test Cases that have been run are are currently running
-      @@test_cases = []
+      @@test_cases  = []
       # The list of RubyUnit::AssertionFailure exceptions that were caught by the
       # test runner during testing
-      @@failures   = []
+      @@failures    = []
+      # The list of RubyUnit::SkippedTest exceptions that were caught by the test
+      # runner during testing
+      @@skips       = []
+      # The list of RubyUnit::IncompleteTest exceptions that were caught by the test
+      # runner during testing
+      @@incompletes = []
       # The list of non RubyUnit::AssertionFailure exceptions that were caught by
       # the test runner during testing
-      @@errors     = []
+      @@errors      = []
       # The total number of tests that have been run
-      @@tests      = 0
+      @@tests       = 0
       # The time the tests were started
-      @@start      = nil
+      @@start       = nil
       # The time the tests completed
-      @@finish     = nil
+      @@finish      = nil
       # Whether or not the test suite still needs to be run. This is used by the
       # automatic runner to determine if it must be run before the program exits.
-      @@autorun    = true
+      @@autorun     = true
 
       public
       #
@@ -100,6 +106,18 @@ module RubyUnit
           puts error[3].backtrace.join("\n")
         end
 
+        puts "#{@@skips.count} Skipped Tests:\n" if @@skips.count > 0
+        @@skips.each_with_index do |skip, i|
+          puts "#{i + 1}) #{skip[0]}::#{skip[1]}(#{skip[2]})"
+          puts skip[3]
+        end
+
+        puts "#{@@incompletes.count} Skipped Tests:\n" if @@incompletes.count > 0
+        @@incompletes.each_with_index do |incomplete, i|
+          puts "#{i + 1}) #{incomplete[0]}::#{incomplete[1]}(#{incomplete[2]})"
+          puts incomplete[3]
+        end
+
         puts "#{@@failures.count} Failures:\n" if @@failures.count > 0
         @@failures.each_with_index do |failure, i|
           puts "#{i + 1}) #{failure[0]}::#{failure[1]}(#{failure[2]})"
@@ -112,7 +130,8 @@ module RubyUnit
         puts
         puts "Tests Complete in #{elapsed} seconds!"
         puts "%.3f tests/s, %.3f assertions/s" % [(@@tests * inverse).to_f, (TestCase.assertions * inverse).to_f]
-        puts "%d Tests, %d Assertions, %d Errors, %d Failures" % [@@tests, TestCase.assertions, @@errors.count, @@failures.count]
+        puts "%d Assertions, %d Skipped Tests, %d Incomplete Tests" % [TestCase.assertions, @@skips.count, @@incompletes.count]
+        puts "%d Tests, %d Errors, %d Failures" % [@@tests, @@errors.count, @@failures.count]
         puts
       end
     end
@@ -146,6 +165,10 @@ module RubyUnit
         test_case.send test, *params
       rescue AssertionFailure => failure
         @@failures << [test_case.class.name, test, params, failure]
+      rescue SkippedTest => skip
+        @@skips << [test_case.class.name, test, params, skip]
+      rescue IncompleteTest => incomplete
+        @@incompletes << [test_case.class.name, test, params, incomplete]
       rescue Exception => error
         @@errors << [test_case.class.name, test, params, error]
       ensure
