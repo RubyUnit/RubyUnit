@@ -71,8 +71,8 @@ module RubyUnit
             else
               runner.run test_case, test
             end
-            test_case.teardown
           end
+          test_case.teardown
         end
         @@finish = Time.new
         report unless @@tests.zero?
