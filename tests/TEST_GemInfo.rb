@@ -1,27 +1,25 @@
 require 'RubyUnit'
+
+# Data provider for RubyUnit::GemInfo tests
 require_relative 'data/GemInfo'
 
-module RubyUnit
+#
+# Test Case for the RubyUnit::GemInfo module
+#
+class TEST_GemInfo < RubyUnit::TestCase
+  include GemInfoData
+
   #
-  # Test for the GemInfo module
+  # Verify that the required constants are defined
   #
-  module GemInfo
-    class TEST_GemInfo < TestCase
-      include GemInfoData
-      
-      #
-      # Verify that the list of required constants is defined
-      #
-      def constantsDefinedTest konstant
-        assertConstDefined RubyUnit::GemInfo, konstant, "missing constant in GemInfo: #{konstant}!"
-      end
-      
-      #
-      # Verify that the list of files contains the LICENSE file
-      #
-      def validateFilesIncludesLicenseTest
-        assert (RubyUnit::GemInfo::FILES.include? 'LICENSE.md'), 'Gem MUST be distributed with the license!'
-      end
-    end
+  def constantsDefinedTest konstant
+    assertConstDefined RubyUnit::GemInfo, konstant, "missing constant in GemInfo: #{konstant}!"
+  end
+
+  #
+  # Verify that the list of files contains the LICENSE file
+  #
+  def validateFilesIncludesLicenseTest
+    assertInclude RubyUnit::GemInfo::FILES, 'LICENSE.md', 'Gem MUST be distributed with the license!'
   end
 end

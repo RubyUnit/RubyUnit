@@ -1,7 +1,7 @@
-require 'RubyUnit/TestCase'
+require 'RubyUnit/Runner'
 
-module RubyUnit
-  class TEST_Runner < TestCase
-    
-  end
+#
+# Test Case for the RubyUnit::Runner
+#
+class TEST_Runner < RubyUnit::TestCase
 end

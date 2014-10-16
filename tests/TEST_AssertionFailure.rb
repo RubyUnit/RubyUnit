@@ -1,7 +1,13 @@
-require 'RubyUnit/TestCase'
+require 'RubyUnit/AssertionFailure'
 
-module RubyUnit
-  class TEST_AssertionFailure < TestCase
-    
+#
+# Test Case for RubyUnit::AssertionFailure
+#
+class TEST_AssertionFailure < RubyUnit::TestCase
+  #
+  # Validate that RubyUnit::AssertionFailure is an Exception
+  #
+  def isExceptionTest
+    assertDescendent Exception, RubyUnit::AssertionFailure, 'AssertionFailure MUST be an Exception!'
   end
 end

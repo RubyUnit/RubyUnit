@@ -1,5 +1,7 @@
 require_relative 'AssertionFailure'
 require_relative 'Assertions'
+require_relative 'IncompleteTest'
+require_relative 'SkippedTest'
 
 module RubyUnit
   #
@@ -25,9 +27,7 @@ module RubyUnit
   #  end
   #
   class TestCase
-
     public
-
     #
     # The setup helper that is run before each test in the test case.
     #
@@ -48,11 +48,48 @@ module RubyUnit
     def teardown
     end
 
+    #
+    # Mark the test as skipped
+    #
+    #  markSkipped 'This test is being refactored'
+    #
+    def markSkipped message = nil
+      raise SkippedTest, message
+    end
+
+    #
+    # Mark the test as incomplete
+    #
+    #  markIncomplete 'Implementation of this test is not finished'
+    #
+    def markIncomplete message = nil
+      raise IncompleteTest, message
+    end
+
     protected
     include Assertions
     
     class << self
       public
+      #
+      # The setup helper that is run before each test case begins running tests.
+      #
+      #  def self.setup
+      #    # create objects, set up the scenario
+      #  end
+      #
+      def setup
+      end
+
+      #
+      # The teardown helper that is run after each test case finishes running tests.
+      #
+      #  def self.teardown
+      #    # destroy objects, clean up after yourself
+      #  end
+      #
+      def teardown
+      end
       #
       # Gets a list of all the descendents of the RubyUnit::TestCase class.
       # This is important when determining the tests that have been defined.
