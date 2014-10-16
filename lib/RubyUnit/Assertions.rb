@@ -260,6 +260,84 @@ module RubyUnit
     end
 
     #
+    # Assert that an object responds to particular method
+    # * raises RubyUnit::AssertionFailure unless _object_ responds to _method_
+    #
+    # object::
+    #   The object to check
+    #
+    # method::
+    #   The method to assert on the object
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertRespondTo /^Regexp/, :length, 'It does not, so... no'  # => fail
+    #
+    def assertRespondTo object, method, message = nil
+      __assert (object.respond_to? method), 'Failed to assert object responds to method', message, {:object=>object, :method=>method}
+    end
+
+    #
+    # Assert that an object does not respond to a particular method
+    # * raises RubyUnit::AssertionFailure if _object_ responds to _method_
+    #
+    # object::
+    #   The object to check
+    #
+    # method::
+    #   The method to assert on the object
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNotRespondTo 25, :integer?, 'It does, so close'  # => fail
+    #
+    def assertNotRespondTo object, method, message = nil
+      __assert (object.respond_to? method), 'Object should NOT respond to method', message, {:object=>object, :method=>method}
+    end
+
+    #
+    # Assert that a collection includes a specified value
+    # * raises RubyUnit::AssertionFailure unless _collection_ responds to _value_
+    #
+    # object::
+    #   The collection to check
+    #
+    # method::
+    #   The value the object should contain
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertInclude [1, 2], 'not in', 'It does not, so... no'  # => fail
+    #
+    def assertInclude collection, value, message = nil
+      assertRespondTo collection, :include?, message
+      __assert (collection.include? value), 'Failed to assert collection includes value', message, {:collection=>collection, :value=>value}
+    end
+
+    #
+    # Assert that a collection does not include a specified value
+    # * raises RubyUnit::AssertionFailure if _collection_ responds to _value_
+    #
+    # object::
+    #   The collection to check
+    #
+    # method::
+    #   The value the object should not contain
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
+    #
+    def assertNotInclude collection, value, message = nil
+      assertRespondTo collection, :include?, message
+      __reject (collection.include? value), 'Collection should NOT include value', message, {:collection=>collection, :value=>value}
+    end
+
+    #
     # Assert that a constant is defined correctly in the correct class
     # * raises RubyUnit::AssertionFailure unless the constant is defined in
     #   the specified class and it is the correct type and value
