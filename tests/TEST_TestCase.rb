@@ -65,17 +65,17 @@ class TEST_TestCase < RubyUnit::TestCase
   end
 
   #
-  # Test that the correct class methods are defined
-  #
-  def classMethodTest method
-    assertRespondTo RubyUnit::TestCase, method, 'RubyUnit::TestCase missing class method'
-  end
-
-  #
   # Test that descendents method includes this class
   #
   def descendentsTest
     assertInclude RubyUnit::TestCase.descendents, self.class, 'Should be a descendent of RubyUnit::TestCase'
+  end
+
+  #
+  # Test that the correct class methods are defined
+  #
+  def classMethodTest method
+    assertRespondTo RubyUnit::TestCase, method, 'RubyUnit::TestCase missing class method'
   end
 
   #
