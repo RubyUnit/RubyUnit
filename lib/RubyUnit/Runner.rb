@@ -50,18 +50,18 @@ module RubyUnit
         @@autorun = false
         @@start   = Time.new
         runner    = new
-        TestCase.descendents.each do |test_case_class|
-          @@test_cases << test_case_class
-          test_case = test_case_class.new
-          test_case.setup
+        TestCase.descendents.each do |test_case|
+          @@test_cases << test_case
+          object = test_case.new
+          object.setup
 
-          data_methods = test_case_class.instance_methods.grep /Data\Z/
-          test_methods = test_case_class.instance_methods.grep /Test\Z/
+          data_methods = test_case.instance_methods.grep /Data\Z/
+          test_methods = test_case.instance_methods.grep /Test\Z/
 
           test_methods.each do |test|
             data_method = "#{test.slice(0..-5)}Data".to_sym
             if data_methods.include? data_method
-              data      = test_case.send data_method
+              data = object.send data_method
 
               raise ArgumentError, "Data method #{data_method} must return an array" unless data.is_a? Array
               data.each do |params|
@@ -141,12 +141,12 @@ module RubyUnit
     public
     #
     # Run a test and record the results. The test object is instantiated and
-    # RubyUnit::TestCase.setup is called. RubyUnit::TestCase.teardown is called
-    # after the test has finished. This is called by the static runner.
+    # TestCaseObject.setup is called. TestCaseObject.teardown is called after
+    # the test has finished. This is called by the static runner.
     # * raises ArgumentError unless _params_ is an Array
     #
-    # test_case::
-    #   The test case that has the test
+    # test_case_class::
+    #   The test case class that has the test
     #
     # test::
     #   The test that is going to be run
@@ -156,8 +156,10 @@ module RubyUnit
     #
     #  run TestCaseClass, :myTest, [param1, param2]
     #
-    def run test_case, test, params = []
+    def run test_case_class, test, params = []
       raise ArgumentError, "Parameter list for #{object.class}::#{test} must be an array" unless params.is_a? Array
+      test_case = test_case_class.new
+
       begin
         @@tests += 1
         test_case.setup
