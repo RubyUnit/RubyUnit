@@ -50,26 +50,28 @@ module RubyUnit
         @@autorun = false
         @@start   = Time.new
         runner    = new
-        TestCase.descendents.each do |object|
-          @@test_cases << object
+        TestCase.descendents.each do |test_case_class|
+          @@test_cases << test_case_class
+          test_case = test_case_class.new
+          test_case.setup
 
-          data_methods = object.instance_methods.grep /Data\Z/
-          test_methods = object.instance_methods.grep /Test\Z/
+          data_methods = test_case_class.instance_methods.grep /Data\Z/
+          test_methods = test_case_class.instance_methods.grep /Test\Z/
 
           test_methods.each do |test|
             data_method = "#{test.slice(0..-5)}Data".to_sym
             if data_methods.include? data_method
-              test_case = object.new
               data      = test_case.send data_method
 
               raise ArgumentError, "Data method #{data_method} must return an array" unless data.is_a? Array
               data.each do |params|
                 raise ArgumentError, "Data method #{data_method} must return an array of arrays" unless data.is_a? Array
-                runner.run object, test, params
+                runner.run test_case, test, params
               end
             else
-              runner.run object, test
+              runner.run test_case, test
             end
+            test_case.teardown
           end
         end
         @@finish = Time.new
@@ -143,7 +145,7 @@ module RubyUnit
     # after the test has finished. This is called by the static runner.
     # * raises ArgumentError unless _params_ is an Array
     #
-    # object::
+    # test_case::
     #   The test case that has the test
     #
     # test::
@@ -154,11 +156,8 @@ module RubyUnit
     #
     #  run TestCaseClass, :myTest, [param1, param2]
     #
-    def run object, test, params = []
+    def run test_case, test, params = []
       raise ArgumentError, "Parameter list for #{object.class}::#{test} must be an array" unless params.is_a? Array
-
-      test_case = object.new
-
       begin
         @@tests += 1
         test_case.setup

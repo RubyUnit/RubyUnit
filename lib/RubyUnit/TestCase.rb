@@ -70,6 +70,25 @@ module RubyUnit
     class << self
       public
       #
+      # The setup helper that is run before each test case begins running tests.
+      #
+      #  def self.setup
+      #    # create objects, set up the scenario
+      #  end
+      #
+      def setup
+      end
+
+      #
+      # The teardown helper that is run after each test case finishes running tests.
+      #
+      #  def self.teardown
+      #    # destroy objects, clean up after yourself
+      #  end
+      #
+      def teardown
+      end
+      #
       # Gets a list of all the descendents of the RubyUnit::TestCase class.
       # This is important when determining the tests that have been defined.
       #
