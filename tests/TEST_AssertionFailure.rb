@@ -1,7 +1,7 @@
-require 'RubyUnit/TestCase'
+require 'RubyUnit/AssertionFailure'
 
-module RubyUnit
-  class TEST_AssertionFailure < TestCase
-    
-  end
+#
+# Test Case for RubyUnit::AssertionFailure
+#
+class TEST_AssertionFailure < RubyUnit::TestCase
 end

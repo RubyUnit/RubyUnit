@@ -1,7 +1,7 @@
 require 'RubyUnit/TestCase'
 
-module RubyUnit
-  class TEST_TestCase < TestCase
-    
-  end
+#
+# Test Case for the RubyUnit::TestCase
+#
+class TEST_TestCase < RubyUnit::TestCase
 end
