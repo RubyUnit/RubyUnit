@@ -11,5 +11,7 @@ module RubyUnit
     def versionDefinedTest
       assertConstDefined RubyUnit, 'VERSION', 'Version must be defined in RubyUnit::VERSION!'
     end
+
+    # TODO Add tests for at_exit
   end
 end
