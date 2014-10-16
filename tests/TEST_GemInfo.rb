@@ -10,7 +10,7 @@ module RubyUnit
       include GemInfoData
       
       #
-      # Verify that the list of required constants is defined
+      # Verify that the required constants are defined
       #
       def constantsDefinedTest konstant
         assertConstDefined RubyUnit::GemInfo, konstant, "missing constant in GemInfo: #{konstant}!"
@@ -20,7 +20,7 @@ module RubyUnit
       # Verify that the list of files contains the LICENSE file
       #
       def validateFilesIncludesLicenseTest
-        assert (RubyUnit::GemInfo::FILES.include? 'LICENSE.md'), 'Gem MUST be distributed with the license!'
+        assertInclude RubyUnit::GemInfo::Files, 'LICENSE.md', 'Gem MUST be distributed with the license!'
       end
     end
   end
