@@ -1,4 +1,3 @@
-
 module RubyUnit
   #
   # Assertions that can be used by RubyUnit::TestCase
