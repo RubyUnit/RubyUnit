@@ -21,7 +21,7 @@ module RubyUnit
     #  fail "I wasn't expecting the moon to fall into Lake Michigan"  # => fail
     #
     def fail message = nil, data = {}
-      build_message 'Failing test', message, data
+      build_message AssertionFailure::FAILING, message, data
     end
 
     #
@@ -54,6 +54,54 @@ module RubyUnit
     #
     def assertNot value, message = nil
       __reject value, 'Value should NOT be false or nil', message, {:value=>value}
+    end
+
+    #
+    # Assert that a test condition is exactly true.
+    # * raises RubyUnit::AssertionFailure unless _value_ is true
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertTrue false, "This will fail"  # => fail
+    #
+    def assertTrue value, message = nil
+      __assert (true == value), 'Failed to assert that value is EXACTLY true', message, {:value=>value}
+    end
+
+    #
+    # Assert that a test condition is exactly false.
+    # * raises RubyUnit::AssertionFailure unless _value_ is false
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNot true, "This will fail"  # => fail
+    #
+    def assertFalse value, message = nil
+      __assert (false == value), 'Failed to assert that value is EXACTLY false', message, {:value=>value}
+    end
+
+    #
+    # Assert that a test condition is exactly nil.
+    # * raises RubyUnit::AssertionFailure unless _value_ is nil
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNot true, "This will fail"  # => fail
+    #
+    def assertNil value, message = nil
+      __assert value, 'Failed to assert that value is EXACTLY nil', message, {:value=>value}
     end
 
     #

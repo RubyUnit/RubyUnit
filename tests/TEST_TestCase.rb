@@ -65,13 +65,6 @@ class TEST_TestCase < RubyUnit::TestCase
   end
 
   #
-  # Test that the correct class methods are defined
-  #
-  def classMethodTest method
-    assertRespondTo RubyUnit::TestCase, method, 'RubyUnit::TestCase missing class method'
-  end
-
-  #
   # Test that descendents method includes this class
   #
   def descendentsTest
@@ -79,11 +72,18 @@ class TEST_TestCase < RubyUnit::TestCase
   end
 
   #
+  # Test that the correct class methods are defined
+  #
+  def classMethodTest method
+    assertRespondTo RubyUnit::TestCase, method, 'RubyUnit::TestCase missing class method'
+  end
+
+  #
   # Test that the correct instance methods are defined
   #
   def instanceMethodTest method
     test_case = TestCaseFixture.new
-    assertRespondTo test_case, method, 'Test Case object missing instance method'
+    assertRespondTo test_case, method, 'TestCase object missing instance method'
   end
 
   #

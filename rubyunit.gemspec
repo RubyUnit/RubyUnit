@@ -9,8 +9,9 @@ require 'RubyUnit'
 require_relative 'example/TestSet'
 
 # RubyUnit Test Suite
-require_relative 'tests/TestSuite'
+require_relative 'TestSuite'
 
+# Only build gem if the tests had no Failures/Errors
 if RubyUnit::Runner.run.zero?
   Gem::Specification.new do |spec|
     # REQUIRED ATTRIBUTES
