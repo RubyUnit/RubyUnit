@@ -83,7 +83,7 @@ class TEST_TestCase < RubyUnit::TestCase
   #
   def instanceMethodTest method
     test_case = TestCaseFixture.new
-    assertRespondTo test_case, method, 'Test Case object missing instance method'
+    assertRespondTo test_case, method, 'TestCase object missing instance method'
   end
 
   #
