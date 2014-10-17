@@ -9,11 +9,21 @@ require_relative 'data/Assertions'
 class TEST_Assertions < RubyUnit::TestCase
   @assertions
 
+  #
+  # Setup tests
+  #
   def setup
     @assertions = TestCase.assertions
   end
 
-  def rescue_assertion &block
-    
+  #
+  # Wrapper to rescue assertions
+  #
+  def rescue_assertion pattern = '', &block
+    assertRaiseExpected RubyUnit::AssertionFailure, pattern do
+      yield
+    end
   end
+
+  
 end
