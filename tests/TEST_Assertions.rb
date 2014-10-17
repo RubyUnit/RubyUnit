@@ -28,8 +28,8 @@ class TEST_Assertions < RubyUnit::TestCase
   #
   # Test for default failure
   #
-  def failTest
-    rescue_assertion  /#{RubyUnit::AssertionFailure::FAILING}/ do
+  def faiDefaultTest
+    rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/ do
       fail
     end
   end
