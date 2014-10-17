@@ -13,7 +13,7 @@ class TEST_Assertions < RubyUnit::TestCase
   # Setup tests
   #
   def setup
-    @assertions = TestCase.assertions
+    @assertions = RubyUnit::TestCase.assertions
   end
 
   #
@@ -25,5 +25,12 @@ class TEST_Assertions < RubyUnit::TestCase
     end
   end
 
-  
+  #
+  # Test for default failure
+  #
+  def failTest
+    rescue_assertion  /#{RubyUnit::AssertionFailure::FAILING}/ do
+      fail
+    end
+  end
 end

@@ -21,7 +21,7 @@ module RubyUnit
     #  fail "I wasn't expecting the moon to fall into Lake Michigan"  # => fail
     #
     def fail message = nil, data = {}
-      build_message 'Failing test', message, data
+      build_message AssertionFailure::FAILING, message, data
     end
 
     #
