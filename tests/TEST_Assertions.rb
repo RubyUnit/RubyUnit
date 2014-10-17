@@ -7,6 +7,7 @@ require_relative 'data/Assertions'
 # Test Case for RubyUnit::Assertions module
 #
 class TEST_Assertions < RubyUnit::TestCase
+  include AssertionsData
   @assertions
 
   #
@@ -19,10 +20,13 @@ class TEST_Assertions < RubyUnit::TestCase
   #
   # Wrapper to rescue assertions
   #
-  def rescue_assertion pattern = '', &block
-    assertRaiseExpected RubyUnit::AssertionFailure, pattern do
+  def rescue_assertion pattern = '', message = nil, data = {}, &block
+    e = assertRaiseExpected RubyUnit::AssertionFailure, pattern, message do
       yield
     end
+    assertMatch /#{message}/, e.message
+    pattern = data_string data
+    assertMatch /#{pattern}/, e.message unless pattern.length == 0
   end
 
   #
