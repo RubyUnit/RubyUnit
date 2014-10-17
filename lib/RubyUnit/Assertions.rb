@@ -57,6 +57,54 @@ module RubyUnit
     end
 
     #
+    # Assert that a test condition is exactly true.
+    # * raises RubyUnit::AssertionFailure unless _value_ is true
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertTrue false, "This will fail"  # => fail
+    #
+    def assertTrue value, message = nil
+      __assert (true == value), 'Failed to assert that value is EXACTLY true', message, {:value=>value}
+    end
+
+    #
+    # Assert that a test condition is exactly false.
+    # * raises RubyUnit::AssertionFailure unless _value_ is false
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNot true, "This will fail"  # => fail
+    #
+    def assertFalse value, message = nil
+      __assert (false == value), 'Failed to assert that value is EXACTLY false', message, {:value=>value}
+    end
+
+    #
+    # Assert that a test condition is exactly nil.
+    # * raises RubyUnit::AssertionFailure unless _value_ is nil
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNot true, "This will fail"  # => fail
+    #
+    def assertNil value, message = nil
+      __assert value, 'Failed to assert that value is EXACTLY nil', message, {:value=>value}
+    end
+
+    #
     # Assert that two values are equal.
     # * raises RubyUnit::AssertionFailure unless _expected_ equals _actual_
     #
