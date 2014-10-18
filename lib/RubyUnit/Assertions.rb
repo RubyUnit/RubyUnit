@@ -87,7 +87,7 @@ module RubyUnit
     #  assertNil true, "This will fail"  # => fail
     #
     def assertFalse value, message = nil
-      __assert (false == value), 'Failed to assert that value is EXACTLY false', message, {:value=>value}
+      __assert (false == value), AssertionFailure::ASSERT_FALSE_ERROR, message, {:value=>value}
     end
 
     #
