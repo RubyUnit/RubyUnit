@@ -19,7 +19,7 @@ module RubyUnit
     #  assertKindOf String, 25, 'Nope, try again.'  # => fail
     #
     def assertKindOf klass, object, message = nil
-      __assert (object.is_a? klass), 'Failed to assert object heritage', message, {:klass=>klass, :object=>object}
+      __assert (object.is_a? klass), ASSERT_KIND_OF_ERROR, message, {:klass=>klass, :object=>object}
     end
     
     alias_method :assertIsA, :assertKindOf
@@ -42,7 +42,7 @@ module RubyUnit
     #  assertNotKindOf Numeric, 25, 'Nope, try again.'  # => fail
     #
     def assertNotKindOf exclusion, object, message = nil
-      __reject (object.is_a? exclusion), 'Object should NOT be a descendent', message, {:exclusion=>exclusion, :object=>object}
+      __reject (object.is_a? exclusion), ASSERT_NOT_KIND_OF_ERROR, message, {:exclusion=>exclusion, :object=>object}
     end
 
     [:assertNotIsA, :assertIsNotA].each do |method|
@@ -65,7 +65,7 @@ module RubyUnit
     #  assertInstanceOf Integer, '25', 'So close, but... No.'  # => fail
     #
     def assertInstanceOf klass, object, message = nil
-      __assert (object.instance_of? klass), 'Failed to assert object instance', message, {:klass=>klass, :object=>object}
+      __assert (object.instance_of? klass), ASSERT_INSTANCE_OF_ERROR, message, {:klass=>klass, :object=>object}
     end
 
     #
@@ -84,7 +84,7 @@ module RubyUnit
     #  assertNotInstanceOf Integer, 25, 'So close, but... No.'  # => fail
     #
     def assertNotInstanceOf exclusion, object, message = nil
-      __reject (object.instance_of? exclusion), 'Object should NOT be this instance', message, {:exclusion=>exclusion, :object=>object}
+      __reject (object.instance_of? exclusion), ASSERT_NOT_INSTANCE_OF_ERROR, message, {:exclusion=>exclusion, :object=>object}
     end
 
     #
@@ -103,7 +103,7 @@ module RubyUnit
     #  assertDescendent Numeric, Exception, 'Nope'  # => fail
     #
     def assertDescendent klass, descendent, message = nil
-      __assert (descendent < klass), 'Failed to assert class heritage', message, {:klass=>klass, :descendent=>descendent}
+      __assert (descendent < klass), ASSERT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
     end
 
     #
@@ -122,7 +122,7 @@ module RubyUnit
     #  assertDescendent StandardError, Exception, 'It is'  # => fail
     #
     def assertNotDescendent klass, illegal, message = nil
-      __reject (descendent < klass), 'Class should NOT be a descendent', message, {:klass=>klass, :descendent=>descendent}
+      __reject (descendent < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
     end
 
     #
@@ -170,7 +170,7 @@ module RubyUnit
     #  assertConstDefined Numbers, 'FORTYTWO', 'Mystery.'  # => ??
     #
     def assertConstDefined klass, konstant, message = nil
-      __assert (klass.const_defined? konstant), 'Failed to assert constant is defined', message, {:klass=>klass, :konstant=>konstant}
+      __assert (klass.const_defined? konstant), ASSERT_CONST_DEFINED_ERROR, message, {:klass=>klass, :konstant=>konstant}
     end
 
     #
@@ -190,7 +190,7 @@ module RubyUnit
     #  assertConstNotDefined Numbers, 'TWENTYFOUR', 'Mystery.'  # => ??
     #
     def assertConstNotDefined klass, konstant, message = nil
-      __reject (klass.const_defined? konstant), 'Constant should not be defined', message, {:klass=>klass, :konstant=>konstant}
+      __reject (klass.const_defined? konstant), ASSERT_CONST_NOT_DEFINED_ERROR, message, {:klass=>klass, :konstant=>konstant}
     end
   end
 end
