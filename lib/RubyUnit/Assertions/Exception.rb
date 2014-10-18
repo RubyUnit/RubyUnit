@@ -1,7 +1,7 @@
 module RubyUnit
   module Assertions
-    include AssertionMessage unless included_modules.include? AssertionMessage
-
+    include AssertionMessage
+    
     #
     # Assert that no exception is raised.
     # * raises RubyUnit::AssertionFailure if any exception is raised

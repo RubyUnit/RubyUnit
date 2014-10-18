@@ -1,6 +1,6 @@
 module RubyUnit
   module Assertions
-    include AssertionMessage unless included_modules.include? AssertionMessage
+    include AssertionMessage
 
     #
     # Assert that an object responds to particular method

@@ -1,7 +1,6 @@
 module RubyUnit
   module Assertions
-    include AssertionMessage unless included_modules.include? AssertionMessage
-
+    include AssertionMessage
     #
     # Assert that a collection includes a specified value
     # * raises RubyUnit::AssertionFailure unless _collection_ responds to _value_

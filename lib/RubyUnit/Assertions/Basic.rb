@@ -1,6 +1,6 @@
 module RubyUnit
   module Assertions
-    include AssertionMessage unless included_modules.include? AssertionMessage
+    include AssertionMessage
 
     #
     # Fail the test. This is used when some conditioned outside the test warrants
