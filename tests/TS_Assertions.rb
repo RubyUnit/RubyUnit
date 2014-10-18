@@ -4,7 +4,23 @@ require 'RubyUnit'
 
 module AssertionsTests
   class AssertionsTestCase < RubyUnit::TestCase
-    @@message = 'AssertionsTests Assertion Message'
+    MESSAGE = 'AssertionsTests Assertion Message'
+
+    #
+    # Setup tests
+    #
+    def setup
+      @assertions = RubyUnit::TestCase.assertions
+    end
+
+    #
+    # Teardown tests
+    # * All tests on Assertions should add to the assertion count
+    #
+    def teardown
+      assertGreaterThan @@assertions, @assertions, 'Test should make assertions'
+    end
+
     #
     # Wrapper to rescue assertions
     #

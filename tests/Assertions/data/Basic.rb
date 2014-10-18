@@ -57,6 +57,11 @@ module AssertionsTests
     end
     alias_method :assertFalseWithMessageData, :assertFalseData
 
+    def assertFalseFailData
+      assertData + assertNilData
+    end
+    alias_method :assertFalseFailWithMessageData, :assertFalseFailData
+ 
     def assertNilData
       [
         [nil],

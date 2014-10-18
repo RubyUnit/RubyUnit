@@ -12,20 +12,6 @@ module AssertionsTests
     @assertions
 
     #
-    # Setup tests
-    #
-    def setup
-      @assertions = RubyUnit::TestCase.assertions
-    end
-
-    #
-    # Teardown tests
-    #
-    def teardown
-      assertGreaterThan @@assertions, @assertions, 'Test should make assertions'
-    end
-
-    #
     # Test for default fail
     #
     def failTest message = nil, data = {}
@@ -38,7 +24,7 @@ module AssertionsTests
     # Test fail with message
     #
     def failWithMessageTest data = {}
-      failTest @@message, data
+      failTest MESSAGE, data
     end
 
     #
@@ -61,14 +47,14 @@ module AssertionsTests
     # Test assert with message
     #
     def assertMessageTest value
-      assert value, @@message
+      assert value, MESSAGE
     end
 
     #
     # Test assert failure with message
     #
     def assertFailWithMessageTest value
-      assertFailTest value, @@message
+      assertFailTest value, MESSAGE
     end
 
     #
@@ -91,14 +77,14 @@ module AssertionsTests
     # Test assertNot with message
     #
     def assertNotWithMessageTest value
-      assertNot value, @@message
+      assertNot value, MESSAGE
     end
 
     #
     # Test assertNot failure with message
     #
     def assertNotFailWithMessageTest value
-      assertNotFailTest value, @@message
+      assertNotFailTest value, MESSAGE
     end
 
     #
@@ -121,14 +107,44 @@ module AssertionsTests
     # Test assertTrue with message
     #
     def assertTrueWithMessageTest value
-      assertTrue value, @@message
+      assertTrue value, MESSAGE
     end
 
     #
     # Test assertTrue failure with message
     #
     def assertTrueFailWithMessageTest value
-      assertTrueFailTest value, @@message
+      assertTrueFailTest value, MESSAGE
+    end
+
+    #
+    # Test assertFalse
+    #
+    def assertFalseTest value
+      assertFalse value
+    end
+
+    #
+    # Test assertFalse failure
+    #
+    def assertFalseFailTest value, message = nil
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_FALSE_ERROR}/, message do
+        assertFalse value, message
+      end
+    end
+
+    #
+    # Test assertFalse with message
+    #
+    def assertFalseWithMessageTest value
+      assertFalse value, MESSAGE
+    end
+
+    #
+    # Test assertFalse failure with message
+    #
+    def assertFalseFailWithMessageTest value
+      assertFalseFailTest value, MESSAGE
     end
   end
 end
