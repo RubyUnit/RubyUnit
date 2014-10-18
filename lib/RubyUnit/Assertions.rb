@@ -82,7 +82,7 @@ module RubyUnit
     # message::
     #   The message provided to be reported for a failure
     #
-    #  assertNot true, "This will fail"  # => fail
+    #  assertNil true, "This will fail"  # => fail
     #
     def assertFalse value, message = nil
       __assert (false == value), 'Failed to assert that value is EXACTLY false', message, {:value=>value}
@@ -98,10 +98,62 @@ module RubyUnit
     # message::
     #   The message provided to be reported for a failure
     #
-    #  assertNot true, "This will fail"  # => fail
+    #  assertNil true, "This will fail"  # => fail
     #
     def assertNil value, message = nil
-      __assert value, 'Failed to assert that value is EXACTLY nil', message, {:value=>value}
+      __assert value.nil?, 'Failed to assert that value is EXACTLY nil', message, {:value=>value}
+    end
+
+    #
+    # Assert that a test condition is not nil.
+    # * raises RubyUnit::AssertionFailure if _value_ is nil
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNotNil nil, "This will fail"  # => fail
+    #
+    def assertNotNil value, message = nil
+      __reject value.nil?, 'Failed to assert that value is NOT nil', message, {:value=>value}
+    end
+
+    #
+    # Assert that a value is empty
+    # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
+    # * raises RubyUnit::AssertionFailure unless _object_ is empty
+    #
+    # object::
+    #   The object to check
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertEmpty [1, 2], 'Not empty'  # => fail
+    #
+    def assertEmpty object, message = nil
+      assertRespondTo object, :include?, message
+      __assert object.empty?, 'Failed to assert object is empty', message, {:object=>object}
+    end
+
+    #
+    # Assert that a value is not empty
+    # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
+    # * raises RubyUnit::AssertionFailure if _object_ is empty
+    #
+    # object::
+    #   The object to check
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
+    #
+    def assertNotEmpty object, message = nil
+      assertRespondTo object, :include?, message
+      __reject object.empty?, 'Failed to assert object is NOT empty', message, {:object=>object}
     end
 
     #
@@ -613,7 +665,7 @@ module RubyUnit
       raise ArgumentError, 'Error description must be a String' unless error.is_a? String
       raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
       raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
-      raise AssertionFailure.new({:message=>message}.merge data), error
+      raise AssertionFailure.new({'Assertion Failure'=>message}.merge data), error
     end
 
     #
