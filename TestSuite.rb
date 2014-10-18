@@ -27,7 +27,7 @@ require 'TEST_IncompleteTest'
 require 'TEST_Runner'
 
 # SkippedTest exception => RubyUnit/SkippedTest.rb
-require 'TEST_SkippedTest'
+require 'TS_SkippedTest'
 
 # TestCase class => RubyUnit/TestCase.rb
 require 'TEST_TestCase'
