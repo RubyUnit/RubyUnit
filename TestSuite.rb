@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-# IMPORTANT
 # require relative RubyUnit framework for local so that the tests are run on the build
 # in this repository
 path = File.dirname(__FILE__)
@@ -10,14 +9,14 @@ $LOAD_PATH.unshift("#{path}/tests")
 
 require 'RubyUnit'
 
-# Test Cases
+# Test Sets
 
 # RubyUnit module => RubyUnit.rb
 require 'TEST_RubyUnit'
 require 'TEST_GemInfo'
 
 # AssertionFailure exception => RubyUnit/AssertionFailure.rb
-require 'TEST_AssertionFailure'
+require 'TS_AssertionFailure'
 
 # Assertions module => RubyUnit/Assertions.rb
 require 'TEST_Assertions'
