@@ -12,8 +12,7 @@ require 'RubyUnit'
 # Test Sets
 
 # RubyUnit module => RubyUnit.rb
-require 'TEST_RubyUnit'
-require 'TEST_GemInfo'
+require 'TS_RubyUnit'
 
 # AssertionFailure exception => RubyUnit/AssertionFailure.rb
 require 'TS_AssertionFailure'
