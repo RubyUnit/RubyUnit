@@ -49,19 +49,19 @@ module AssertionsTests
     end
 
     #
-    # Test assert with message
-    #
-    def assertMessageTest value
-      assert value, @@message
-    end
-
-    #
     # Test assert failure
     #
     def assertFailTest value, message = nil
       rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/, message do
         assert value, message
       end
+    end
+
+    #
+    # Test assert with message
+    #
+    def assertMessageTest value
+      assert value, @@message
     end
 
     #
@@ -79,6 +79,15 @@ module AssertionsTests
     end
 
     #
+    # Test assertNot failure
+    #
+    def assertNotFailTest value, message = nil
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/, message do
+        assertNot value, message
+      end
+    end
+
+    #
     # Test assertNot with message
     #
     def assertNotWithMessageTest value
@@ -86,19 +95,40 @@ module AssertionsTests
     end
 
     #
-    # Test assertNot failure
-    #
-    def assertNotFailTest value, message = nil
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/ do
-        assertNot value, message
-      end
-    end
-
-    #
     # Test assertNot failure with message
     #
     def assertNotFailWithMessageTest value
       assertNotFailTest value, @@message
+    end
+
+    #
+    # Test assertTrue
+    #
+    def assertTrueTest value
+      assertTrue value
+    end
+
+    #
+    # Test assertTrue failure
+    #
+    def assertTrueFailTest value, message = nil
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_TRUE_ERROR}/, message do
+        assertTrue value, message
+      end
+    end
+
+    #
+    # Test assertTrue with message
+    #
+    def assertTrueWithMessageTest value
+      assertTrue value, @@message
+    end
+
+    #
+    # Test assertTrue failure with message
+    #
+    def assertTrueFailWithMessageTest value
+      assertTrueFailTest value, @@message
     end
   end
 end

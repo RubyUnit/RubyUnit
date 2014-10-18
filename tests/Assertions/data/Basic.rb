@@ -25,50 +25,39 @@ module AssertionsTests
     end
 
     def assertData
-      trueData + trueObjects
+      assertTrueData + trueObjects
     end
-
-    def assertMessageData
-      assertData
+    [:assertMessageData, :assertNotFailData, :assertNotFailWithMessageData].each do |method|
+      alias_method method, :assertData
     end
 
     def assertFailData
-      falseData + nilData
+      assertFalseData + assertNilData
+    end
+    [:assertFailWithMessageData, :assertNotData, :assertNotWithMessageData].each do |method|
+      alias_method method, :assertFailData
     end
 
-    def assertFailWithMessageData
-      assertFailData
-    end
-
-    def assertNotData
-      assertFailData
-    end
-
-    def assertNotWithMessageData
-      assertNotData
-    end
-
-    def assertNotFailData
-      assertData
-    end
-
-    def assertNotFailWithMessageData
-      assertNotFailData
-    end
-
-    def trueData
+    def assertTrueData
       [
         [true],
       ]
     end
+    alias_method :assertTrueWithMessageData, :assertTrueData
 
-    def falseData
+    def assertTrueFailData
+      trueObjects + assertFailData
+    end
+    alias_method :assertTrueFailWithMessageData, :assertTrueFailData
+
+    def assertFalseData
       [
         [false],
       ]
     end
+    alias_method :assertFalseWithMessageData, :assertFalseData
 
-    def nilData
+    def assertNilData
       [
         [nil],
       ]
