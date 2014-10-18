@@ -6,5 +6,8 @@ module RubyUnit
     # Error messages
     FAILING = 'Failing test'
 
+    def initialize data = {}, message
+      raise ArgumentError, 'Data for AssertionFailure must be a Hash' unless data.is_a? Hash
+    end
   end
 end

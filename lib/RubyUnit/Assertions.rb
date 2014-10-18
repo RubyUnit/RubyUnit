@@ -619,7 +619,7 @@ module RubyUnit
       data.each do |index, value|
         error_message << "\n#{index}:\n\t#{value.inspect}"
       end
-      raise AssertionFailure, error_message
+      raise AssertionFailure.new(data), error_message
     end
 
     #

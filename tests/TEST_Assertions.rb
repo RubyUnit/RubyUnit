@@ -25,8 +25,6 @@ class TEST_Assertions < RubyUnit::TestCase
       yield
     end
     assertMatch /#{message}/, e.message
-    pattern = data_string data
-    assertMatch /#{pattern}/, e.message unless pattern.length == 0
   end
 
   #
