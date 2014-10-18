@@ -1,6 +1,6 @@
 module RubyUnit
   module Assertions
-    include AssertionMessage
+    include AssertionMessage unless included_modules.include? AssertionMessage
 
     #
     # Assert that an object is an instance of the specified class or one of

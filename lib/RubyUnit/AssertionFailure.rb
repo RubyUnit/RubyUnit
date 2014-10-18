@@ -3,11 +3,15 @@ module RubyUnit
   # module containing text for assertion errors and messages
   #
   module AssertionMessage
+    #
     # Error messages
+    #
     FAILING = 'Failing test'
     FAILURE = 'Failed to ASSERT'
 
+    #
     # Basic assertions
+    #
     ASSERT_ERROR         = 'Value IS NOT false OR nil'
     ASSERT_NOT_ERROR     = 'Value IS false OR nil'
     ASSERT_TRUE_ERROR    = 'Value IS EXACLTY true' 
@@ -15,7 +19,9 @@ module RubyUnit
     ASSERT_NIL_ERROR     = 'Value IS EXACTLY nil'
     ASSERT_NOT_NIL_ERROR = 'Value IS NOT nil'
 
+    #
     # Comparison assertions
+    #
     ASSERT_EQUAL_ERROR              = 'Objects ARE equal'
     ASSERT_NOT_EQUAL_ERROR          = 'Objects ARE NOT equal'
     ASSERT_GREATERTHAN_ERROR        = 'Object IS greater than expected'

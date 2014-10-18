@@ -1,6 +1,6 @@
 module RubyUnit
   module Assertions
-    include AssertionMessage
+    include AssertionMessage unless included_modules.include? AssertionMessage
 
     #
     # Assert that two values are equal.
@@ -132,7 +132,7 @@ module RubyUnit
     #  assertMatch /^Hello/, 'Goodbye!', "This will fail"  # => fail
     #
     def assertMatch pattern, value, message = nil
-      pattern = [pattern] if not pattern.is_a? Array
+      pattern = [pattern] unless pattern.is_a? Array
       pattern.each do |regex|
         __assert (value =~ regex), ASSERT_MATCH_ERROR, message, {:pattern=>pattern, :value=>value}
       end
