@@ -4,10 +4,14 @@ module AssertionsTests
   #
   module BasicTestsData
 
-    def failData
-      [
-        [{:string=>'string',:int=>42}],
-        [                          {}], # Empty
+    def failWithMessageData
+      AssertionsTests::MESSAGES.collect {|message| [message]}
+    end
+
+    def failWithDataData
+      AssertionsTests::MESSAGES.product [
+        {:string=>'string',:int=>42},
+                                  {}, # Empty
       ]
     end
 
@@ -28,45 +32,75 @@ module AssertionsTests
     def assertData
       assertTrueData + trueObjects
     end
-    [:assertMessageData, :assertNotFailData, :assertNotFailWithMessageData].each do |method|
-      alias_method method, :assertData
-    end
+    alias_method :assertNotFailData, :assertData
 
     def assertFailData
       assertFalseData + assertNilData
     end
-    [:assertFailWithMessageData, :assertNotData, :assertNotWithMessageData].each do |method|
-      alias_method method, :assertFailData
+    alias_method :assertNotData, :assertFailData
+
+    def assertWithMessageData
+      assertData.flatten.product AssertionsTests::MESSAGES
     end
+    alias_method :assertNotFailWithMessageData, :assertWithMessageData
+
+    def assertFailWithMessageData
+      assertFailData.flatten.product AssertionsTests::MESSAGES
+    end
+    alias_method :assertNotWithMessageData, :assertFailWithMessageData
 
     def assertTrueData
       [
         [true],
       ]
     end
-    alias_method :assertTrueWithMessageData, :assertTrueData
 
     def assertTrueFailData
-      trueObjects + assertFailData
+      assertFailData + trueObjects
     end
-    alias_method :assertTrueFailWithMessageData, :assertTrueFailData
+
+    def assertTrueWithMessageData
+      assertTrueData.flatten.product AssertionsTests::MESSAGES
+    end
+
+    def assertTrueFailWithMessageData
+      assertTrueFailData.flatten.product AssertionsTests::MESSAGES
+    end
 
     def assertFalseData
       [
         [false],
       ]
     end
-    alias_method :assertFalseWithMessageData, :assertFalseData
-
+ 
     def assertFalseFailData
       assertData + assertNilData
     end
-    alias_method :assertFalseFailWithMessageData, :assertFalseFailData
- 
+
+    def assertFalseWithMessageData
+      assertFalseData.flatten.product AssertionsTests::MESSAGES
+    end
+
+    def assertFalseFailWithMessageData
+      assertFalseFailData.flatten.product AssertionsTests::MESSAGES
+    end
+
     def assertNilData
       [
         [nil],
       ]
+    end
+
+    def assertNilFailData
+      assertData + assertFalseData
+    end
+
+    def assertNilWithMessageData
+      assertNilData.flatten.product AssertionsTests::MESSAGES
+    end
+
+    def assertNilFailWithMessageData
+      assertNilFailData.flatten.product AssertionsTests::MESSAGES
     end
   end
 end

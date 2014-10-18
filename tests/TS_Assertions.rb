@@ -3,13 +3,18 @@
 require 'RubyUnit'
 
 module AssertionsTests
+  #
+  # Messages to be used in the tests
+  #
+  MESSAGES = [
+    'AssertionsTests Assertion Message',
+          'Alternate Assertion Message',
+  ]
+
   class AssertionsTestCase < RubyUnit::TestCase
     include RubyUnit::AssertionMessage
 
-    #
-    # Message to be used in the tests
-    #
-    MESSAGE = 'AssertionsTests Assertion Message'
+    @assertions
 
     #
     # Setup tests

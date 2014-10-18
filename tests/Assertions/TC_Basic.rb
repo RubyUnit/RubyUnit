@@ -9,30 +9,48 @@ module AssertionsTests
   #
   class TC_Basic < AssertionsTestCase
     include BasicTestsData
-    @assertions
 
     #
     # Test for default fail
     #
-    def failTest data = {}, message = nil
-      rescue_assertion /#{FAILING}/, message, data do
-        fail message, data
+    def defaultFailTest
+      rescue_assertion /#{FAILING}/ do
+        fail
       end
     end
 
     #
     # Test fail with message
     #
-    def failWithMessageTest data = {}
-      failTest data, MESSAGE
+    # message::
+    #   The assertion message
+    #
+    def failWithMessageTest message
+      rescue_assertion /#{FAILING}/, message do
+        fail message
+      end
     end
 
-    def failWithDataTest data = {}
-      
+    #
+    # Test fail with message and data
+    #
+    # message::
+    #   The assertion message
+    #
+    # data::
+    #   The assertion data
+    #
+    def failWithDataTest message, data = {}
+      rescue_assertion /#{FAILING}/, message do
+        fail message, data
+      end
     end
 
     #
     # Test assert
+    #
+    # value::
+    #   The value to assert
     #
     def assertTest value
       assert value
@@ -41,28 +59,48 @@ module AssertionsTests
     #
     # Test assert failure
     #
-    def assertFailTest value, message = nil
-      rescue_assertion /#{ASSERT_ERROR}/, message do
-        assert value, message
+    # value::
+    #   The value to assert
+    #
+    def assertFailTest value
+      rescue_assertion /#{ASSERT_ERROR}/ do
+        assert value
       end
     end
 
     #
     # Test assert with message
     #
-    def assertMessageTest value
-      assert value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertWithMessageTest value, message
+      assert value, message
     end
 
     #
     # Test assert failure with message
     #
-    def assertFailWithMessageTest value
-      assertFailTest value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertFailWithMessageTest value, message
+      rescue_assertion /#{ASSERT_ERROR}/, message do
+        assert value, message
+      end
     end
 
     #
     # Test assertNot
+    #
+    # value::
+    #   The value to assert
     #
     def assertNotTest value
       assertNot value
@@ -71,28 +109,48 @@ module AssertionsTests
     #
     # Test assertNot failure
     #
-    def assertNotFailTest value, message = nil
-      rescue_assertion /#{ASSERT_NOT_ERROR}/, message do
-        assertNot value, message
+    # value::
+    #   The value to assert
+    #
+    def assertNotFailTest value
+      rescue_assertion /#{ASSERT_NOT_ERROR}/ do
+        assertNot value
       end
     end
 
     #
     # Test assertNot with message
     #
-    def assertNotWithMessageTest value
-      assertNot value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertNotWithMessageTest value, message
+      assertNot value, message
     end
 
     #
     # Test assertNot failure with message
     #
-    def assertNotFailWithMessageTest value
-      assertNotFailTest value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertNotFailWithMessageTest value, message
+      rescue_assertion /#{ASSERT_NOT_ERROR}/, message do
+        assertNot value, message
+      end
     end
 
     #
     # Test assertTrue
+    #
+    # value::
+    #   The value to assert
     #
     def assertTrueTest value
       assertTrue value
@@ -101,28 +159,48 @@ module AssertionsTests
     #
     # Test assertTrue failure
     #
-    def assertTrueFailTest value, message = nil
-      rescue_assertion /#{ASSERT_TRUE_ERROR}/, message do
-        assertTrue value, message
+    # value::
+    #   The value to assert
+    #
+    def assertTrueFailTest value
+      rescue_assertion /#{ASSERT_TRUE_ERROR}/ do
+        assertTrue value
       end
     end
 
     #
     # Test assertTrue with message
     #
-    def assertTrueWithMessageTest value
-      assertTrue value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertTrueWithMessageTest value, message
+      assertTrue value, message
     end
 
     #
     # Test assertTrue failure with message
     #
-    def assertTrueFailWithMessageTest value
-      assertTrueFailTest value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertTrueFailWithMessageTest value, message
+      rescue_assertion /#{ASSERT_TRUE_ERROR}/, message do
+        assertTrue value, message
+      end
     end
 
     #
     # Test assertFalse
+    #
+    # value::
+    #   The value to assert
     #
     def assertFalseTest value
       assertFalse value
@@ -131,24 +209,91 @@ module AssertionsTests
     #
     # Test assertFalse failure
     #
-    def assertFalseFailTest value, message = nil
-      rescue_assertion /#{ASSERT_FALSE_ERROR}/, message do
-        assertFalse value, message
+    # value::
+    #   The value to assert
+    #
+    def assertFalseFailTest value
+      rescue_assertion /#{ASSERT_FALSE_ERROR}/ do
+        assertFalse value
       end
     end
 
     #
     # Test assertFalse with message
     #
-    def assertFalseWithMessageTest value
-      assertFalse value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertFalseWithMessageTest value, message
+      assertFalse value, message
     end
 
     #
     # Test assertFalse failure with message
     #
-    def assertFalseFailWithMessageTest value
-      assertFalseFailTest value, MESSAGE
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertFalseFailWithMessageTest value, message
+      rescue_assertion /#{ASSERT_FALSE_ERROR}/, message do
+        assertFalse value, message
+      end
+    end
+
+    #
+    # Test assertNil
+    #
+    # value::
+    #   The value to assert
+    #
+    def assertNilTest value
+      assertNil value
+    end
+
+    #
+    # Test assertNil failure
+    #
+    # value::
+    #   The value to assert
+    #
+    def assertNilFailTest value
+      rescue_assertion /#{ASSERT_NIL_ERROR}/ do
+        assertNil value
+      end
+    end
+
+    #
+    # Test assertNil with message
+    #
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertNilWithMessageTest value, message
+      assertNil value, message
+    end
+
+    #
+    # Test assertNil failure with message
+    #
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertNilFailWithMessageTest value, message
+      rescue_assertion /#{ASSERT_NIL_ERROR}/, message do
+        assertNil value, message
+      end
     end
   end
 end
