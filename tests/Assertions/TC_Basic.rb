@@ -14,8 +14,8 @@ module AssertionsTests
     #
     # Test for default fail
     #
-    def failTest message = nil, data = {}
-      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, message, data do
+    def failTest data = {}, message = nil
+      rescue_assertion /#{FAILING}/, message, data do
         fail message, data
       end
     end
@@ -24,7 +24,11 @@ module AssertionsTests
     # Test fail with message
     #
     def failWithMessageTest data = {}
-      failTest MESSAGE, data
+      failTest data, MESSAGE
+    end
+
+    def failWithDataTest data = {}
+      
     end
 
     #
@@ -38,7 +42,7 @@ module AssertionsTests
     # Test assert failure
     #
     def assertFailTest value, message = nil
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/, message do
+      rescue_assertion /#{ASSERT_ERROR}/, message do
         assert value, message
       end
     end
@@ -68,7 +72,7 @@ module AssertionsTests
     # Test assertNot failure
     #
     def assertNotFailTest value, message = nil
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/, message do
+      rescue_assertion /#{ASSERT_NOT_ERROR}/, message do
         assertNot value, message
       end
     end
@@ -98,7 +102,7 @@ module AssertionsTests
     # Test assertTrue failure
     #
     def assertTrueFailTest value, message = nil
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_TRUE_ERROR}/, message do
+      rescue_assertion /#{ASSERT_TRUE_ERROR}/, message do
         assertTrue value, message
       end
     end
@@ -128,7 +132,7 @@ module AssertionsTests
     # Test assertFalse failure
     #
     def assertFalseFailTest value, message = nil
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_FALSE_ERROR}/, message do
+      rescue_assertion /#{ASSERT_FALSE_ERROR}/, message do
         assertFalse value, message
       end
     end

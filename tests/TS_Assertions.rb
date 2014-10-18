@@ -4,6 +4,11 @@ require 'RubyUnit'
 
 module AssertionsTests
   class AssertionsTestCase < RubyUnit::TestCase
+    include RubyUnit::AssertionMessage
+
+    #
+    # Message to be used in the tests
+    #
     MESSAGE = 'AssertionsTests Assertion Message'
 
     #
@@ -29,13 +34,10 @@ module AssertionsTests
         yield
       end
       info = failure.info
-      assertMatch /#{pattern}/, info, 'AssertionFailure is missing pattern' if pattern.is_a? String and pattern.length > 0
-      assertMatch pattern, info, 'AssertionFailure is missing pattern' if pattern.is_a? Regexp
-      data.each do |index, value|
-        assertMatch /#{index}/, info, "AssertionFailure is missing index #{index}"
-        assertMatch /#{value.inspect}/, info, "AssertionFailure is missing value #{value.inspect}"
+      assertMatch /#{message}/, info, 'Assertion failure message mismatch'
+      data.each do |key, value|
+        assertMatch [/#{key}/, /#{value.inspect}/], info, 'Expected failure info not found'
       end
-      failure
     end
   end
 end

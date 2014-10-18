@@ -3,10 +3,11 @@ module AssertionsTests
   # Data provider for RubyUnit::TestCase class Test Case
   #
   module BasicTestsData
-    def failWithMessageData
+
+    def failData
       [
         [{:string=>'string',:int=>42}],
-        [                            ],
+        [                          {}], # Empty
       ]
     end
 

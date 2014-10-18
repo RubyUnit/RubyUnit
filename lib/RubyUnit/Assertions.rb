@@ -3,6 +3,7 @@ module RubyUnit
   # Assertions that can be used by RubyUnit::TestCase
   #
   module Assertions
+    include AssertionMessage
     # Tracks the total number of assertions made during the tests
     @@assertions = 0
 
@@ -22,7 +23,7 @@ module RubyUnit
     #
     def fail message = nil, data = {}
       __wrap_assertion do
-        build_message AssertionFailure::FAILING, message, data
+        build_message FAILING, message, data
       end
     end
 
@@ -39,7 +40,7 @@ module RubyUnit
     #  assert false, "This will fail"  # => fail
     #
     def assert value, message = nil
-      __assert value, AssertionFailure::ASSERT_ERROR, message, {:value=>value}
+      __assert value, ASSERT_ERROR, message, {:value=>value}
     end
 
     #
@@ -55,7 +56,7 @@ module RubyUnit
     #  assertNot true, "This will fail"  # => fail
     #
     def assertNot value, message = nil
-      __reject value, AssertionFailure::ASSERT_NOT_ERROR, message, {:value=>value}
+      __reject value, ASSERT_NOT_ERROR, message, {:value=>value}
     end
 
     #
@@ -71,7 +72,7 @@ module RubyUnit
     #  assertTrue false, "This will fail"  # => fail
     #
     def assertTrue value, message = nil
-      __assert (true == value), AssertionFailure::ASSERT_TRUE_ERROR, message, {:value=>value}
+      __assert (true == value), ASSERT_TRUE_ERROR, message, {:value=>value}
     end
 
     #
@@ -87,7 +88,7 @@ module RubyUnit
     #  assertNil true, "This will fail"  # => fail
     #
     def assertFalse value, message = nil
-      __assert (false == value), AssertionFailure::ASSERT_FALSE_ERROR, message, {:value=>value}
+      __assert (false == value), ASSERT_FALSE_ERROR, message, {:value=>value}
     end
 
     #
@@ -103,7 +104,7 @@ module RubyUnit
     #  assertNil true, "This will fail"  # => fail
     #
     def assertNil value, message = nil
-      __assert value.nil?, 'Failed to assert that value is EXACTLY nil', message, {:value=>value}
+      __assert value.nil?, ASSERT_NIL_ERROR, message, {:value=>value}
     end
 
     #
@@ -252,7 +253,10 @@ module RubyUnit
     #  assertMatch /^Hello/, 'Goodbye!', "This will fail"  # => fail
     #
     def assertMatch pattern, value, message = nil
-        __assert (value =~ pattern), 'Failed to assert value matches pattern', message, {:pattern=>pattern, :value=>value}
+      pattern = [pattern] if not pattern.is_a? Array
+      pattern.each do |regex|
+        __assert (value =~ regex), 'Failed to assert value matches pattern', message, {:pattern=>pattern, :value=>value}
+      end
     end
 
     #
@@ -668,7 +672,7 @@ module RubyUnit
     #    raise StandardError, 'Invalid Retroincabulator'
     #  end
     #
-    def assertRaiseExpected exception, pattern, message = nil, &block
+    def assertRaiseExpected exception, pattern, message = nil &block
       __validate_exception pattern, exception
       __wrap_assertion do
         begin
