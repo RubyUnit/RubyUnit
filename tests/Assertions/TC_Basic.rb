@@ -295,5 +295,55 @@ module AssertionsTests
         assertNil value, message
       end
     end
+
+    #
+    # Test assertNotNil
+    #
+    # value::
+    #   The value to assert
+    #
+    def assertNotNilTest value
+      assertNotNil value
+    end
+
+    #
+    # Test assertNotNil failure
+    #
+    # value::
+    #   The value to assert
+    #
+    def assertNotNilFailTest value
+      rescue_assertion /#{ASSERT_NOT_NIL_ERROR}/ do
+        assertNotNil value
+      end
+    end
+
+    #
+    # Test assertNotNil with message
+    #
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertNotNilWithMessageTest value, message
+      assertNotNil value, message
+    end
+
+    #
+    # Test assertNotNil failure with message
+    #
+    # value::
+    #   The value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertNotNilFailWithMessageTest value, message
+      rescue_assertion /#{ASSERT_NOT_NIL_ERROR}/, message do
+        assertNotNil value, message
+      end
+    end
   end
 end

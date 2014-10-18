@@ -56,7 +56,7 @@ module AssertionsTests
     end
 
     def assertTrueFailData
-      assertFailData + trueObjects
+      assertFalseData + assertNilData + trueObjects
     end
 
     def assertTrueWithMessageData
@@ -74,7 +74,7 @@ module AssertionsTests
     end
  
     def assertFalseFailData
-      assertData + assertNilData
+      assertTrueData + trueObjects + assertNilData
     end
 
     def assertFalseWithMessageData
@@ -101,6 +101,22 @@ module AssertionsTests
 
     def assertNilFailWithMessageData
       assertNilFailData.flatten.product AssertionsTests::MESSAGES
+    end
+
+    def assertNotNilData
+      assertTrueData + assertFalseData + trueObjects
+    end
+
+    def assertNotNilFailData
+      assertNilData
+    end
+
+    def assertNotNilWithMessageData
+      assertNotNilData.flatten.product AssertionsTests::MESSAGES
+    end
+
+    def assertNotNilFailWithMessageData
+      assertNotNilFailData.flatten.product AssertionsTests::MESSAGES
     end
   end
 end
