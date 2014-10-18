@@ -4,7 +4,7 @@
 # in this repository
 path = File.dirname(__FILE__)
 
-$LOAD_PATH.unshift("#{path}/lib") if not ARGV.include? '--gem'
+$LOAD_PATH.unshift("#{path}/lib") unless ARGV.include? '--gem'
 
 require 'RubyUnit'
 
