@@ -14,6 +14,18 @@ module RubyUnit
     ASSERT_FALSE_ERROR   = 'Value IS EXACLTY false'
     ASSERT_NIL_ERROR     = 'Value IS EXACTLY nil'
     ASSERT_NOT_NIL_ERROR = 'Value IS NOT nil'
+
+    # Comparison assertions
+    ASSERT_EQUAL_ERROR              = 'Objects ARE equal'
+    ASSERT_NOT_EQUAL_ERROR          = 'Objects ARE NOT equal'
+    ASSERT_GREATERTHAN_ERROR        = 'Object IS greater than expected'
+    ASSERT_GREATERTHANOREQUAL_ERROR = 'Object IS greater than OR equal to expected'
+    ASSERT_LESSTHAN_ERROR           = 'Object IS less than expected'
+    ASSERT_LESSTHANOREQUAL_ERROR    = 'Object IS less than OR equal to expected'
+    ASSERT_MATCH_ERROR              = 'Value matches Regexp'
+    ASSERT_NOT_MATCH_ERROR          = 'Value does NOT match Regexp'
+    ASSERT_SAME_ERROR               = 'Objects ARE the same'
+    ASSERT_NOT_SAME_ERROR           = 'Objects ARE NOT the same'
   end
 
   #

@@ -18,7 +18,7 @@ module RubyUnit
     #  assertEqual 42, 24, "This will fail"  # => fail
     #
     def assertEqual expected, actual, message = nil
-      __assert (expected == actual), 'Failed to assert that values are equal', message, {:expected=>expected, :actual=>actual}
+      __assert (expected == actual), ASSERT_EQUAL_ERROR, message, {:expected=>expected, :actual=>actual}
     end
 
     #
@@ -37,7 +37,7 @@ module RubyUnit
     #  assertNotEqual 3.14, 3.14, "This will fail"  # => fail
     #
     def assertNotEqual illegal, actual, message = nil
-      __reject (illegal == actual), 'Values should NOT be equal', message, {:illegal=>illegal, :actual=>actual} 
+      __reject (illegal == actual), ASSERT_NOT_EQUAL_ERROR, message, {:illegal=>illegal, :actual=>actual} 
     end
 
     #
@@ -56,7 +56,7 @@ module RubyUnit
     #  assertGreaterThan 24, 42, "This will fail"  # => fail
     #
     def assertGreaterThan greater, value, message = nil
-      __assert (greater > value), 'Failed to assert that value is greater than', message, {:greater=>greater, :value=>value}
+      __assert (greater > value), ASSERT_GREATERTHAN_ERROR, message, {:greater=>greater, :value=>value}
     end
 
     #
@@ -75,7 +75,7 @@ module RubyUnit
     #  assertGreaterThanOrEqual 24, 42, "This will fail"  # => fail
     #
     def assertGreaterThanOrEqual greater, value, message = nil
-      __assert (greater >= value), 'Failed to assert that value is greater than or equal', message, {:greater=>greater, :value=>value}
+      __assert (greater >= value), ASSERT_GREATERTHANOREQUAL_ERROR, message, {:greater=>greater, :value=>value}
     end
 
     #
@@ -94,7 +94,7 @@ module RubyUnit
     #  assertLessThan 42, 24, "This will fail"  # => fail
     #
     def assertLessThan less, value, message = nil
-      __assert (less < value), 'Failed to assert that value is less than', message, {:less=>less, :value=>value}
+      __assert (less < value), ASSERT_LESSTHAN_ERROR, message, {:less=>less, :value=>value}
     end
 
     #
@@ -113,7 +113,7 @@ module RubyUnit
     #  assertLessThanOrEqual 42, 24, "This will fail"  # => fail
     #
     def assertLessThanOrEqual less, value, message = nil
-      __assert (less <= value), 'Failed to assert that value is less than or equal', message, {:less=>less, :value=>value}
+      __assert (less <= value), ASSERT_LESSTHANOREQUAL_ERROR, message, {:less=>less, :value=>value}
     end
 
     #
@@ -134,7 +134,7 @@ module RubyUnit
     def assertMatch pattern, value, message = nil
       pattern = [pattern] if not pattern.is_a? Array
       pattern.each do |regex|
-        __assert (value =~ regex), 'Failed to assert value matches pattern', message, {:pattern=>pattern, :value=>value}
+        __assert (value =~ regex), ASSERT_MATCH_ERROR, message, {:pattern=>pattern, :value=>value}
       end
     end
 
@@ -154,7 +154,7 @@ module RubyUnit
     #  assertMatch /^Good/, 'Goodbye!', "This will fail"  # => fail
     #
     def assertNotMatch exclusion, value, message = nil
-      __reject (value =~ exclusion), 'Value should NOT match exclusion', message, {:exclusion=>exclusion, :value=>value}
+      __reject (value =~ exclusion), ASSERT_NO_MATCH_ERROR, message, {:exclusion=>exclusion, :value=>value}
     end
 
     #
@@ -174,7 +174,7 @@ module RubyUnit
     #  assertSame '42', 42, 'Not even close.'  # => fail
     #
     def assertSame expected, actual, message = nil
-      __assert (expected.equal? actual), 'Failed to assert objects are the same', message, {:expected=>expected, :actual=>actual}
+      __assert (expected.equal? actual), ASSERT_SAME_ERROR, message, {:expected=>expected, :actual=>actual}
     end
 
     #
@@ -194,7 +194,7 @@ module RubyUnit
     #  assertNotSame value, value, 'Imagine that!'  # => fail
     #
     def assertNotSame illegal, actual, message = nil
-      __reject (illegal.equal? actual), 'Objects shoul NOT be the same', message, {:illegal=>illegal, :actual=>actual}
+      __reject (illegal.equal? actual), ASSERT_NOT_SAME_ERROR, message, {:illegal=>illegal, :actual=>actual}
     end
   end
 end
