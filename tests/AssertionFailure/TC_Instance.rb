@@ -8,7 +8,7 @@ module AssertionFailureTests
   # Test Case for RubyUnit::AssertionFailure
   #
   class TC_Instance < RubyUnit::TestCase
-    include InstanceTestsData
+    include InstanceData
 
     #
     # Test creation of default AssertionFailure

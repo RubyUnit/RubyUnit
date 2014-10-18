@@ -1,8 +1,8 @@
-module AssertionFailureTests
+module AssertionMessageTests
   #
   # Data provider for RubyUnit::AssertionFailure class Test Case
   #
-  module ClassTestsData
+  module ConstantData
     def constantData
       [
         # Baisc assertion messages
