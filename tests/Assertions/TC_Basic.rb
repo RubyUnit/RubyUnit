@@ -75,7 +75,7 @@ module AssertionsTests
     # Test assertNot
     #
     def assertNotTest value
-      assertNotTest value
+      assertNot value
     end
 
     #
