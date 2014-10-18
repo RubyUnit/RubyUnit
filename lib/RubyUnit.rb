@@ -5,7 +5,7 @@
 #
 module RubyUnit
   # Current RubyUnit version
-  VERSION = '0.2.13'
+  VERSION = '0.2.14'
 
   #
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
@@ -35,6 +35,7 @@ Module.new do
   #--
   # TODO: add alias and call the alias so that the function doesn't break any
   # functionality that may have also extended this event.  Before/After?
+  # * Test and see if I even need to do that.
   #++
   #
   at_exit do

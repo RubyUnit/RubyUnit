@@ -7,6 +7,7 @@ require_relative 'data/Assertions'
 # Test Case for RubyUnit::Assertions module
 #
 class TEST_Assertions < RubyUnit::TestCase
+  include AssertionsData
   @assertions
 
   #
@@ -19,8 +20,8 @@ class TEST_Assertions < RubyUnit::TestCase
   #
   # Wrapper to rescue assertions
   #
-  def rescue_assertion pattern = '', &block
-    assertRaiseExpected RubyUnit::AssertionFailure, pattern do
+  def rescue_assertion pattern = '', message = nil, data = {}, &block
+    assertRaiseExpected RubyUnit::AssertionFailure, pattern, message do
       yield
     end
   end
@@ -28,8 +29,8 @@ class TEST_Assertions < RubyUnit::TestCase
   #
   # Test for default failure
   #
-  def failTest
-    rescue_assertion  /#{RubyUnit::AssertionFailure::FAILING}/ do
+  def failDefaultTest
+    rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/ do
       fail
     end
   end

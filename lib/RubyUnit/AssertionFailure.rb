@@ -3,8 +3,31 @@ module RubyUnit
   # Exception that is raised when a test assertion fails.
   #
   class AssertionFailure < StandardError
+    attr_reader :data
+
     # Error messages
     FAILING = 'Failing test'
 
+    #
+    # Create a RubyUnit::AssertionFailure exception
+    #
+    # data::
+    #   The data associated with the assertion
+    #
+    def initialize data = {}
+      raise ArgumentError, 'Data for AssertionFailure must be a Hash' unless data.is_a? Hash
+      @data = data
+    end
+
+    #
+    # Create a string from the assertion data
+    #
+    def info
+      s = "\n#{message}\n"
+      @data.each do |index, value|
+        s << "\n#{index}:\n\t#{value.inspect}"
+      end
+      s
+    end
   end
 end

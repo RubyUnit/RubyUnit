@@ -585,6 +585,7 @@ module RubyUnit
         rescue exception => e
           assertEqual pattern, e.message if pattern.is_a? String and pattern.length > 0
           assertMatch pattern, e.message if pattern.is_a? Regexp
+          e
         end
       end
     end
@@ -612,13 +613,7 @@ module RubyUnit
       raise ArgumentError, 'Error description must be a String' unless error.is_a? String
       raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
       raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
-
-      error_message  = "\n\n#{error}"
-      error_message << "\n#{message}" if not message.nil?
-      data.each do |index, value|
-        error_message << "\n#{index}:\n\t#{value.inspect}"
-      end
-      raise AssertionFailure, error_message
+      raise AssertionFailure.new({:message=>message}.merge data), error
     end
 
     #
