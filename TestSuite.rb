@@ -24,7 +24,7 @@ require 'TEST_Assertions'
 require 'TS_IncompleteTest'
 
 # Runner class => RubyUnit/Runner.rb
-require 'TEST_Runner'
+require 'TS_Runner'
 
 # SkippedTest exception => RubyUnit/SkippedTest.rb
 require 'TS_SkippedTest'
