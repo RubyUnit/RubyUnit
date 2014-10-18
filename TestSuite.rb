@@ -18,7 +18,7 @@ require 'TS_RubyUnit'
 require 'TS_AssertionFailure'
 
 # Assertions module => RubyUnit/Assertions.rb
-require 'TEST_Assertions'
+require 'TS_Assertions'
 
 # IncompleteTest exception => RubyUnit/IncompleteTest.rb
 require 'TS_IncompleteTest'
