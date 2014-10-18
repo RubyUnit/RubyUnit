@@ -1,6 +1,6 @@
 module AssertionsTests
   #
-  # Data provider for RubyUnit::TestCase class Test Case
+  # Data provider for RubyUnit::Assertions Basic assertions
   #
   module BasicData
 

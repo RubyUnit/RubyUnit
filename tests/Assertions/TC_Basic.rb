@@ -5,7 +5,7 @@ require_relative 'data/Basic'
 
 module AssertionsTests
   #
-  # Test Case for RubyUnit::Assertions module
+  # Test Case for RubyUnit::Assertions Basic assertions
   #
   class TC_Basic < AssertionsTestCase
     include BasicData
