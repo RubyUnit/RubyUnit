@@ -28,17 +28,17 @@ module AssertionsTests
     #
     # Test for default fail
     #
-    def failDefaultTest
-      failTest
-    end
-
-    #
-    # Test fail
-    #
-    def failTest data = {}, message = @@message
+    def failTest message = nil, data = {}
       rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, message, data do
         fail message, data
       end
+    end
+
+    #
+    # Test fail with message
+    #
+    def failWithMessageTest data = {}
+      failTest @@message, data
     end
 
     #
@@ -58,26 +58,24 @@ module AssertionsTests
     #
     # Test assert failure
     #
-    def assertFailTest value
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/ do
-        assert value
+    def assertFailTest value, message = nil
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/, message do
+        assert value, message
       end
     end
 
     #
     # Test assert failure with message
     #
-    def assertFailTest value
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/, @@message do
-        assert value, @@message
-      end
+    def assertFailWithMessageTest value
+      assertFailTest value, @@message
     end
 
     #
     # Test assertNot
     #
     def assertNotTest value
-      assertNot value
+      assertNotTest value
     end
 
     #
@@ -90,19 +88,17 @@ module AssertionsTests
     #
     # Test assertNot failure
     #
-    def assertNotFailTest value
+    def assertNotFailTest value, message = nil
       rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/ do
-        assertNot value
+        assertNot value, message
       end
     end
 
     #
     # Test assertNot failure with message
     #
-    def assertNotFailTest value
-      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/, @@message do
-        assertNot value, @@message
-      end
+    def assertNotFailWithMessageTest value
+      assertNotFailTest value, @@message
     end
   end
 end
