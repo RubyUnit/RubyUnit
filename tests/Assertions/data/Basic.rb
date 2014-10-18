@@ -36,6 +36,22 @@ module AssertionsTests
       falseData + nilData
     end
 
+    def assertNotData
+      assertFailData
+    end
+
+    def assertNotWithMessageData
+      assertNotData
+    end
+
+    def assertNotFailData
+      assertData
+    end
+
+    def assertNotFailWithMessageData
+      assertNotFailData
+    end
+
     def trueData
       [
         [true],

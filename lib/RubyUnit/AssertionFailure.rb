@@ -6,11 +6,12 @@ module RubyUnit
     attr_reader :data
 
     # Error messages
-    FAILING      = 'Failing test'
-    FAILURE      = 'Failed to ASSERT'
+    FAILING          = 'Failing test'
+    FAILURE          = 'Failed to ASSERT'
 
     # Basic assertions
-    ASSERT_ERROR = 'Value is NOT false or nil'
+    ASSERT_ERROR     = 'Value IS NOT false or nil'
+    ASSERT_NOT_ERROR = 'Value IS false or nil'
 
     #
     # Create a RubyUnit::AssertionFailure exception

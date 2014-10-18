@@ -29,17 +29,15 @@ module AssertionsTests
     # Test for default fail
     #
     def failDefaultTest
-      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/ do
-        fail
-      end
+      failTest
     end
 
     #
     # Test fail
     #
-    def failTest data = {}
-      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, @@message, data do
-        fail @@message, data
+    def failTest data = {}, message = @@message
+      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, message, data do
+        fail message, data
       end
     end
 
@@ -72,6 +70,38 @@ module AssertionsTests
     def assertFailTest value
       rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/, @@message do
         assert value, @@message
+      end
+    end
+
+    #
+    # Test assertNot
+    #
+    def assertNotTest value
+      assertNot value
+    end
+
+    #
+    # Test assertNot with message
+    #
+    def assertNotTest value
+      assertNot value, @@message
+    end
+
+    #
+    # Test assertNot failure
+    #
+    def assertNotFailTest value
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/ do
+        assertNot value
+      end
+    end
+
+    #
+    # Test assertNot failure with message
+    #
+    def assertNotFailTest value
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_NOT_ERROR}/, @@message do
+        assertNot value, @@message
       end
     end
   end

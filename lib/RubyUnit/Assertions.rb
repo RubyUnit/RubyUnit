@@ -55,7 +55,7 @@ module RubyUnit
     #  assertNot true, "This will fail"  # => fail
     #
     def assertNot value, message = nil
-      __reject value, 'Value should NOT be false or nil', message, {:value=>value}
+      __reject value, AssertionFailure::ASSERT_NOT_ERROR, message, {:value=>value}
     end
 
     #
