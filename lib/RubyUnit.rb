@@ -5,7 +5,7 @@
 #
 module RubyUnit
   # Current RubyUnit version
-  VERSION = '0.2.14'
+  VERSION = '0.2.15'
 
   #
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
