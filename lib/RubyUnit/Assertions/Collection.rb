@@ -18,7 +18,7 @@ module RubyUnit
     #
     def assertInclude collection, value, message = nil
       assertRespondTo collection, :include?, message
-      __assert (collection.include? value), 'Failed to assert collection includes value', message, {:collection=>collection, :value=>value}
+      __assert (collection.include? value), ASSERT_INCLUDE_ERROR, message, {:collection=>collection, :value=>value}
     end
 
     #
@@ -38,7 +38,7 @@ module RubyUnit
     #
     def assertNotInclude collection, value, message = nil
       assertRespondTo collection, :include?, message
-      __reject (collection.include? value), 'Collection should NOT include value', message, {:collection=>collection, :value=>value}
+      __reject (collection.include? value), ASSERT_NOT_INCLUDE_ERROR, message, {:collection=>collection, :value=>value}
     end
 
     #
@@ -56,7 +56,7 @@ module RubyUnit
     #
     def assertEmpty object, message = nil
       assertRespondTo object, :include?, message
-      __assert object.empty?, 'Failed to assert object is empty', message, {:object=>object}
+      __assert object.empty?, ASSERT_EMPTY_ERROR, message, {:object=>object}
     end
 
     #
@@ -74,7 +74,7 @@ module RubyUnit
     #
     def assertNotEmpty object, message = nil
       assertRespondTo object, :include?, message
-      __reject object.empty?, 'Failed to assert object is NOT empty', message, {:object=>object}
+      __reject object.empty?, ASSERT_NOT_EMPTY_ERROR, message, {:object=>object}
     end
   end
 end

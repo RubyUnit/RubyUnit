@@ -30,6 +30,13 @@ module RubyUnit
     ASSERT_CONST_NOT_DEFINED_ERROR = 'Object HAS NOT defined constant'
 
     ##
+    # Collection assertions
+    ASSERT_INCLUDE_ERROR     = 'Collection includes object'
+    ASSERT_NOT_INCLUDE_ERROR = 'Collection does NOT include object'
+    ASSERT_EMPTY_ERROR       = 'Collection IS empty'
+    ASSERT_NOT_EMPTY_ERROR   = 'Collection IS NOT empty'
+
+    ##
     # Comparison assertions
     ASSERT_EQUAL_ERROR              = 'Objects ARE equal'
     ASSERT_NOT_EQUAL_ERROR          = 'Objects ARE NOT equal'

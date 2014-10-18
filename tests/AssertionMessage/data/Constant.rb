@@ -29,6 +29,10 @@ module AssertionMessageTests
 
         ##
         # Collection assertion messages
+        [        'ASSERT_INCLUDE_ERROR'],
+        [    'ASSERT_NOT_INCLUDE_ERROR'],
+        [          'ASSERT_EMPTY_ERROR'],
+        [      'ASSERT_NOT_EMPTY_ERROR'],
 
         ##
         # Comparison assertion messages
