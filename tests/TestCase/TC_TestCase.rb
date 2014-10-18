@@ -3,9 +3,6 @@ require 'RubyUnit/TestCase'
 # Data provider for RubyUnit::TestCase tests
 require_relative 'data/TestCase'
 
-# Fixture for RubyUnit::TestCase tests
-require_relative 'fixture/TestCase'
-
 module TestCaseTests
   #
   # Test Case for the RubyUnit::TestCase
