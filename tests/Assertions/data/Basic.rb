@@ -2,7 +2,7 @@ module AssertionsTests
   #
   # Data provider for RubyUnit::TestCase class Test Case
   #
-  module BasicTestsData
+  module BasicData
 
     def failWithMessageData
       AssertionsTests::MESSAGES.collect {|message| [message]}

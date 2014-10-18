@@ -8,7 +8,7 @@ module AssertionsTests
   # Test Case for RubyUnit::Assertions module
   #
   class TC_Basic < AssertionsTestCase
-    include BasicTestsData
+    include BasicData
 
     #
     # Test for default fail
