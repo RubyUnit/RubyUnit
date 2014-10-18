@@ -3,5 +3,7 @@
 require 'RubyUnit'
 
 # Test Cases
-require_relative 'AssertionFailure/TC_Class'
-require_relative 'AssertionFailure/TC_Instance'
+Dir["#{File.dirname(__FILE__)}/AssertionFailure/TC_*.rb"].each do |test_case|
+  puts "Adding Test Case #{test_case}" if RubyUnit.debug
+  require test_case
+end

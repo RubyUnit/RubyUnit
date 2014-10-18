@@ -4,8 +4,31 @@
 # The RubyModule is the root object for all RubyUnit modules and classes.
 #
 module RubyUnit
+  # Debug mode
+  @@debug            = false
+  INVALID_DEBUG_MODE = 'Debug mode must be Boolean'
+
   # Current RubyUnit version
   VERSION = '0.2.15'
+
+  #
+  # Set debug mode
+  # * raises ArgumentError if _bool_ is not a Boolean
+  #
+  # bool::
+  #   New value for debug mode
+  #
+  def self.debug= bool
+    raise ArgumentError, INVALID_DEBUG_MODE unless [true, false].include? bool
+    @@debug = bool
+  end
+
+  #
+  # Get the current debug mode
+  #
+  def self.debug
+    @@debug
+  end
 
   #
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
@@ -18,9 +41,10 @@ module RubyUnit
                   ['TestSuite.rb']            +  # Test Suite
                   Dir['tests/**/*.rb']           # TESTS
 
-    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of ' +
-                  'the software development life cycle. This tool is intended to ' +
-                  'make development and testing in Ruby easier on everyone.'
+    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of '  +
+                  'the software development life cycle. This tool is intended to '  +
+                  'make development and testing in Ruby easier on everyone. It is ' +
+                  'also designed to with a focus on data driven testing.'
   end
 end
 

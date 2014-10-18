@@ -8,7 +8,10 @@ $LOAD_PATH.unshift("#{path}/lib") if not ARGV.include? '--gem'
 
 require 'RubyUnit'
 
+RubyUnit.debug = true if ARGV.include? '--debug'
+
 # Automatically load Test Sets
-Dir['tests/TS_*.rb'].each do |test_case|
-  require_relative test_case
+Dir['tests/TS_*.rb'].each do |test_set|
+  puts "Adding Test Set #{test_set}" if RubyUnit.debug
+  require_relative test_set
 end

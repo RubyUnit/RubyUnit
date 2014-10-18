@@ -3,5 +3,7 @@
 require 'RubyUnit'
 
 # Test Cases
-require_relative 'RubyUnit/TC_RubyUnit'
-require_relative 'RubyUnit/TC_GemInfo'
+Dir["#{File.dirname(__FILE__)}/RubyUnit/TC_*.rb"].each do |test_case|
+  puts "Adding Test Case #{test_case}" if RubyUnit.debug
+  require test_case
+end
