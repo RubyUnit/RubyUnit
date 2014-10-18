@@ -6,7 +6,11 @@ module RubyUnit
     attr_reader :data
 
     # Error messages
-    FAILING = 'Failing test'
+    FAILING      = 'Failing test'
+    FAILURE      = 'Failed to ASSERT'
+
+    # Basic assertions
+    ASSERT_ERROR = 'Value is NOT false or nil'
 
     #
     # Create a RubyUnit::AssertionFailure exception
@@ -24,7 +28,7 @@ module RubyUnit
     #
     def info
       s = "\n"
-      s = "#{message}\n" if message.length > 0
+      s = "#{FAILURE}: #{message}\n" if message.length > 0
       @data.each do |index, value|
         s << "\n#{index}:\n\t#{value.inspect}"
       end

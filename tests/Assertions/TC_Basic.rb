@@ -7,7 +7,7 @@ module AssertionsTests
   #
   # Test Case for RubyUnit::Assertions module
   #
-  class TC_Basic < RubyUnit::TestCase
+  class TC_Basic < AssertionsTestCase
     include BasicTestsData
     @assertions
 
@@ -19,21 +19,32 @@ module AssertionsTests
     end
 
     #
-    # Wrapper to rescue assertions
+    # Teardown tests
     #
-    def rescue_assertion pattern = '', message = nil, data = {}, &block
-      assertRaiseExpected RubyUnit::AssertionFailure, pattern, message do
-        yield
-      end
+    def teardown
+      assertGreaterThan @@assertions, @assertions, 'Test should make assertions'
     end
 
     #
-    # Test for default failure
+    # Test for default fail
     #
     def failDefaultTest
       rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/ do
         fail
       end
     end
+
+    #
+    # Test fail
+    #
+    def failTest message, data = {}
+      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, message, data do
+        fail message, data
+      end
+    end
+
+    #
+    # Test assert
+    #
   end
 end

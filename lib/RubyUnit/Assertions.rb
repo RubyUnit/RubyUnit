@@ -21,7 +21,9 @@ module RubyUnit
     #  fail "I wasn't expecting the moon to fall into Lake Michigan"  # => fail
     #
     def fail message = nil, data = {}
-      build_message AssertionFailure::FAILING, message, data
+      __wrap_assertion do
+        build_message AssertionFailure::FAILING, message, data
+      end
     end
 
     #
@@ -37,7 +39,7 @@ module RubyUnit
     #  assert false, "This will fail"  # => fail
     #
     def assert value, message = nil
-      __assert value, 'Failed to assert that value is not false or nil', message, {:value=>value}
+      __assert value, AssertionFailure::ASSERT_ERROR, message, {:value=>value}
     end
 
     #
@@ -121,42 +123,6 @@ module RubyUnit
     end
 
     #
-    # Assert that a value is empty
-    # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
-    # * raises RubyUnit::AssertionFailure unless _object_ is empty
-    #
-    # object::
-    #   The object to check
-    #
-    # message::
-    #   The message provided to be reported for a failure
-    #
-    #  assertEmpty [1, 2], 'Not empty'  # => fail
-    #
-    def assertEmpty object, message = nil
-      assertRespondTo object, :include?, message
-      __assert object.empty?, 'Failed to assert object is empty', message, {:object=>object}
-    end
-
-    #
-    # Assert that a value is not empty
-    # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
-    # * raises RubyUnit::AssertionFailure if _object_ is empty
-    #
-    # object::
-    #   The object to check
-    #
-    # message::
-    #   The message provided to be reported for a failure
-    #
-    #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
-    #
-    def assertNotEmpty object, message = nil
-      assertRespondTo object, :include?, message
-      __reject object.empty?, 'Failed to assert object is NOT empty', message, {:object=>object}
-    end
-
-    #
     # Assert that two values are equal.
     # * raises RubyUnit::AssertionFailure unless _expected_ equals _actual_
     #
@@ -192,6 +158,82 @@ module RubyUnit
     #
     def assertNotEqual illegal, actual, message = nil
       __reject (illegal == actual), 'Values should NOT be equal', message, {:illegal=>illegal, :actual=>actual} 
+    end
+
+    #
+    # Assert that one value is greater than another.
+    # * raises RubyUnit::AssertionFailure unless _greater_ is greater than _value_
+    #
+    # greater::
+    #   The value that should be greater
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertGreaterThan 24, 42, "This will fail"  # => fail
+    #
+    def assertGreaterThan greater, value, message = nil
+      __assert (greater > value), 'Failed to assert that value is greater than', message, {:greater=>greater, :value=>value}
+    end
+
+    #
+    # Assert that one value is greater than another.
+    # * raises RubyUnit::AssertionFailure unless _greater_ is greater than or equal to _value_
+    #
+    # greater::
+    #   The value that should be greater than or equal
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertGreaterThanOrEqual 24, 42, "This will fail"  # => fail
+    #
+    def assertGreaterThanOrEqual greater, value, message = nil
+      __assert (greater >= value), 'Failed to assert that value is greater than or equal', message, {:greater=>greater, :value=>value}
+    end
+
+    #
+    # Assert that one value is less than another.
+    # * raises RubyUnit::AssertionFailure unless _less_ is less than _value_
+    #
+    # less::
+    #   The value that should be less
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertLessThan 42, 24, "This will fail"  # => fail
+    #
+    def assertLessThan less, value, message = nil
+      __assert (less < value), 'Failed to assert that value is less than', message, {:less=>less, :value=>value}
+    end
+
+    #
+    # Assert that one value is less than another.
+    # * raises RubyUnit::AssertionFailure unless _less_ is less than or equal to _value_
+    #
+    # less::
+    #   The value that should be less than or equal
+    #
+    # value::
+    #   The value that is being checked by the assertion
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertLessThanOrEqual 42, 24, "This will fail"  # => fail
+    #
+    def assertLessThanOrEqual less, value, message = nil
+      __assert (less <= value), 'Failed to assert that value is less than or equal', message, {:less=>less, :value=>value}
     end
 
     #
@@ -359,44 +401,6 @@ module RubyUnit
     end
 
     #
-    # Assert that an object responds to particular method
-    # * raises RubyUnit::AssertionFailure unless _object_ responds to _method_
-    #
-    # object::
-    #   The object to check
-    #
-    # method::
-    #   The method to assert on the object
-    #
-    # message::
-    #   The message provided to be reported for a failure
-    #
-    #  assertRespondTo /^Regexp/, :length, 'It does not, so... no'  # => fail
-    #
-    def assertRespondTo object, method, message = nil
-      __assert (object.respond_to? method), 'Failed to assert object responds to method', message, {:object=>object, :method=>method}
-    end
-
-    #
-    # Assert that an object does not respond to a particular method
-    # * raises RubyUnit::AssertionFailure if _object_ responds to _method_
-    #
-    # object::
-    #   The object to check
-    #
-    # method::
-    #   The method to assert on the object
-    #
-    # message::
-    #   The message provided to be reported for a failure
-    #
-    #  assertNotRespondTo 25, :integer?, 'It does, so close'  # => fail
-    #
-    def assertNotRespondTo object, method, message = nil
-      __assert (object.respond_to? method), 'Object should NOT respond to method', message, {:object=>object, :method=>method}
-    end
-
-    #
     # Assert that a collection includes a specified value
     # * raises RubyUnit::AssertionFailure unless _collection_ responds to _value_
     #
@@ -434,6 +438,42 @@ module RubyUnit
     def assertNotInclude collection, value, message = nil
       assertRespondTo collection, :include?, message
       __reject (collection.include? value), 'Collection should NOT include value', message, {:collection=>collection, :value=>value}
+    end
+
+    #
+    # Assert that a value is empty
+    # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
+    # * raises RubyUnit::AssertionFailure unless _object_ is empty
+    #
+    # object::
+    #   The object to check
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertEmpty [1, 2], 'Not empty'  # => fail
+    #
+    def assertEmpty object, message = nil
+      assertRespondTo object, :include?, message
+      __assert object.empty?, 'Failed to assert object is empty', message, {:object=>object}
+    end
+
+    #
+    # Assert that a value is not empty
+    # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
+    # * raises RubyUnit::AssertionFailure if _object_ is empty
+    #
+    # object::
+    #   The object to check
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
+    #
+    def assertNotEmpty object, message = nil
+      assertRespondTo object, :include?, message
+      __reject object.empty?, 'Failed to assert object is NOT empty', message, {:object=>object}
     end
 
     #
@@ -640,6 +680,44 @@ module RubyUnit
           e
         end
       end
+    end
+
+    #
+    # Assert that an object responds to particular method
+    # * raises RubyUnit::AssertionFailure unless _object_ responds to _method_
+    #
+    # object::
+    #   The object to check
+    #
+    # method::
+    #   The method to assert on the object
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertRespondTo /^Regexp/, :length, 'It does not, so... no'  # => fail
+    #
+    def assertRespondTo object, method, message = nil
+      __assert (object.respond_to? method), 'Failed to assert object responds to method', message, {:object=>object, :method=>method}
+    end
+
+    #
+    # Assert that an object does not respond to a particular method
+    # * raises RubyUnit::AssertionFailure if _object_ responds to _method_
+    #
+    # object::
+    #   The object to check
+    #
+    # method::
+    #   The method to assert on the object
+    #
+    # message::
+    #   The message provided to be reported for a failure
+    #
+    #  assertNotRespondTo 25, :integer?, 'It does, so close'  # => fail
+    #
+    def assertNotRespondTo object, method, message = nil
+      __assert (object.respond_to? method), 'Object should NOT respond to method', message, {:object=>object, :method=>method}
     end
 
     #
