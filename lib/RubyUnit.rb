@@ -9,7 +9,7 @@ module RubyUnit
   INVALID_DEBUG_MODE = 'Debug mode must be Boolean'
 
   # Current RubyUnit version
-  VERSION = '0.2.15'
+  VERSION = '0.3.15'
 
   #
   # Set debug mode
