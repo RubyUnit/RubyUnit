@@ -21,7 +21,7 @@ require 'TS_AssertionFailure'
 require 'TEST_Assertions'
 
 # IncompleteTest exception => RubyUnit/IncompleteTest.rb
-require 'TEST_IncompleteTest'
+require 'TS_IncompleteTest'
 
 # Runner class => RubyUnit/Runner.rb
 require 'TEST_Runner'
