@@ -81,7 +81,7 @@ module AssertionsTests
     #
     # Test assertNot with message
     #
-    def assertNotTest value
+    def assertNotWithMessageTest value
       assertNot value, @@message
     end
 
