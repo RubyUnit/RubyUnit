@@ -613,7 +613,7 @@ module RubyUnit
       raise ArgumentError, 'Error description must be a String' unless error.is_a? String
       raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
       raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
-      raise AssertionFailure.new({:message=>message}.merge data), error
+      raise AssertionFailure.new({'Assertion Failure'=>message}.merge data), error
     end
 
     #
