@@ -8,12 +8,26 @@ module RubyUnit
     # Error messages
     FAILING = 'Failing test'
 
-    def initialize data = {}, message
+    #
+    # Create a RubyUnit::AssertionFailure exception
+    #
+    # data::
+    #   The data associated with the assertion
+    #
+    def initialize data = {}
       raise ArgumentError, 'Data for AssertionFailure must be a Hash' unless data.is_a? Hash
       @data = data
     end
 
+    #
+    # Create a string from the assertion data
+    #
     def info
+      s = "\n#{message}\n"
+      @data.each do |index, value|
+        s << "\n#{index}:\n\t#{value.inspect}"
+      end
+      s
     end
   end
 end

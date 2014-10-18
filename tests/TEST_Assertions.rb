@@ -21,16 +21,15 @@ class TEST_Assertions < RubyUnit::TestCase
   # Wrapper to rescue assertions
   #
   def rescue_assertion pattern = '', message = nil, data = {}, &block
-    e = assertRaiseExpected RubyUnit::AssertionFailure, pattern, message do
+    assertRaiseExpected RubyUnit::AssertionFailure, pattern, message do
       yield
     end
-    assertMatch /#{message}/, e.message
   end
 
   #
   # Test for default failure
   #
-  def faiDefaultTest
+  def failDefaultTest
     rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/ do
       fail
     end
