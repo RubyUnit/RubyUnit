@@ -8,11 +8,12 @@ module RubyUnit
     FAILURE = 'Failed to ASSERT'
 
     # Basic assertions
-    ASSERT_ERROR       = 'Value IS NOT false OR nil'
-    ASSERT_NOT_ERROR   = 'Value IS false OR nil'
-    ASSERT_TRUE_ERROR  = 'Value IS EXACLTY true' 
-    ASSERT_FALSE_ERROR = 'Value IS EXACLTY false'
-    ASSERT_NIL_ERROR   = 'Value IS EXACTLY nil'
+    ASSERT_ERROR         = 'Value IS NOT false OR nil'
+    ASSERT_NOT_ERROR     = 'Value IS false OR nil'
+    ASSERT_TRUE_ERROR    = 'Value IS EXACLTY true' 
+    ASSERT_FALSE_ERROR   = 'Value IS EXACLTY false'
+    ASSERT_NIL_ERROR     = 'Value IS EXACTLY nil'
+    ASSERT_NOT_NIL_ERROR = 'Value IS NOT nil'
   end
 
   #

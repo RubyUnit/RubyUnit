@@ -120,7 +120,7 @@ module RubyUnit
     #  assertNotNil nil, "This will fail"  # => fail
     #
     def assertNotNil value, message = nil
-      __reject value.nil?, 'Failed to assert that value is NOT nil', message, {:value=>value}
+      __reject value.nil?, ASSERT_NOT_NIL_ERROR, message, {:value=>value}
     end
 
     #
