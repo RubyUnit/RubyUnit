@@ -30,4 +30,4 @@ require 'TS_Runner'
 require 'TS_SkippedTest'
 
 # TestCase class => RubyUnit/TestCase.rb
-require 'TEST_TestCase'
+require 'TS_TestCase'
