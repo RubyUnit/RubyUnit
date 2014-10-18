@@ -4,6 +4,7 @@ require 'RubyUnit'
 
 module AssertionsTests
   class AssertionsTestCase < RubyUnit::TestCase
+    @@message = 'AssertionsTests Assertion Message'
     #
     # Wrapper to rescue assertions
     #
@@ -18,6 +19,7 @@ module AssertionsTests
         assertMatch /#{index}/, info, "AssertionFailure is missing index #{index}"
         assertMatch /#{value.inspect}/, info, "AssertionFailure is missing value #{value.inspect}"
       end
+      failure
     end
   end
 end

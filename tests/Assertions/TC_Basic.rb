@@ -37,14 +37,42 @@ module AssertionsTests
     #
     # Test fail
     #
-    def failTest message, data = {}
-      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, message, data do
-        fail message, data
+    def failTest data = {}
+      rescue_assertion /#{RubyUnit::AssertionFailure::FAILING}/, @@message, data do
+        fail @@message, data
       end
     end
 
     #
     # Test assert
     #
+    def assertTest value
+      assert value
+    end
+
+    #
+    # Test assert with message
+    #
+    def assertMessageTest value
+      assert value, @@message
+    end
+
+    #
+    # Test assert failure
+    #
+    def assertFailTest value
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/ do
+        assert value
+      end
+    end
+
+    #
+    # Test assert failure with message
+    #
+    def assertFailTest value
+      rescue_assertion /#{RubyUnit::AssertionFailure::ASSERT_ERROR}/, @@message do
+        assert value, @@message
+      end
+    end
   end
 end

@@ -5,22 +5,35 @@ module AssertionsTests
   module BasicTestsData
     def failData
       [
-        ['Assertion Message', {:string=>'test',:int=>10}],
-        ['Assertion Message'                            ],
+        [{:string=>'string',:int=>42}],
+        [                            ],
       ]
     end
 
-    def trueObject
+    def trueObjects
       [
-        [        0],
-        [        1],
-        [       -1],
-        [       42],
-        [    Class],
-        [ 'String'],
-        [ /Regexp/],
-        [[1,2,3,4]],
+        [                            0],
+        [                            1],
+        [                           -1],
+        [                           42],
+        [                        Class],
+        [                     'String'],
+        [                     /Regexp/],
+        [                    [1,2,3,4]],
+        [{:int=>42, :string=>'string'}],
       ]
+    end
+
+    def assertData
+      trueData + trueObjects
+    end
+
+    def assertMessageData
+      assertData
+    end
+
+    def assertFailData
+      falseData + nilData
     end
 
     def trueData
