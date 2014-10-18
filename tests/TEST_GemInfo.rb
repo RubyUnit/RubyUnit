@@ -13,13 +13,13 @@ class TEST_GemInfo < RubyUnit::TestCase
   # Verify that the required constants are defined
   #
   def constantsDefinedTest konstant
-    assertConstDefined RubyUnit::GemInfo, konstant, "missing constant in GemInfo: #{konstant}!"
+    assertConstDefined RubyUnit::GemInfo, konstant, "missing constant in GemInfo: #{konstant}"
   end
 
   #
   # Verify that the list of files contains the LICENSE file
   #
   def validateFilesIncludesLicenseTest
-    assertInclude RubyUnit::GemInfo::FILES, 'LICENSE.md', 'Gem MUST be distributed with the license!'
+    assertInclude RubyUnit::GemInfo::FILES, 'LICENSE.md', 'Gem MUST be distributed with the license'
   end
 end
