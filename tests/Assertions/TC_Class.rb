@@ -39,6 +39,21 @@ module AssertionsTests
     end
 
     ##
+    # Test assertKindOf invalid
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    def assertKindOfInvalidTest klass, object
+      assertRaiseKindOf TypeError do
+        assertKindOf klass, object
+      end
+    end
+
+    ##
     # Test assertKindOf with message
     #
     # klass::
@@ -68,6 +83,24 @@ module AssertionsTests
     #
     def assertKindOfWithMessageFailTest klass, object, message
       rescue_assertion /#{ASSERT_KIND_OF_ERROR}/, message do
+        assertKindOf klass, object, message
+      end
+    end
+
+    ##
+    # Test assertKindOf invalid with message
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertKindOfWithMessageInvalidTest klass, object, message
+      assertRaiseKindOf TypeError, message do
         assertKindOf klass, object, message
       end
     end

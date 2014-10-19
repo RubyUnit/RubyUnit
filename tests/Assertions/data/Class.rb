@@ -43,12 +43,20 @@ module AssertionsTests
       data += add_parameter classes_exclude([Hash]), hashObjects
     end
 
+    def assertKindOfInvalidData
+      add_parameter non_classes, [[Object]]
+    end
+
     def assertKindOfWithMessageData
       add_parameter assertKindOfData
     end
 
     def assertKindOfWithMessageFailData
       add_parameter assertKindOfFailData
+    end
+
+    def assertKindOfWithMessageInvalidData
+      add_parameter assertKindOfInvalidData
     end
   end
 end
