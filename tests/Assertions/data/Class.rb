@@ -146,8 +146,7 @@ module AssertionsTests
     end
 
     def assertDescendentInvalidData
-      data  = add_parameter non_classes, [[Object]]
-      data += add_parameter [[Object]], non_classes
+      data  = add_parameter non_classes, [[Class]]
       data += add_parameter non_classes, non_classes
     end
 
