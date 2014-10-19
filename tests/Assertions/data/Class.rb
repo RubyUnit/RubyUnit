@@ -13,18 +13,10 @@ module AssertionsTests
       data += add_parameter [[TrueClass]], trueObjects
       data += add_parameter [[FalseClass]], falseObjects
       data += add_parameter [[Numeric], [Integer], [Fixnum]], fixnumObjects
-        [Numeric, Integer, Bignum].each do |klass|
-        data += add_parameter [[klass]], bignumObjects
-      end
-      [Numeric, Float].each do |klass|
-        data += add_parameter [[klass]], floatObjects
-      end
-      [Numeric, Rational].each do |klass|
-        data += add_parameter [[klass]], rationalObjects
-      end
-      [Numeric, Complex].each do |klass|
-        data += add_parameter [[klass]], complexObjects
-      end
+      data += add_parameter [[Numeric], [Integer], [Bignum]], bignumObjects
+      data += add_parameter [[Numeric], [Float]], floatObjects
+      data += add_parameter [[Numeric], [Rational]], rationalObjects
+      data += add_parameter [[Numeric], [Complex]], complexObjects
       data += add_parameter [[Time]], timeObjects
       data += add_parameter [[String]], stringObjects
       data += add_parameter [[Range]], rangeObjects
@@ -34,9 +26,21 @@ module AssertionsTests
     end
 
     def assertKindOfFailData
-      [
-        
-      ]
+      data  = add_parameter classes_exclude([Class]), classObjects
+      data += add_parameter classes_exclude([NilClass]), nilObjects
+      data += add_parameter classes_exclude([TrueClass]), trueObjects
+      data += add_parameter classes_exclude([FalseClass]), falseObjects
+      data += add_parameter classes_exclude([Numeric, Integer, Fixnum]), fixnumObjects
+      data += add_parameter classes_exclude([Numeric, Integer, Bignum]), bignumObjects
+      data += add_parameter classes_exclude([Numeric, Float]), floatObjects
+      data += add_parameter classes_exclude([Numeric, Rational]), rationalObjects
+      data += add_parameter classes_exclude([Numeric, Complex]), complexObjects
+      data += add_parameter classes_exclude([Time]), timeObjects
+      data += add_parameter classes_exclude([String]), stringObjects
+      data += add_parameter classes_exclude([Range]), rangeObjects
+      data += add_parameter classes_exclude([Regexp]), regexpObjects
+      data += add_parameter classes_exclude([Array]), arrayObjects
+      data += add_parameter classes_exclude([Hash]), hashObjects
     end
 
     def assertKindOfWithMessageData
