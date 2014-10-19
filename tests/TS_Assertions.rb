@@ -7,8 +7,9 @@ module AssertionsTests
   # Messages to be used in the tests
   #
   MESSAGES = [
-    ['AssertionsTests Assertion Message'],
-    [      'Alternate Assertion Message'],
+    [                                  ''],
+    [ 'AssertionsTests Assertion Message'],
+    ["#{'iterpolated'} Assertion Message"],
   ]
 
   class AssertionsTestCase < RubyUnit::TestCase
