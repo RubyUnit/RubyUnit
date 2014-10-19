@@ -103,7 +103,7 @@ module RubyUnit
     #  assertDescendent Numeric, Exception, 'Nope'  # => fail
     #
     def assertDescendent klass, descendent, message = nil
-      assertInstanceOf Class, klass, message
+      __validate_arguments [Class], [klass]
       __assert (descendent < klass), ASSERT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
     end
 
@@ -123,7 +123,7 @@ module RubyUnit
     #  assertDescendent StandardError, Exception, 'It is'  # => fail
     #
     def assertNotDescendent klass, illegal, message = nil
-      assertInstanceOf Class, klass, message
+      __validate_arguments [Class], [klass]
       __reject (illegal < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :illegal=>illegal}
     end
 

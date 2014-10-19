@@ -102,6 +102,12 @@ module RubyUnit
       raise ArgumentError, 'Exception message must be a Regexp or String' unless pattern.is_a? Regexp or pattern.is_a? String
       raise ArgumentError, 'Exception must be a subclass of Exception' unless e < Exception
     end
+
+    def __validate_arguments klasses, objects
+      klasses.product(objects) do |klass, object|
+        raise ArgumentError, "Expecting #{klass}, Got #{object}" unless object.is_a? klass
+      end
+    end
   end
 end
 
