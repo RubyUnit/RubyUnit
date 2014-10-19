@@ -1,122 +1,90 @@
+require_relative 'ObjectTypes'
+
 module AssertionsTests
   #
   # Data provider for RubyUnit::Assertions Basic assertions
   #
   module BasicData
+    include ObjectTypes
 
     def failWithMessageData
-      AssertionsTests::MESSAGES.collect {|message| [message]}
+      AssertionsTests::MESSAGES
     end
 
     def failWithDataData
-      AssertionsTests::MESSAGES.product [
-        {:string=>'string',:int=>42},
-                                  {}, # Empty
-      ]
-    end
-
-    def trueObjects
-      [
-        [                           -1],
-        [                            0],
-        [                            1],
-        [                           42],
-        [                        Class],
-        [                     'String'],
-        [                     /Regexp/],
-        [                    [1,2,3,4]],
-        [{:int=>42, :string=>'string'}],
-      ]
+      add_parameter AssertionsTests::MESSAGES, hashObjects
     end
 
     def assertData
-      assertTrueData + trueObjects
+      trueObjects + basicObjects
     end
     alias_method :assertNotFailData, :assertData
 
-    def assertFailData
-      assertFalseData + assertNilData
-    end
-    alias_method :assertNotData, :assertFailData
-
     def assertWithMessageData
-      assertData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertData
     end
     alias_method :assertNotFailWithMessageData, :assertWithMessageData
 
+    def assertFailData
+      falseObjects + nilObjects
+    end
+    alias_method :assertNotData, :assertFailData
+
     def assertFailWithMessageData
-      assertFailData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertFailData
     end
     alias_method :assertNotWithMessageData, :assertFailWithMessageData
 
     def assertTrueData
-      [
-        [true],
-      ]
-    end
-
-    def assertTrueFailData
-      assertFalseData + assertNilData + trueObjects
+      trueObjects
     end
 
     def assertTrueWithMessageData
-      assertTrueData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertTrueData
+    end
+
+    def assertTrueFailData
+      falseObjects + nilObjects + basicObjects
     end
 
     def assertTrueFailWithMessageData
-      assertTrueFailData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertTrueFailData
     end
 
     def assertFalseData
-      [
-        [false],
-      ]
+      falseObjects
     end
  
-    def assertFalseFailData
-      assertTrueData + trueObjects + assertNilData
+    def assertFalseWithMessageData
+      add_parameter assertFalseData
     end
 
-    def assertFalseWithMessageData
-      assertFalseData.flatten.product AssertionsTests::MESSAGES
+    def assertFalseFailData
+      trueObjects + basicObjects + nilObjects
     end
 
     def assertFalseFailWithMessageData
-      assertFalseFailData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertFalseFailData
     end
 
     def assertNilData
-      [
-        [nil],
-      ]
+      nilObjects
     end
-
-    def assertNilFailData
-      assertData + assertFalseData
-    end
+    alias_method :assertNotNilFailData, :assertNilData
 
     def assertNilWithMessageData
-      assertNilData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertNilData
     end
+    alias_method :assertNotNilFailWithMessageData, :assertNilWithMessageData
+
+    def assertNilFailData
+      trueObjects + basicObjects + falseObjects
+    end
+    alias_method :assertNotNilData, :assertNilFailData
 
     def assertNilFailWithMessageData
-      assertNilFailData.flatten.product AssertionsTests::MESSAGES
+      add_parameter assertNilFailData
     end
-
-    def assertNotNilData
-      assertTrueData + assertFalseData + trueObjects
-    end
-
-    def assertNotNilFailData
-      assertNilData
-    end
-
-    def assertNotNilWithMessageData
-      assertNotNilData.flatten.product AssertionsTests::MESSAGES
-    end
-
-    def assertNotNilFailWithMessageData
-      assertNotNilFailData.flatten.product AssertionsTests::MESSAGES
-    end
+    alias_method :assertNotNilWithMessageData, :assertNilFailWithMessageData
   end
 end
