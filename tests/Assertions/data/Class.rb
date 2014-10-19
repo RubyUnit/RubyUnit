@@ -127,6 +127,7 @@ module AssertionsTests
       data += add_parameter [[BasicObject], [Object]], [[Array]]
       data += add_parameter [[BasicObject], [Object]], [[Hash]]
     end
+    alias_method :assertNotDescendentFailData, :assertDescendentData
 
     def assertDescendentFailData
       data  = add_parameter classes_exclude([BasicObject, Object]), [[NilClass]]
@@ -144,22 +145,27 @@ module AssertionsTests
       data += add_parameter classes_exclude([BasicObject, Object]), [[Array]]
       data += add_parameter classes_exclude([BasicObject, Object]), [[Hash]]
     end
+    alias_method :assertNotDescendentData, :assertDescendentFailData
 
     def assertDescendentInvalidData
       data  = add_parameter non_classes, [[Class]]
       data += add_parameter non_classes, non_classes
     end
+    alias_method :assertNotDescendentInvalidData, :assertDescendentInvalidData
 
     def assertDescendentWithMessageData
       add_parameter assertDescendentData
     end
+    alias_method :assertNotDescendentWithMessageFailData, :assertDescendentWithMessageData
 
     def assertDescendentWithMessageFailData
       add_parameter assertDescendentFailData
     end
+    alias_method :assertNotDescendentWithMessageData, :assertDescendentWithMessageFailData
 
     def assertDescendentWithMessageInvalidData
       add_parameter assertDescendentInvalidData
     end
+    alias_method :assertNotDescendentWithMessageInvalidData, :assertDescendentWithMessageInvalidData
   end
 end

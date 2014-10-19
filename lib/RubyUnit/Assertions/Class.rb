@@ -124,7 +124,7 @@ module RubyUnit
     #
     def assertNotDescendent klass, illegal, message = nil
       raise ArgumentError, 'Expecting Class' unless klass.is_a? Class
-      __reject (descendent < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
+      __reject (illegal < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :illegal=>illegal}
     end
 
     #
