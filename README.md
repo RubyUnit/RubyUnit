@@ -3,7 +3,7 @@ RubyUnit
 
 [![Gem Version](https://badge.fury.io/rb/rubyunit.svg)](http://badge.fury.io/rb/rubyunit)
 [![Code Climate](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/gpa.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit)
-[![Test Coverage](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/coverage.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit)
+<!-- [![Test Coverage](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/coverage.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit) -->
 
 ### Practical Examples
 * https://github.com/matthewclower/PlayingCards
