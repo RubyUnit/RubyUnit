@@ -3,9 +3,6 @@ require 'RubyUnit/TestCase'
 # Data provider for RubyUnit::TestCase tests
 require_relative 'data/TestCase'
 
-# Fixture for RubyUnit::TestCase tests
-require_relative 'fixture/TestCase'
-
 module TestCaseTests
   #
   # Test Case for the RubyUnit::TestCase
@@ -76,15 +73,14 @@ module TestCaseTests
     # Test that the correct class methods are defined
     #
     def classMethodTest method
-      assertRespondTo RubyUnit::TestCase, method, 'RubyUnit::TestCase missing class method'
+      assertClassMethod RubyUnit::TestCase, method, 'RubyUnit::TestCase missing class method'
     end
 
     #
     # Test that the correct instance methods are defined
     #
     def instanceMethodTest method
-      test_case = TestCaseTestsFixture.new
-      assertRespondTo test_case, method, 'TestCase object missing instance method'
+      assertInstanceMethod RubyUnit::TestCase, method, 'TestCase object missing instance method'
     end
 
     #

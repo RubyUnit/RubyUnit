@@ -1,14 +1,14 @@
+require 'RubyUnit/AssertionMessage'
+
 module RubyUnit
-  #
+  ##
   # Exception that is raised when a test assertion fails.
   #
   class AssertionFailure < StandardError
+    include AssertionMessage
     attr_reader :data
 
-    # Error messages
-    FAILING = 'Failing test'
-
-    #
+    ##
     # Create a RubyUnit::AssertionFailure exception
     #
     # data::
@@ -19,14 +19,14 @@ module RubyUnit
       @data = data
     end
 
-    #
+    ##
     # Create a string from the assertion data
     #
     def info
       s = "\n"
-      s = "#{message}\n" if message.length > 0
-      @data.each do |index, value|
-        s << "\n#{index}:\n\t#{value.inspect}"
+      s = "#{FAILURE}: #{message}\n" if message.length > 0
+      @data.each do |key, value|
+        s << "\n#{key}:\n\t#{value.inspect}"
       end
       s
     end

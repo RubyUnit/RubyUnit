@@ -2,12 +2,12 @@ module AssertionFailureTests
   #
   # Data provider for RubyUnit::AssertionFailure class Test Case
   #
-  module InstanceTestsData
+  module InstanceData
     def dataData
+      infoData +
       [
         [{}],
-      ] +
-      infoData
+      ]
     end
 
     def infoData

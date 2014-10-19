@@ -164,6 +164,7 @@ module RubyUnit
         @@tests += 1
         test_case.setup
         test_case.send test, *params
+        test_case.teardown
       rescue AssertionFailure => failure
         @@failures << [test_case.class.name, test, params, failure]
       rescue SkippedTest => skip
@@ -172,8 +173,6 @@ module RubyUnit
         @@incompletes << [test_case.class.name, test, params, incomplete]
       rescue Exception => error
         @@errors << [test_case.class.name, test, params, error]
-      ensure
-        test_case.teardown
       end
     end
   end
