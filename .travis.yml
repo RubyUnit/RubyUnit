@@ -10,4 +10,3 @@ rvm:
   - jruby-19mode
   - ruby-head
   - jruby-head
-  - ree
