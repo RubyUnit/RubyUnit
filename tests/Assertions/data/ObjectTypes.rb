@@ -14,6 +14,14 @@ module AssertionsTests
       hashObjects
     end
 
+    def classes_exclude klasses
+      classes = classObjects
+      klasses.each do |klass|
+        classes -= [[klass]]
+      end
+      classes
+    end
+
     def classObjects
       [
         [  NilClass],

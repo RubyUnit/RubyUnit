@@ -32,8 +32,11 @@ module AssertionsTests
     # object::
     #   Object to be asserted
     #
-    # def assertKindOfFailTest klass, object
-    # end
+    def assertKindOfFailTest klass, object
+      rescue_assertion /#{ASSERT_KIND_OF_ERROR}/ do
+        assertKindOf klass, object
+      end
+    end
 
     ##
     # Test assertKindOf with message
