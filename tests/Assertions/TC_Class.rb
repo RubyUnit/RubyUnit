@@ -389,6 +389,5 @@ module AssertionsTests
         assertNotDescendent klass, descendent, message
       end
     end
-
   end
 end

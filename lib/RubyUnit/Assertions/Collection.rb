@@ -5,10 +5,10 @@ module RubyUnit
     # Assert that a collection includes a specified value
     # * raises RubyUnit::AssertionFailure unless _collection_ responds to _value_
     #
-    # object::
+    # collection::
     #   The collection to check
     #
-    # method::
+    # value::
     #   The value the object should contain
     #
     # message::
@@ -17,7 +17,7 @@ module RubyUnit
     #  assertInclude [1, 2], 'not in', 'It does not, so... no'  # => fail
     #
     def assertInclude collection, value, message = nil
-      assertRespondTo collection, :include?, message
+      __validate_responds [:include?], collection
       __assert (collection.include? value), ASSERT_INCLUDE_ERROR, message, {:collection=>collection, :value=>value}
     end
 
@@ -25,10 +25,10 @@ module RubyUnit
     # Assert that a collection does not include a specified value
     # * raises RubyUnit::AssertionFailure if _collection_ responds to _value_
     #
-    # object::
+    # collection::
     #   The collection to check
     #
-    # method::
+    # reject::
     #   The value the object should not contain
     #
     # message::
@@ -36,9 +36,9 @@ module RubyUnit
     #
     #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
     #
-    def assertNotInclude collection, value, message = nil
-      assertRespondTo collection, :include?, message
-      __reject (collection.include? value), ASSERT_NOT_INCLUDE_ERROR, message, {:collection=>collection, :value=>value}
+    def assertNotInclude collection, reject, message = nil
+      __validate_responds [:include?], collection
+      __reject (collection.include? reject), ASSERT_NOT_INCLUDE_ERROR, message, {:collection=>collection, :reject=>reject}
     end
 
     #
@@ -55,7 +55,7 @@ module RubyUnit
     #  assertEmpty [1, 2], 'Not empty'  # => fail
     #
     def assertEmpty object, message = nil
-      assertRespondTo object, :include?, message
+      __validate_responds [:empty?], collection
       __assert object.empty?, ASSERT_EMPTY_ERROR, message, {:object=>object}
     end
 
@@ -73,7 +73,7 @@ module RubyUnit
     #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
     #
     def assertNotEmpty object, message = nil
-      assertRespondTo object, :include?, message
+      __validate_responds [:empty?], collection
       __reject object.empty?, ASSERT_NOT_EMPTY_ERROR, message, {:object=>object}
     end
   end
