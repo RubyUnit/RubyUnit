@@ -1,14 +1,37 @@
 module AssertionsTests
   module ObjectTypes
     def basicObjects
-      integerObjects +
-      bigNumObjects  +
-      floatObjects   +
-      classObjects   +
-      stringObjects  +
-      regexpObjects  +
-      arrayObjects   +
+      fixnumObjects   +
+      bignumObjects   +
+      floatObjects    +
+      rationalObjects +
+      complexObjects  +
+      timeObjects     +
+      stringObjects   +
+      rangeObjects    +
+      regexpObjects   +
+      arrayObjects    +
       hashObjects
+    end
+
+    def classObjects
+      [
+        [  NilClass],
+        [ TrueClass],
+        [FalseClass],
+        [   Numeric],
+        [   Integer],
+        [    Fixnum],
+        [    Bignum],
+        [     Float],
+        [  Rational],
+        [   Complex],
+        [      Time],
+        [    String],
+        [     Range],
+        [     Array],
+        [      Hash],
+      ]
     end
 
     def nilObjects
@@ -29,7 +52,7 @@ module AssertionsTests
       ]
     end
 
-    def integerObjects
+    def fixnumObjects
       [
         [-42],
         [ -1],
@@ -39,7 +62,7 @@ module AssertionsTests
       ]
     end
 
-    def bigNumObjects
+    def bignumObjects
       [
         [-42000000000000000000],
         [ 42000000000000000000],
@@ -56,15 +79,36 @@ module AssertionsTests
       ]
     end
 
-    def classObjects
+    def rationalObjects
       [
-        [  Module],
-        [   Class],
-        [ Integer],
-        [  Bignum],
-        [Rational],
-        [  Regexp],
-        [    Hash],
+        [    Rational(1)],
+        [ Rational(2, 3)],
+        [Rational(4, -6)],
+        [  Rational(0.3)],
+        [Rational('0.3')],
+        [Rational('2/3')],
+      ]
+    end
+
+    def complexObjects
+      [
+        [         Complex(1)],
+        [      Complex(2, 3)],
+        [Complex.polar(2, 3)],
+        [       Complex(0.3)],
+        [Complex('0.3-0.5i')],
+        [Complex('2/3+3/4i')],
+        [     Complex('1@2')],
+      ]
+    end
+
+    def timeObjects
+      [
+        [                           Time.new(2002)],
+        [                       Time.new(2002, 10)],
+        [                   Time.new(2002, 10, 31)],
+        [Time.new(2002, 10, 31, 2, 2, 2, "+02:00")],
+        [                       Time.at(628232400)],
       ]
     end
 
@@ -76,6 +120,15 @@ module AssertionsTests
         [       "String #{42}"],
         [    'Two Word string'],
         ["Three\nLINE\nString"],
+      ]
+    end
+
+    def rangeObjects
+      [
+        [   (-1..-5)],
+        [   (-5..-1)],
+        [ ('a'..'e')],
+        [('a'...'e')],
       ]
     end
 
@@ -92,8 +145,8 @@ module AssertionsTests
     def arrayObjects
       [
         [                    []],
-        [integerObjects.flatten],
-        [ bigNumObjects.flatten],
+        [fixnumObjects.flatten],
+        [ bignumObjects.flatten],
         [  floatObjects.flatten],
         [  classObjects.flatten],
         [ stringObjects.flatten],
