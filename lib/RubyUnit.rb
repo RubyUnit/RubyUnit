@@ -43,8 +43,8 @@ module RubyUnit
 
     DESCRIPTION = 'Unit testing and test-driven development are crucial parts of '  +
                   'the software development life cycle. This tool is intended to '  +
-                  'make development and testing in Ruby easier on everyone. It is ' +
-                  'also designed to with a focus on data driven testing.'
+                  'make development and testing in Ruby easier on everyone. RubyUnit ' +
+                  'is also designed to with a focus on data-driven testing.'
   end
 end
 

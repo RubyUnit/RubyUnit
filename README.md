@@ -14,7 +14,8 @@ RubyUnit
 
 Unit testing and test-driven development is a crucial part of the software
 development life cycle. This tool is intended to make development and
-testing in Ruby easier on everyone.
+testing in Ruby easier on everyone. RubyUnit is also designed to with a focus
+on data-driven testing.
 
 ### Install
 
