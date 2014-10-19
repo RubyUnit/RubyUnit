@@ -104,7 +104,7 @@ module RubyUnit
         puts "#{@@errors.count} Errors:\n" if @@errors.count > 0
         @@errors.each_with_index do |error, i|
           puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
-          puts error[3].message
+          puts "#{error[3].class}: #{error[3].message}"
           puts error[3].backtrace.join("\n")
         end
 
