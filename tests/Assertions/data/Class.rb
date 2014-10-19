@@ -110,5 +110,57 @@ module AssertionsTests
     def assertInstanceOfWithMessageInvalidData
       add_parameter assertInstanceOfInvalidData
     end
+
+    def assertDescendentData
+      data  = add_parameter [[BasicObject], [Object]], [[NilClass]]
+      data += add_parameter [[BasicObject], [Object]], [[TrueClass]]
+      data += add_parameter [[BasicObject], [Object]], [[FalseClass]]
+      data += add_parameter [[BasicObject], [Object], [Numeric], [Integer]], [[Fixnum]]
+      data += add_parameter [[BasicObject], [Object], [Numeric], [Integer]], [[Bignum]]
+      data += add_parameter [[BasicObject], [Object], [Numeric]], [[Float]]
+      data += add_parameter [[BasicObject], [Object], [Numeric]], [[Rational]]
+      data += add_parameter [[BasicObject], [Object], [Numeric]], [[Complex]]
+      data += add_parameter [[BasicObject], [Object]], [[Time]]
+      data += add_parameter [[BasicObject], [Object]], [[String]]
+      data += add_parameter [[BasicObject], [Object]], [[Range]]
+      data += add_parameter [[BasicObject], [Object]], [[Regexp]]
+      data += add_parameter [[BasicObject], [Object]], [[Array]]
+      data += add_parameter [[BasicObject], [Object]], [[Hash]]
+    end
+
+    def assertDescendentFailData
+      data  = add_parameter classes_exclude([BasicObject, Object]), [[NilClass]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[TrueClass]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[FalseClass]]
+      data += add_parameter classes_exclude([BasicObject, Object, Numeric, Integer]), [[Fixnum]]
+      data += add_parameter classes_exclude([BasicObject, Object, Numeric, Integer]), [[Bignum]]
+      data += add_parameter classes_exclude([BasicObject, Object, Numeric]), [[Float]]
+      data += add_parameter classes_exclude([BasicObject, Object, Numeric]), [[Rational]]
+      data += add_parameter classes_exclude([BasicObject, Object, Numeric]), [[Complex]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[Time]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[String]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[Range]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[Regexp]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[Array]]
+      data += add_parameter classes_exclude([BasicObject, Object]), [[Hash]]
+    end
+
+    def assertDescendentInvalidData
+      data  = add_parameter non_classes, [[Object]]
+      data += add_parameter [[Object]], non_classes
+      data += add_parameter non_classes, non_classes
+    end
+
+    def assertDescendentWithMessageData
+      add_parameter assertDescendentData
+    end
+
+    def assertDescendentWithMessageFailData
+      add_parameter assertDescendentFailData
+    end
+
+    def assertDescendentWithMessageInvalidData
+      add_parameter assertDescendentInvalidData
+    end
   end
 end

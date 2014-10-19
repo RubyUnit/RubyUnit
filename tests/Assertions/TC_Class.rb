@@ -199,5 +199,100 @@ module AssertionsTests
         assertInstanceOf klass, object, message
       end
     end
+
+    ##
+    # Test assertDescendent
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # descendent::
+    #   Class to be asserted
+    #
+    def assertDescendentTest klass, descendent
+      assertDescendent klass, descendent
+    end
+
+    ##
+    # Test assertDescendent failure
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # descendent::
+    #   Class to be asserted
+    #
+    def assertDescendentFailTest klass, descendent
+      rescue_assertion /#{ASSERT_DESCENDENT_ERROR}/ do
+        assertDescendent klass, descendent
+      end
+    end
+
+    ##
+    # Test assertDescendent invalid
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # descendent::
+    #   Class to be asserted
+    #
+    def assertDescendentInvalidTest klass, descendent
+      assertRaiseKindOf ArgumentError do
+        assertDescendent klass, descendent
+      end
+    end
+
+    ##
+    # Test assertDescendent with message
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # descendent::
+    #   Class to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertDescendentWithMessageTest klass, descendent, message
+      assertDescendent klass, descendent, message
+    end
+
+    ##
+    # Test assertDescendent failure
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # descendent::
+    #   Class to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertDescendentWithMessageFailTest klass, descendent, message
+      rescue_assertion /#{ASSERT_DESCENDENT_ERROR}/, message do
+        assertDescendent klass, descendent, message
+      end
+    end
+
+    ##
+    # Test assertDescendent invalid with message
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # descendent::
+    #   Class to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertDescendentWithMessageInvalidTest klass, descendent, message
+      assertRaiseKindOf ArgumentError, message do
+        assertDescendent klass, descendent, message
+      end
+    end
   end
 end
