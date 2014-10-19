@@ -12,10 +12,8 @@ module AssertionsTests
       data += add_parameter [[NilClass]], nilObjects
       data += add_parameter [[TrueClass]], trueObjects
       data += add_parameter [[FalseClass]], falseObjects
-      [Numeric, Integer, Fixnum].each do |klass|
-        data += add_parameter [[klass]], fixnumObjects
-      end
-      [Numeric, Integer, Bignum].each do |klass|
+      data += add_parameter [[Numeric], [Integer], [Fixnum]], fixnumObjects
+        [Numeric, Integer, Bignum].each do |klass|
         data += add_parameter [[klass]], bignumObjects
       end
       [Numeric, Float].each do |klass|
