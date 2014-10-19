@@ -19,8 +19,9 @@ module AssertionsTests
     # object::
     #   Object to be asserted
     #
-    # def assertKindOfTest klass, object
-    # end
+    def assertKindOfTest klass, object
+      assertKindOf klass, object
+    end
 
     ##
     # Test assertKindOf failure
@@ -46,8 +47,9 @@ module AssertionsTests
     # message::
     #   The assertion message
     #
-    # def assertKindOfWithMessageTest klass, object, message
-    # end
+    def assertKindOfWithMessageTest klass, object, message
+      assertKindOf klass, object, message
+    end
 
     ##
     # Test assertKindOf failure

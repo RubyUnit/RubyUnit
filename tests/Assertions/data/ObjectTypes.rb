@@ -7,9 +7,7 @@ module AssertionsTests
       classObjects   +
       stringObjects  +
       regexpObjects  +
-      [
-        [                    [1,2,3,4]],
-      ] +
+      arrayObjects   +
       hashObjects
     end
 
@@ -43,8 +41,8 @@ module AssertionsTests
 
     def bigNumObjects
       [
-        [-42000000000000],
-        [ 42000000000000],
+        [-42000000000000000000],
+        [ 42000000000000000000],
       ]
     end
 
@@ -60,6 +58,7 @@ module AssertionsTests
 
     def classObjects
       [
+        [  Module],
         [   Class],
         [ Integer],
         [  Bignum],
@@ -71,6 +70,7 @@ module AssertionsTests
 
     def stringObjects
       [
+        [                   ''],
         [         'string one'],
         [           "STRING 2"],
         [       "String #{42}"],
@@ -81,10 +81,23 @@ module AssertionsTests
 
     def regexpObjects
       [
+        [                          //],
         [                  /Regexp 1/],
         [            /\AStart Regexp/],
         [               /END regexp$/],
         [/^#{'interpolated'} REGEXP$/],
+      ]
+    end
+
+    def arrayObjects
+      [
+        [                    []],
+        [integerObjects.flatten],
+        [ bigNumObjects.flatten],
+        [  floatObjects.flatten],
+        [  classObjects.flatten],
+        [ stringObjects.flatten],
+        [ regexpObjects.flatten],
       ]
     end
 
