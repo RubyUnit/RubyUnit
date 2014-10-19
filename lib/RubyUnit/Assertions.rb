@@ -103,6 +103,10 @@ module RubyUnit
       raise ArgumentError, 'Exception must be a subclass of Exception' unless e < Exception
     end
 
+    #
+    # Validate the parameters for assertions
+    # * raises ArgumentError if a _object_ is not an instance of the corresponding _klass_
+    #
     def __validate_arguments klasses, objects
       klasses.product(objects) do |klass, object|
         raise ArgumentError, "Expecting #{klass}, Got #{object}" unless object.is_a? klass
