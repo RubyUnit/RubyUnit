@@ -66,7 +66,10 @@ module AssertionsTests
     # message::
     #   The assertion message
     #
-    # def assertKindOfFailWithMessageTest klass, object, message
-    # end
+    def assertKindOfWithMessageFailTest klass, object, message
+      rescue_assertion /#{ASSERT_KIND_OF_ERROR}/, message do
+        assertKindOf klass, object, message
+      end
+    end
   end
 end
