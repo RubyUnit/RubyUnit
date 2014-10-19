@@ -5,9 +5,6 @@ RubyUnit
 [![Code Climate](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/gpa.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit)
 <!-- [![Test Coverage](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/coverage.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit) -->
 
-### Practical Examples
-* https://github.com/matthewclower/PlayingCards
-
 ### Links
 * http://rubyunit.github.io/
 * https://github.com/RubyUnit/RubyUnit
