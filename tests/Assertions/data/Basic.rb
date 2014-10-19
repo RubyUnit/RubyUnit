@@ -17,9 +17,9 @@ module AssertionsTests
 
     def trueObjects
       [
+        [                           -1],
         [                            0],
         [                            1],
-        [                           -1],
         [                           42],
         [                        Class],
         [                     'String'],
