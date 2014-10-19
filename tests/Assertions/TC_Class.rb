@@ -104,5 +104,100 @@ module AssertionsTests
         assertKindOf klass, object, message
       end
     end
+
+    ##
+    # Test assertInstanceOf
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    def assertInstanceOfTest klass, object
+      assertInstanceOf klass, object
+    end
+
+    ##
+    # Test assertInstanceOf failure
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    def assertInstanceOfFailTest klass, object
+      rescue_assertion /#{ASSERT_INSTANCE_OF_ERROR}/ do
+        assertInstanceOf klass, object
+      end
+    end
+
+    ##
+    # Test assertInstanceOf invalid
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    def assertInstanceOfInvalidTest klass, object
+      assertRaiseKindOf TypeError do
+        assertInstanceOf klass, object
+      end
+    end
+
+    ##
+    # Test assertInstanceOf with message
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertInstanceOfWithMessageTest klass, object, message
+      assertInstanceOf klass, object, message
+    end
+
+    ##
+    # Test assertInstanceOf failure
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertInstanceOfWithMessageFailTest klass, object, message
+      rescue_assertion /#{ASSERT_INSTANCE_OF_ERROR}/, message do
+        assertInstanceOf klass, object, message
+      end
+    end
+
+    ##
+    # Test assertInstanceOf invalid with message
+    #
+    # klass::
+    #   Class name for assertion
+    #
+    # object::
+    #   Object to be asserted
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertInstanceOfWithMessageInvalidTest klass, object, message
+      assertRaiseKindOf TypeError, message do
+        assertInstanceOf klass, object, message
+      end
+    end
   end
 end
