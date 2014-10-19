@@ -56,6 +56,14 @@ module AssertionMessageTests
 
         ##
         # Method assertion messages
+        [         'ASSERT_RESPOND_TO_ERROR'],
+        [     'ASSERT_NOT_RESPOND_TO_ERROR'],
+        [             'ASSERT_METHOD_ERROR'],
+        [         'ASSERT_NOT_METHOD_ERROR'],
+        [    'ASSERT_INSTANCE_METHOD_ERROR'],
+        ['ASSERT_NOT_INSTANCE_METHOD_ERROR'],
+        [       'ASSERT_CLASS_METHOD_ERROR'],
+        [   'ASSERT_NOT_CLASS_METHOD_ERROR'],
       ]
     end
   end

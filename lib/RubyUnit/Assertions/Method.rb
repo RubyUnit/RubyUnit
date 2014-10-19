@@ -18,7 +18,7 @@ module RubyUnit
     #  assertRespondTo /^Regexp/, :length, 'It does not, so... no'  # => fail
     #
     def assertRespondTo object, method, message = nil
-      __assert (object.respond_to? method), 'Failed to assert object responds to method', message, {:object=>object, :method=>method}
+      __assert (object.respond_to? method), ASSERT_RESPOND_TO_ERROR, message, {:object=>object, :method=>method}
     end
 
     #
@@ -37,7 +37,7 @@ module RubyUnit
     #  assertNotRespondTo 25, :integer?, 'It does, so close'  # => fail
     #
     def assertNotRespondTo object, method, message = nil
-      __assert (object.respond_to? method), 'Object should NOT respond to method', message, {:object=>object, :method=>method}
+      __assert (object.respond_to? method), ASSERT_NOT_RESPOND_TO_ERROR, message, {:object=>object, :method=>method}
     end
 
     #

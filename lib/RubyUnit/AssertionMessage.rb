@@ -25,9 +25,9 @@ module RubyUnit
     ASSERT_NOT_INSTANCE_OF_ERROR   = 'Object IS NOT instance_of?'
     ASSERT_DESCENDENT_ERROR        = 'Object IS a descendent'
     ASSERT_NOT_DESCENDENT_ERROR    = 'Object IS NOT a descendent'
-    ASSERT_CONST_ERROR             = 'Object HAS correct constant'
-    ASSERT_CONST_DEFINED_ERROR     = 'Object HAS defined constant'
-    ASSERT_CONST_NOT_DEFINED_ERROR = 'Object HAS NOT defined constant'
+    ASSERT_CONST_ERROR             = 'Object defines correct constant'
+    ASSERT_CONST_DEFINED_ERROR     = 'Object defines constant'
+    ASSERT_CONST_NOT_DEFINED_ERROR = 'Object does NOT define constant'
 
     ##
     # Collection assertions
@@ -55,5 +55,16 @@ module RubyUnit
     ASSERT_RAISE_MESSAGE_ERROR  = 'Exception message WAS raised'
     ASSERT_RAISE_KIND_OF_ERROR  = 'Exception Class WAS raised'
     ASSERT_RAISE_EXPECTED_ERROR = 'Expected Exception WAS raised'
+
+    ##
+    # Method assertions
+    ASSERT_RESPOND_TO_ERROR          = 'Object responds to method'
+    ASSERT_NOT_RESPOND_TO_ERROR      = 'Object does NOT respond to method'
+    ASSERT_METHOD_ERROR              = 'Object defines method'
+    ASSERT_NOT_METHOD_ERROR          = 'Object does NOT define method'
+    ASSERT_INSTANCE_METHOD_ERROR     = 'Object defines instance method'
+    ASSERT_NOT_INSTANCE_METHOD_ERROR = 'Object does NOT define instance method'
+    ASSERT_CLASS_METHOD_ERROR        = 'Object defines class method'
+    ASSERT_NOT_CLASS_METHOD_ERROR    = 'Object does NOT define instance method'
   end
 end
