@@ -48,5 +48,12 @@ module RubyUnit
     ASSERT_NOT_MATCH_ERROR          = 'Value does NOT match Regexp'
     ASSERT_SAME_ERROR               = 'Objects ARE the same'
     ASSERT_NOT_SAME_ERROR           = 'Objects ARE NOT the same'
+
+    ##
+    # Exception assertions
+    ASSERT_NOTHING_RAISED_ERROR = 'Exception WAS NOT raised'
+    ASSERT_RAISE_MESSAGE_ERROR  = 'Exception message WAS raised'
+    ASSERT_RAISE_KIND_OF_ERROR  = 'Exception Class WAS raised'
+    ASSERT_RAISE_EXPECTED_ERROR = 'Expected Exception WAS raised'
   end
 end

@@ -49,6 +49,10 @@ module AssertionMessageTests
 
         ##
         # Exception assertion messages
+        ['ASSERT_NOTHING_RAISED_ERROR'],
+        [ 'ASSERT_RAISE_MESSAGE_ERROR'],
+        [ 'ASSERT_RAISE_KIND_OF_ERROR'],
+        ['ASSERT_RAISE_EXPECTED_ERROR'],
 
         ##
         # Method assertion messages

@@ -21,7 +21,7 @@ module RubyUnit
         begin
           yield
         rescue Exception => e
-          build_message 'Exception should NOT be raised', message, {:exception=>e.message}
+          build_message ASSERT_NOTHING_RAISED_ERROR, message, {:exception=>e.message}
         end
       end
     end
@@ -93,7 +93,7 @@ module RubyUnit
       __wrap_assertion do
         begin
           yield
-          build_message 'Expected exception was not raised', message, {:exception=>exception, :pattern=>pattern}
+          build_message ASSERT_RAISE_EXPECTED_ERROR, message, {:exception=>exception, :pattern=>pattern}
         rescue exception => e
           assertEqual pattern, e.message if pattern.is_a? String and pattern.length > 0
           assertMatch pattern, e.message if pattern.is_a? Regexp
