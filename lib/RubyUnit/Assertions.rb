@@ -99,8 +99,8 @@ module RubyUnit
     # * raises ArgumentError unless _e_ is a descendent of the Exception class
     #
     def __validate_exception pattern, e = Exception # :nodoc:
-      raise ArgumentError, "Exception message must be a Regexp or String" unless pattern.is_a? Regexp or pattern.is_a? String
-      raise ArgumentError, "Exception must be a subclass of Exception" unless e < Exception
+      raise ArgumentError, 'Exception message must be a Regexp or String' unless pattern.is_a? Regexp or pattern.is_a? String
+      raise ArgumentError, 'Exception must be a subclass of Exception' unless e < Exception
     end
   end
 end

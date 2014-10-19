@@ -22,6 +22,23 @@ module AssertionsTests
       classes
     end
 
+    def non_classes
+      nilObjects      +
+      trueObjects     +
+      falseObjects    +
+      fixnumObjects   +
+      bignumObjects   +
+      floatObjects    +
+      rationalObjects +
+      complexObjects  +
+      timeObjects     +
+      stringObjects   +
+      rangeObjects    +
+      regexpObjects   +
+      arrayObjects    +
+      hashObjects
+    end
+
     def classObjects
       [
         [  NilClass],
