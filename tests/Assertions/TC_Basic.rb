@@ -4,13 +4,13 @@ require 'RubyUnit/Assertions'
 require_relative 'data/Basic'
 
 module AssertionsTests
-  #
+  ##
   # Test Case for RubyUnit::Assertions Basic assertions
   #
   class TC_Basic < AssertionsTestCase
     include BasicData
 
-    #
+    ##
     # Test for default fail
     #
     def defaultFailTest
@@ -19,7 +19,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test fail with message
     #
     # message::
@@ -31,7 +31,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test fail with message and data
     #
     # message::
@@ -46,7 +46,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test assert
     #
     # value::
@@ -56,19 +56,7 @@ module AssertionsTests
       assert value
     end
 
-    #
-    # Test assert failure
-    #
-    # value::
-    #   The value to assert
-    #
-    def assertFailTest value
-      rescue_assertion /#{ASSERT_ERROR}/ do
-        assert value
-      end
-    end
-
-    #
+    ##
     # Test assert with message
     #
     # value::
@@ -81,7 +69,19 @@ module AssertionsTests
       assert value, message
     end
 
+    ##
+    # Test assert failure
     #
+    # value::
+    #   The value to assert
+    #
+    def assertFailTest value
+      rescue_assertion /#{ASSERT_ERROR}/ do
+        assert value
+      end
+    end
+
+    ##
     # Test assert failure with message
     #
     # value::
@@ -96,7 +96,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test assertNot
     #
     # value::
@@ -106,19 +106,7 @@ module AssertionsTests
       assertNot value
     end
 
-    #
-    # Test assertNot failure
-    #
-    # value::
-    #   The value to assert
-    #
-    def assertNotFailTest value
-      rescue_assertion /#{ASSERT_NOT_ERROR}/ do
-        assertNot value
-      end
-    end
-
-    #
+    ##
     # Test assertNot with message
     #
     # value::
@@ -131,7 +119,19 @@ module AssertionsTests
       assertNot value, message
     end
 
+    ##
+    # Test assertNot failure
     #
+    # value::
+    #   The value to assert
+    #
+    def assertNotFailTest value
+      rescue_assertion /#{ASSERT_NOT_ERROR}/ do
+        assertNot value
+      end
+    end
+
+    ##
     # Test assertNot failure with message
     #
     # value::
@@ -146,7 +146,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test assertTrue
     #
     # value::
@@ -156,19 +156,7 @@ module AssertionsTests
       assertTrue value
     end
 
-    #
-    # Test assertTrue failure
-    #
-    # value::
-    #   The value to assert
-    #
-    def assertTrueFailTest value
-      rescue_assertion /#{ASSERT_TRUE_ERROR}/ do
-        assertTrue value
-      end
-    end
-
-    #
+    ##
     # Test assertTrue with message
     #
     # value::
@@ -181,7 +169,19 @@ module AssertionsTests
       assertTrue value, message
     end
 
+    ##
+    # Test assertTrue failure
     #
+    # value::
+    #   The value to assert
+    #
+    def assertTrueFailTest value
+      rescue_assertion /#{ASSERT_TRUE_ERROR}/ do
+        assertTrue value
+      end
+    end
+
+    ##
     # Test assertTrue failure with message
     #
     # value::
@@ -196,7 +196,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test assertFalse
     #
     # value::
@@ -206,19 +206,7 @@ module AssertionsTests
       assertFalse value
     end
 
-    #
-    # Test assertFalse failure
-    #
-    # value::
-    #   The value to assert
-    #
-    def assertFalseFailTest value
-      rescue_assertion /#{ASSERT_FALSE_ERROR}/ do
-        assertFalse value
-      end
-    end
-
-    #
+    ##
     # Test assertFalse with message
     #
     # value::
@@ -231,7 +219,19 @@ module AssertionsTests
       assertFalse value, message
     end
 
+    ##
+    # Test assertFalse failure
     #
+    # value::
+    #   The value to assert
+    #
+    def assertFalseFailTest value
+      rescue_assertion /#{ASSERT_FALSE_ERROR}/ do
+        assertFalse value
+      end
+    end
+
+    ##
     # Test assertFalse failure with message
     #
     # value::
@@ -246,7 +246,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test assertNil
     #
     # value::
@@ -256,19 +256,7 @@ module AssertionsTests
       assertNil value
     end
 
-    #
-    # Test assertNil failure
-    #
-    # value::
-    #   The value to assert
-    #
-    def assertNilFailTest value
-      rescue_assertion /#{ASSERT_NIL_ERROR}/ do
-        assertNil value
-      end
-    end
-
-    #
+    ##
     # Test assertNil with message
     #
     # value::
@@ -281,7 +269,19 @@ module AssertionsTests
       assertNil value, message
     end
 
+    ##
+    # Test assertNil failure
     #
+    # value::
+    #   The value to assert
+    #
+    def assertNilFailTest value
+      rescue_assertion /#{ASSERT_NIL_ERROR}/ do
+        assertNil value
+      end
+    end
+
+    ##
     # Test assertNil failure with message
     #
     # value::
@@ -296,7 +296,7 @@ module AssertionsTests
       end
     end
 
-    #
+    ##
     # Test assertNotNil
     #
     # value::
@@ -306,19 +306,7 @@ module AssertionsTests
       assertNotNil value
     end
 
-    #
-    # Test assertNotNil failure
-    #
-    # value::
-    #   The value to assert
-    #
-    def assertNotNilFailTest value
-      rescue_assertion /#{ASSERT_NOT_NIL_ERROR}/ do
-        assertNotNil value
-      end
-    end
-
-    #
+    ##
     # Test assertNotNil with message
     #
     # value::
@@ -331,7 +319,19 @@ module AssertionsTests
       assertNotNil value, message
     end
 
+    ##
+    # Test assertNotNil failure
     #
+    # value::
+    #   The value to assert
+    #
+    def assertNotNilFailTest value
+      rescue_assertion /#{ASSERT_NOT_NIL_ERROR}/ do
+        assertNotNil value
+      end
+    end
+
+    ##
     # Test assertNotNil failure with message
     #
     # value::

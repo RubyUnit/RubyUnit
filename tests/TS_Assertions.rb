@@ -3,27 +3,30 @@
 require 'RubyUnit'
 
 module AssertionsTests
-  #
+  ##
   # Messages to be used in the tests
   #
   MESSAGES = [
-    'AssertionsTests Assertion Message',
-          'Alternate Assertion Message',
+    [                                  ''],
+    [ 'AssertionsTests Assertion Message'],
+    ["#{'iterpolated'} Assertion Message"],
   ]
 
   class AssertionsTestCase < RubyUnit::TestCase
     include RubyUnit::AssertionMessage
 
+    ##
+    # Keep count of assertions
     @assertions
 
-    #
+    ##
     # Setup tests
     #
     def setup
       @assertions = RubyUnit::TestCase.assertions
     end
 
-    #
+    ##
     # Teardown tests
     # * All tests on Assertions should add to the assertion count
     #
@@ -31,7 +34,7 @@ module AssertionsTests
       assertGreaterThan @@assertions, @assertions, 'Test should make assertions'
     end
 
-    #
+    ##
     # Wrapper to rescue assertions
     #
     def rescue_assertion pattern = '', message = nil, data = {}, &block
@@ -43,6 +46,16 @@ module AssertionsTests
       data.each do |key, value|
         assertMatch [/#{key}/, /#{value.inspect}/], info, 'Expected failure info not found'
       end
+    end
+
+    ##
+    # Add parameter on the end of each param list
+    def add_parameter array, params = MESSAGES
+      a = []
+      params.each do |param|
+        a = a + array.collect {|element| element.clone + param}
+      end
+      a
     end
   end
 end
