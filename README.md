@@ -3,6 +3,7 @@ RubyUnit
 
 [![Gem Version](https://badge.fury.io/rb/rubyunit.svg)](http://badge.fury.io/rb/rubyunit)
 [![Code Climate](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/gpa.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit)
+[![Build Status](https://travis-ci.org/scottefein/RubyUnit.svg?branch=master)](https://travis-ci.org/scottefein/RubyUnit)
 <!-- [![Test Coverage](https://codeclimate.com/github/RubyUnit/RubyUnit/badges/coverage.svg)](https://codeclimate.com/github/RubyUnit/RubyUnit) -->
 
 ### Links
