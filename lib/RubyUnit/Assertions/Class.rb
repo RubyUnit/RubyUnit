@@ -103,8 +103,9 @@ module RubyUnit
     #  assertDescendent Numeric, Exception, 'Nope'  # => fail
     #
     def assertDescendent _super, descendent, message = nil
-      __validate_arguments [Class], [_super]
-      __assert (descendent < _super), ASSERT_DESCENDENT_ERROR, message, {:class=>_super, :descendent=>descendent}
+      __assert_descendent ASSERT_DESCENDENT_ERROR, _super, descendent, message do
+        descendent < _super
+      end
     end
 
     #
@@ -123,8 +124,9 @@ module RubyUnit
     #  assertDescendent StandardError, Exception, 'It is'  # => fail
     #
     def assertNotDescendent klass, descendent, message = nil
-      __validate_arguments [Class], [klass]
-      __reject (descendent < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
+      __assert_descendent ASSERT_NOT_DESCENDENT_ERROR, klass, descendent, message do
+        not descendent < klass
+      end
     end
 
     #
@@ -193,6 +195,16 @@ module RubyUnit
     #
     def assertConstNotDefined klass, konstant, message = nil
       __reject (klass.const_defined? konstant), ASSERT_CONST_NOT_DEFINED_ERROR, message, {:klass=>klass, :konstant=>konstant}
+    end
+
+    private
+    ##
+    # Helper for asserting descendents
+    def __assert_descendent error, klass, descendent, message
+      raise ArgumentError, "Expecting Class, got #{klass.class}" unless klass.is_a? Class
+      __assert_block error, message, {:class=>klass, :descendent=>descendent} do
+        yield
+      end
     end
   end
 end
