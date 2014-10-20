@@ -89,9 +89,9 @@ module RubyUnit
 
     #
     # Assert that a class is a descendent of another class
-    # * raises RubyUnit::AssertionFailure unless _descendent_ is a descendent of _klass_
+    # * raises RubyUnit::AssertionFailure unless _descendent_ is a descendent of +_super+
     #
-    # klass::
+    # _super::
     #   The parent class
     #
     # descendent::
@@ -102,14 +102,14 @@ module RubyUnit
     #
     #  assertDescendent Numeric, Exception, 'Nope'  # => fail
     #
-    def assertDescendent klass, descendent, message = nil
-      __validate_arguments [Class], [klass]
-      __assert (descendent < klass), ASSERT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
+    def assertDescendent _super, descendent, message = nil
+      __validate_arguments [Class], [_super]
+      __assert (descendent < _super), ASSERT_DESCENDENT_ERROR, message, {:class=>_super, :descendent=>descendent}
     end
 
     #
     # Assert that a class is not a descendent of another class
-    # * raises RubyUnit::AssertionFailure if _illegal_ is a descendent of _klass_
+    # * raises RubyUnit::AssertionFailure if _klass_ is a descendent of _klass_
     #
     # klass::
     #   The parent class
@@ -122,9 +122,9 @@ module RubyUnit
     #
     #  assertDescendent StandardError, Exception, 'It is'  # => fail
     #
-    def assertNotDescendent klass, illegal, message = nil
+    def assertNotDescendent klass, descendent, message = nil
       __validate_arguments [Class], [klass]
-      __reject (illegal < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :illegal=>illegal}
+      __reject (descendent < klass), ASSERT_NOT_DESCENDENT_ERROR, message, {:klass=>klass, :descendent=>descendent}
     end
 
     #
