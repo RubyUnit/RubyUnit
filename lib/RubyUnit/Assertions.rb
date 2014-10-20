@@ -110,7 +110,7 @@ module RubyUnit
     # Validate the parameters for assertions
     # * raises ArgumentError if a _object_ is not an instance of the corresponding _klass_
     #
-    def __validate_arguments klasses, objects
+    def __validate_arguments klasses, objects #:nodoc:
       klasses.product objects do |klass, object|
         raise ArgumentError, "Expecting #{klass}, Got #{object}" unless object.is_a? klass
       end
@@ -120,7 +120,7 @@ module RubyUnit
     # Validate an object accepts the correct methods for an assertion.
     # * raises ArgumentError if a _object_ is not an instance of the corresponding _klass_
     #
-    def __validate_responds methods, object
+    def __validate_responds methods, object #:nodoc:
       methods.each do |method|
         raise ArgumentError, "Object #{object.class} does NOT respond to #{method}" unless object.respond_to? method
       end
