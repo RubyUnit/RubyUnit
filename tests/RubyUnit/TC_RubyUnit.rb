@@ -13,8 +13,8 @@ module RubyUnitTests
     #
     # Verify that the VERSION constant is defined in the RubyUnit module
     #
-    def versionDefinedTest
-      assertConstDefined RubyUnit, 'VERSION', 'Version must be defined in RubyUnit::VERSION'
+    def constantTest konstant
+      assertConstDefined RubyUnit, konstant, 'Expected constant missing'
     end
 
     #

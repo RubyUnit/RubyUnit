@@ -4,12 +4,15 @@
 # The RubyModule is the root object for all RubyUnit modules and classes.
 #
 module RubyUnit
+  ##
   # Debug mode
   @@debug            = false
+  ##
+  # Error message
   INVALID_DEBUG_MODE = 'Debug mode must be Boolean'
 
   # Current RubyUnit version
-  VERSION = '0.3.17'
+  VERSION            = '0.3.17'
 
   #
   # Set debug mode
