@@ -84,16 +84,12 @@ module RubyUnit
     private
     def __assert_include error, collection, value, message
       raise ArgumentError, "#{collection.class} does not respond to :include?" unless collection.respond_to? :include?
-      __assert_block error, message, {:collection=>collection, :value=>value} do
-        yield
-      end
+      __assert_block error, message, {:collection=>collection, :value=>value} { yield }
     end
 
     def __assert_empty error, object, message
       raise ArgumentError, "#{object.class} does not respond to :empty?" unless collection.respond_to? :empty?
-      __assert_block error, message, {:object=>object} do
-        yield
-      end
+      __assert_block error, message, {:object=>object} { yield }
     end
   end
 end
