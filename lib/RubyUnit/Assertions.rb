@@ -25,9 +25,9 @@ module RubyUnit
     # data::
     #   The data associated with assertion failure
     #
-    #  build_message 'Failing Test', message, {'expected' => expected, 'actual' => actual }
+    #  __fail 'Failing Test', message, {'expected' => expected, 'actual' => actual }
     #
-    def build_message error, message, data = {} # :nodoc:
+    def __fail error, message, data = {} # :nodoc:
       raise ArgumentError, 'Error description must be a String' unless error.is_a? String
       raise ArgumentError, 'Failure message must be String' unless message.nil? or message.is_a? String
       raise ArgumentError, 'Failure data must be a Hash' unless data.is_a? Hash
@@ -42,13 +42,15 @@ module RubyUnit
     # &block::
     #   The assertion which is being wrapped
     #
-    def __wrap_assertion &block # :nodoc:
+    def __assert_block error = FAILING, message = nil, data = {} # :nodoc:
       @@assertions += 1
-      yield
+      result = block_given? ? yield : false
+      __fail error, message, data unless result
+      result
     end
 
     #
-    # Internally validate that an assertion not false or nil
+    # This is now a wrapper for __assert_block so it can be called 'nicely' in one line
     # * raises RubyUnit::AssertionFailure unless _value_ is true 
     #
     # value::
@@ -66,8 +68,9 @@ module RubyUnit
     #  __assert value, 'Failed to assert value is true', message, {:value=>value}
     #
     def __assert value, error, message, data # :nodoc:
-      __wrap_assertion do
-        build_message error, message, data unless value
+      __assert_block error, message, data do
+        # this will result in returning true if an Exception is not raised
+        value
       end
     end
 
@@ -90,7 +93,7 @@ module RubyUnit
     #  __reject value, 'Failed to assert value is not true', message, {:value=>value}
     #
     def __reject value, error, message, data # :nodoc:
-      __assert (not value), error, message, data
+      __assert !value, error, message, data
     end
 
     #
@@ -108,7 +111,7 @@ module RubyUnit
     # * raises ArgumentError if a _object_ is not an instance of the corresponding _klass_
     #
     def __validate_arguments klasses, objects
-      klasses.product(objects) do |klass, object|
+      klasses.product objects do |klass, object|
         raise ArgumentError, "Expecting #{klass}, Got #{object}" unless object.is_a? klass
       end
     end

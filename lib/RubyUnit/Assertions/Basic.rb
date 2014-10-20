@@ -17,9 +17,7 @@ module RubyUnit
     #  fail "I wasn't expecting the moon to fall into Lake Michigan"  # => fail
     #
     def fail message = nil, data = {}
-      __wrap_assertion do
-        build_message FAILING, message, data
-      end
+      __assert_block FAILING, message, data
     end
 
     #

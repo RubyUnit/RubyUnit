@@ -147,10 +147,10 @@ module RubyUnit
     #  assertConst 42, Numbers, 'TWENTYFOUR', 'So dyslexic.'  # => fail
     #
     def assertConst expected, klass, konstant, message = nil
-      __wrap_assertion do
+      __assert_block ASSERT_CONST_ERROR, message do
         assertConstDefined klass, konstant, message
         value = klass.const_get konstant
-        assertIsA expected.class, value, message
+        assertKindOf expected.class, value, message
         assertEqual expected, value, message
       end
     end

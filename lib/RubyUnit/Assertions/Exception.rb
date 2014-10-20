@@ -17,11 +17,12 @@ module RubyUnit
     #  end
     #
     def assertNothingRaised message = nil, &block
-      __wrap_assertion do
+      __assert_block do
         begin
           yield
+          true # just in case the block yields 'false' or 'nil'
         rescue Exception => e
-          build_message ASSERT_NOTHING_RAISED_ERROR, message, {:exception=>e.message}
+          __fail ASSERT_NOTHING_RAISED_ERROR, message, {:exception=>e.message}
         end
       end
     end
@@ -90,15 +91,15 @@ module RubyUnit
     #
     def assertRaiseExpected exception, pattern, message = nil &block
       __validate_exception pattern, exception
-      __wrap_assertion do
+      __assert_block ASSERT_RAISE_EXPECTED_ERROR, message, {:exception=>exception, :pattern=>pattern} do
+        e = false
         begin
           yield
-          build_message ASSERT_RAISE_EXPECTED_ERROR, message, {:exception=>exception, :pattern=>pattern}
         rescue exception => e
           assertEqual pattern, e.message if pattern.is_a? String and pattern.length > 0
           assertMatch pattern, e.message if pattern.is_a? Regexp
-          e
         end
+        e
       end
     end
   end
