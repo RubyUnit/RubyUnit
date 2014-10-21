@@ -14,10 +14,16 @@ module RubyUnit
     # Tracks the total number of assertions made during the tests
     @@assertions = 0
 
+    ##
+    # Get the current number of test assertions
+    #
     def self.assertions
       @@assertions
     end
 
+    ##
+    # Increment the number of test assertions
+    #
     def self.add_assertion
       @@assertions += 1
     end
