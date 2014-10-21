@@ -6,10 +6,8 @@ module AssertionsTests
   ##
   # Messages to be used in the tests
   #
-  MESSAGES = [
-    [                                  ''],
+  MESSAGE = [
     [ 'AssertionsTests Assertion Message'],
-    ["#{'iterpolated'} Assertion Message"],
   ]
 
   class AssertionsTestCase < RubyUnit::TestCase
@@ -50,7 +48,7 @@ module AssertionsTests
 
     ##
     # Add parameter on the end of each param list
-    def add_parameter array, params = MESSAGES
+    def add_parameter array, params = MESSAGE
       a = []
       params.each do |param|
         a = a + array.collect {|element| element.clone + param}

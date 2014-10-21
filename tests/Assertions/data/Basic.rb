@@ -8,11 +8,11 @@ module AssertionsTests
     include ObjectTypes
 
     def failWithMessageData
-      AssertionsTests::MESSAGES
+      AssertionsTests::MESSAGE
     end
 
     def failWithDataData
-      add_parameter AssertionsTests::MESSAGES, hashObjects
+      add_parameter AssertionsTests::MESSAGE, hashObjects
     end
 
     def assertData
