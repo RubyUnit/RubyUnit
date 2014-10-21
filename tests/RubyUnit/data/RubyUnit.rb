@@ -1,6 +1,6 @@
 module RubyUnitTests
-  #
-  # Data provider for RubyUnit::GemInfo module Test Case
+  ##
+  # Data provider for RubyUnit module
   #
   module RubyUnitTestsData
     def constantData

@@ -1,5 +1,5 @@
 module RubyUnitTests
-  #
+  ##
   # Data provider for RubyUnit::GemInfo module Test Case
   #
   module GemInfoTestsData

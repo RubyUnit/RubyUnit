@@ -1,23 +1,24 @@
 require 'RubyUnit'
 
-# Data provider for RubyUnit::GemInfo tests
+##
+# Data provider for RubyUnit module
 require_relative 'data/RubyUnit'
 
 module RubyUnitTests
-  #
+  ##
   # Test Case for the RubyUnit module
   #
   class TC_RubyUnit < RubyUnit::TestCase
     include RubyUnitTestsData
 
-    #
+    ##
     # Verify that the VERSION constant is defined in the RubyUnit module
     #
     def constantTest konstant
       assertConstDefined RubyUnit, konstant, 'Expected constant missing'
     end
 
-    #
+    ##
     # Test debug mode
     #
     def debugModeTest
@@ -29,7 +30,7 @@ module RubyUnitTests
       RubyUnit.debug = old_mode
     end
 
-    #
+    ##
     # Test that debug mode doesn't accept non-Boolean
     #
     def invalidDebugModeTest mode

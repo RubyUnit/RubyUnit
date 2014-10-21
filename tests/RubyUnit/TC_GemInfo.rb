@@ -1,5 +1,6 @@
 require 'RubyUnit'
 
+##
 # Data provider for RubyUnit::GemInfo tests
 require_relative 'data/GemInfo'
 
