@@ -1,4 +1,4 @@
-#
+##
 # A Simple Unit Test Framework for Ruby
 #
 # The RubyModule is the root object for all RubyUnit modules and classes.
@@ -11,10 +11,11 @@ module RubyUnit
   # Error message
   INVALID_DEBUG_MODE = 'Debug mode must be Boolean'
 
+  ##
   # Current RubyUnit version
   VERSION            = '0.3.17'
 
-  #
+  ##
   # Set debug mode
   # * raises ArgumentError if _bool_ is not a Boolean
   #
@@ -26,14 +27,14 @@ module RubyUnit
     @@debug = bool
   end
 
-  #
+  ##
   # Get the current debug mode
   #
   def self.debug
     @@debug
   end
 
-  #
+  ##
   # RubyUnit::GemInfo contains data and functionality needed by the gem builder
   # when building and distributing the RubyUnit gem.
   #
@@ -44,19 +45,21 @@ module RubyUnit
                   ['TestSuite.rb']            +  # Test Suite
                   Dir['tests/**/*.rb']           # TESTS
 
-    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of '  +
-                  'the software development life cycle. This tool is intended to '  +
+    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of '     +
+                  'the software development life cycle. This tool is intended to '     +
                   'make development and testing in Ruby easier on everyone. RubyUnit ' +
-                  'is also designed to with a focus on data-driven testing.'
+                  'is also designed to with a focus on data-driven testing and meta-.' +
+                  'programming.'
   end
 end
 
 require_relative 'RubyUnit/TestCase'
 require_relative 'RubyUnit/Runner'
 
+##
 # Automatically Run Test Cases if they haven't been run already
 Module.new do
-  #
+  ##
   # Automatically run defined Test Cases
   #
   #--
@@ -66,6 +69,7 @@ Module.new do
   #++
   #
   at_exit do
+    ##
     # Don't run if it there is an exception or it has already been run
     if $ERROR_INFO.nil? and RubyUnit::Runner.autorun?
       RubyUnit::Runner.run
