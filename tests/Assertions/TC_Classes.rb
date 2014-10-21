@@ -1,14 +1,14 @@
 require 'RubyUnit/Assertions'
 
 # Data provider for RubyUnit::TestCase tests
-require_relative 'data/Class'
+require_relative 'data/Classes'
 
 module AssertionsTests
   ##
   # Test Case for RubyUnit::Assertions Class assertions
   #
-  class TC_Class < AssertionsTestCase
-    include ClassData
+  class TC_Classes < AssertionsTestCase
+    include ClassesData
 
     ##
     # Test assertKindOf
