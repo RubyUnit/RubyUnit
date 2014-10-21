@@ -4,7 +4,7 @@ module AssertionsTests
   ##
   # Data provider for RubyUnit::Assertions Class assertions
   #
-  module ClassData
+  module ClassesData
     include ObjectTypes
 
     def assertKindOfData

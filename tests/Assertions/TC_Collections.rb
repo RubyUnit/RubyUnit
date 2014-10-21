@@ -1,13 +1,13 @@
 require 'RubyUnit/Assertions'
 
 # Data provider for RubyUnit::TestCase tests
-require_relative 'data/Comparison'
+require_relative 'data/Collections'
 
 module AssertionsTests
   #
-  # Test Case for RubyUnit::Assertions Comparison assertions
+  # Test Case for RubyUnit::Assertions Collections assertions
   #
-  class TC_Comparison < AssertionsTestCase
-    include ComparisonData
+  class TC_Collections < AssertionsTestCase
+    include CollectionsData
   end
 end

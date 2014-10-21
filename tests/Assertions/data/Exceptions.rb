@@ -1,7 +1,7 @@
 module AssertionsTests
   #
-  # Data provider for RubyUnit::Assertions Comparison assertions
+  # Data provider for RubyUnit::Assertions Exceptions assertions
   #
-  module ComparisonData
+  module ExceptionsData
   end
 end
