@@ -88,16 +88,6 @@ module RubyUnit
       def __reject value, error, message, data # :nodoc:
         __assert !value, error, message, data
       end
-
-      ##
-      # Validate an object accepts the correct methods for an assertion.
-      # * raises ArgumentError if a _object_ is not an instance of the corresponding _klass_
-      #
-      def __assert_responds methods, object #:nodoc:
-        methods.each do |method|
-          raise ArgumentError, "Object #{object.class} does NOT respond to #{method}" unless object.respond_to? method
-        end
-      end
     end
   end
 end
