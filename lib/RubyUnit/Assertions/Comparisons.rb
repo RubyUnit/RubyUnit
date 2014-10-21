@@ -1,7 +1,10 @@
+require_relative 'Root'
+
 module RubyUnit
   module Assertions
     module Comparisons
-      include AssertionMessage
+      include RubyUnit::AssertionMessage
+      include Assertions::Root
 
       #
       # Assert that two values are equal.
