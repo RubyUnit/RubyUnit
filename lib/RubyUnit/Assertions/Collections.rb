@@ -6,7 +6,7 @@ module RubyUnit
       include RubyUnit::AssertionMessage
       include Root
 
-      #
+      ##
       # Assert that a collection includes a specified value
       # * raises RubyUnit::AssertionFailure unless _collection_ responds to _value_
       #
@@ -27,7 +27,7 @@ module RubyUnit
         end
       end
 
-      #
+      ##
       # Assert that a collection does not include a specified value
       # * raises RubyUnit::AssertionFailure if _collection_ responds to _value_
       #
@@ -48,7 +48,7 @@ module RubyUnit
         end
       end
 
-      #
+      ##
       # Assert that a value is empty
       # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
       # * raises RubyUnit::AssertionFailure unless _object_ is empty
@@ -67,7 +67,7 @@ module RubyUnit
         end
       end
 
-      #
+      ##
       # Assert that a value is not empty
       # * raises RubyUnit::AssertionFailure unless _object_ responds to :empty?
       # * raises RubyUnit::AssertionFailure if _object_ is empty
@@ -87,12 +87,16 @@ module RubyUnit
       end
 
       private
-      def __assert_include error, collection, value, message
+      ##
+      # Perform include assertion via block 
+      def __assert_include error, collection, value, message #:nodoc:
         raise ArgumentError, "#{collection.class} does not respond to :include?" unless collection.respond_to? :include?
         __assert_block error, message, {:collection=>collection, :value=>value} { yield }
       end
 
-      def __assert_empty error, object, message
+      ##
+      # Perform empty assertion via block
+      def __assert_empty error, object, message #:nodoc:
         raise ArgumentError, "#{object.class} does not respond to :empty?" unless collection.respond_to? :empty?
         __assert_block error, message, {:object=>object} { yield }
       end
