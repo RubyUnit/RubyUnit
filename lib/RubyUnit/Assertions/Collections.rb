@@ -81,7 +81,7 @@ module RubyUnit
       #  assertNotInclude [1, 2, 3], 2, 'It does, so close'  # => fail
       #
       def assertNotEmpty object, message = nil
-        __assert_empty ASSERT_EMPTY_ERROR, object, message do
+        __assert_empty ASSERT_NOT_EMPTY_ERROR, object, message do
           not object.empty?
         end
       end
@@ -97,7 +97,7 @@ module RubyUnit
       ##
       # Perform empty assertion via block
       def __assert_empty error, object, message #:nodoc:
-        raise ArgumentError, "#{object.class} does not respond to :empty?" unless collection.respond_to? :empty?
+        raise ArgumentError, "#{object.class} does not respond to :empty?" unless object.respond_to? :empty?
         __assert_block error, message, {:object=>object} { yield }
       end
     end
