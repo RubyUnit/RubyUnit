@@ -39,7 +39,7 @@ if RubyUnit::Runner.run.zero?
     spec.post_install_message  = 'Happy Testing!'
     spec.required_ruby_version = '>= 1.9.2'
 
-    spec.add_development_dependency 'rake', '>= 0'
+    spec.add_development_dependency 'rake', '~> 10.1'
   end
 else
   puts 'Unable to build gem.'

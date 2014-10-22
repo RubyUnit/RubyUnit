@@ -100,8 +100,8 @@ module RubyUnit
           begin
             yield
           rescue exception => e
-            assertEqual pattern, e.message if pattern.is_a? String and pattern.length > 0
-            assertMatch pattern, e.message if pattern.is_a? Regexp
+            assertEqual pattern, e.message, message if pattern.is_a? String and pattern.length > 0
+            assertMatch pattern, e.message, message if pattern.is_a? Regexp
           end
           e
         end
