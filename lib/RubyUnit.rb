@@ -45,10 +45,10 @@ module RubyUnit
                   ['TestSuite.rb']            +  # Test Suite
                   Dir['tests/**/*.rb']           # TESTS
 
-    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of '     +
-                  'the software development life cycle. This tool is intended to '     +
-                  'make development and testing in Ruby easier on everyone. RubyUnit ' +
-                  'is also designed to with a focus on data-driven testing and meta-.' +
+    DESCRIPTION = 'Unit testing and test-driven development are crucial parts of '    +
+                  'the software development life cycle. This tool is intended to '    +
+                  'make development and testing in Ruby easier on everyone. RubyUnit '+
+                  'is also designed to with a focus on data-driven testing and meta-' +
                   'programming.'
   end
 end
