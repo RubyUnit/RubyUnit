@@ -37,7 +37,9 @@ if RubyUnit::Runner.run.zero?
     spec.metadata              = {'Issue_Tracker' => 'https://github.com/RubyUnit/RubyUnit/issues'}
 
     spec.post_install_message  = 'Happy Testing!'
-    spec.required_ruby_version = '~> 2.0'
+    spec.required_ruby_version = '>= 1.9.2'
+
+    spec.add_development_dependency 'rake', '>= 0'
   end
 else
   puts 'Unable to build gem.'
