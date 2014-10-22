@@ -150,8 +150,9 @@ module AssertionsTests
 
     def rangeObjects
       [
-        [   (-1..-5)],
+        [     (0..0)],
         [   (-5..-1)],
+        [    (0..42)],
         [ ('a'..'e')],
         [('a'...'e')],
       ]

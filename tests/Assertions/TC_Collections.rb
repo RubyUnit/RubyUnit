@@ -11,6 +11,204 @@ module AssertionsTests
     include CollectionsData
 
     ##
+    # Test assertInclude
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertIncludeTest collection, value
+      assertInclude collection, value
+    end
+
+    ##
+    # Test assertInclude failure
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertIncludeFailTest collection, value
+      rescue_assertion /#{ASSERT_INCLUDE_ERROR}/ do
+        assertInclude collection, value
+      end
+    end
+
+    ##
+    # Test assertInclude invalid
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertIncludeInvalidTest collection, value
+      assertRaiseKindOf ArgumentError do
+        assertInclude collection, value
+      end
+    end
+
+    ##
+    # Test assertInclude with message
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertIncludeWithMessageTest collection, value, message
+      assertInclude collection, value, message
+    end
+
+    ##
+    # Test assertInclude failure
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertIncludeWithMessageFailTest collection, value, message
+      rescue_assertion /#{ASSERT_INCLUDE_ERROR}/, message do
+        assertInclude collection, value, message
+      end
+    end
+
+    ##
+    # Test assertInclude invalid with message
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    # message::
+    #   The assertion message
+    #
+    def assertIncludeWithMessageInvalidTest collection, value, message
+      assertRaiseKindOf ArgumentError, message do
+        assertInclude collection, value, message
+      end
+    end
+
+    ##
+    # Test assertNotInclude
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertNotIncludeTest collection, value
+      assertNotInclude collection, value
+    end
+
+    ##
+    # Test assertNotInclude failure
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertNotIncludeFailTest collection, value
+      rescue_assertion /#{ASSERT_NOT_INCLUDE_ERROR}/ do
+        assertNotInclude collection, value
+      end
+    end
+
+    ##
+    # Test assertNotInclude invalid
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertNotIncludeInvalidTest collection, value
+      assertRaiseKindOf ArgumentError do
+        assertNotInclude collection, value
+      end
+    end
+
+    ##
+    # Test assertNotInclude with message
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # message::
+    #   The assertion message
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertNotIncludeWithMessageTest collection, value, message
+      assertNotInclude collection, value, message
+    end
+
+    ##
+    # Test assertNotInclude failure
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # message::
+    #   The assertion message
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertNotIncludeWithMessageFailTest collection, value, message
+      rescue_assertion /#{ASSERT_NOT_INCLUDE_ERROR}/, message do
+        assertNotInclude collection, value, message
+      end
+    end
+
+    ##
+    # Test assertNotInclude invalid with message
+    #
+    # collection::
+    #   Collection for assertion
+    #
+    # message::
+    #   The assertion message
+    #
+    # value::
+    #   Value to assert
+    #
+    def assertNotIncludeWithMessageInvalidTest collection, value, message
+      assertRaiseKindOf ArgumentError, message do
+        assertNotInclude collection, value, message
+      end
+    end
+
+
+
+
+
+
+
+
+
+    ##
     # Test assertEmpty
     #
     # collection::
