@@ -10,6 +10,8 @@ RubyUnit
 * http://rubyunit.github.io/
 * https://github.com/RubyUnit/RubyUnit
 * https://github.com/matthewclower/RubyUnit/wiki
+* https://rubygems.org/gems/rubyunit
+* http://www.rubydoc.info/gems/rubyunit/frames
 
 ### Description
 
