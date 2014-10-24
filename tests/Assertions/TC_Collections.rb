@@ -200,14 +200,6 @@ module AssertionsTests
       end
     end
 
-
-
-
-
-
-
-
-
     ##
     # Test assertEmpty
     #
