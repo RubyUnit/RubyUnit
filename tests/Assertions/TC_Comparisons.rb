@@ -131,51 +131,83 @@ module AssertionsTests
     end
 
     def assertMatchTest pattern, value
+      assertMatch pattern, value
     end
 
     def assertMatchFailTest pattern, value
+      rescue_assertion ASSERT_MATCH_ERROR do
+        assertMatch pattern, value
+      end
     end
 
     def assertMatchWithMessageTest pattern, value, message
+      assertMatch pattern, value, message
     end
 
     def assertMatchWithMessageFailTest pattern, value, message
+      rescue_assertion ASSERT_MATCH_ERROR, message do
+        assertMatch pattern, value, message
+      end
     end
 
     def assertNotMatchTest pattern, value
+      assertNotMatch pattern, value
     end
 
     def assertNotMatchFailTest pattern, value
+      rescue_assertion ASSERT_NOT_MATCH_ERROR do
+        assertNotMatch pattern, value
+      end
     end
 
     def assertNotMatchWithMessageTest pattern, value, message
+      assertNotMatch pattern, value, message
     end
 
     def assertNotMatchWithMessageFailTest pattern, value, message
+      rescue_assertion ASSERT_NOT_MATCH_ERROR, message do
+        assertNotMatch pattern, value, message
+      end
     end
 
-    def assertSameTest expected, object
+    def assertSameTest object
+      assertSame object, object
     end
 
     def assertSameFailTest expected, object
+      rescue_assertion ASSERT_SAME_ERROR do
+        assertSame expected, object
+      end
     end
 
-    def assertSameWithMessageTest expected, object, message
+    def assertSameWithMessageTest object, message
+      assertSame object, object, message
     end
 
     def assertSameWithMessageFailTest expected, object, message
+      rescue_assertion ASSERT_SAME_ERROR, message do
+        assertSame expected, object, message
+      end
     end
 
     def assertNotSameTest expected, object
+      assertNotSame expected, object
     end
 
-    def assertNotSameFailTest expected, object
+    def assertNotSameFailTest object
+      rescue_assertion ASSERT_NOT_SAME_ERROR do
+        assertNotSame object, object
+      end
     end
 
     def assertNotSameWithMessageTest expected, object, message
+      assertNotSame expected, object, message
     end
 
-    def assertNotSameWithMessageFailTest expected, object, message
+    def assertNotSameWithMessageFailTest object, message
+      rescue_assertion ASSERT_NOT_SAME_ERROR, message do
+        assertNotSame object, object, message
+      end
     end
   end
 end
