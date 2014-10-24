@@ -11,27 +11,36 @@ module AssertionsTests
     include ComparisonsData
 
     def assertEqualTest expected, value
+      assertEqual expected, value
     end
 
     def assertEqualFailTest expected, value
     end
 
     def assertEqualWithMessageTest expected, value, message
+      assertEqual expected, value, message
     end
 
     def assertEqualWithMessageFailTest expected, value, message
     end
 
     def assertNotEqualTest expected, value
+      assertNotEqual expected, value
     end
 
     def assertNotEqualFailTest expected, value
+      rescue_assertion ASSERT_NOT_EQUAL_ERROR do
+        assertNotEqual expected, value
+      end
     end
 
     def assertNotEqualWithMessageTest expected, value, message
     end
 
     def assertNotEqualWithMessageFailTest expected, value, message
+      rescue_assertion ASSERT_NOT_EQUAL_ERROR, message do
+        assertNotEqual expected, value, message
+      end
     end
 
     def assertGreaterThanTest expected, value
