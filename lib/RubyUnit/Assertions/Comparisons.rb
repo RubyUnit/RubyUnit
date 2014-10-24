@@ -158,7 +158,7 @@ module RubyUnit
       #  assertMatch /^Good/, 'Goodbye!', "This will fail"  # => fail
       #
       def assertNotMatch exclusion, value, message = nil
-        __reject (value =~ exclusion), ASSERT_NO_MATCH_ERROR, message, {:exclusion=>exclusion, :value=>value}
+        __reject (value =~ exclusion), ASSERT_NOT_MATCH_ERROR, message, {:exclusion=>exclusion, :value=>value}
       end
 
       #

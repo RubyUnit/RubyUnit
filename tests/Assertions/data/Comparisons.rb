@@ -83,9 +83,6 @@ module AssertionsTests
       add_parameter assertGreaterThanFailData
     end
 
-
-
-
     def assertGreaterThanOrEqualData
       assertGreaterThanData + equalComparisonObjects
     end
@@ -101,7 +98,6 @@ module AssertionsTests
     def assertGreaterThanOrEqualWithMessageFailData
       add_parameter assertGreaterThanOrEqualFailData
     end
-
 
     def assertLessThanData
       [
@@ -140,8 +136,6 @@ module AssertionsTests
       add_parameter assertLessThanFailData
     end
 
-
-
     def assertLessThanOrEqualData
       assertLessThanData + equalComparisonObjects
     end
@@ -158,85 +152,105 @@ module AssertionsTests
       add_parameter assertLessThanOrEqualFailData
     end
 
-
     def assertMatchData
       [
-        
+        [             /Start/, 'Start middle end'],
+        [            /^Start/, 'Start middle end'],
+        [            /middle/, 'Start middle end'],
+        [               /end/, 'Start middle end'],
+        [              /end$/, 'Start middle end'],
+        [      /Start middle/, 'Start middle end'],
+        [     /^Start middle/, 'Start middle end'],
+        [        /middle end/, 'Start middle end'],
+        [       /middle end$/, 'Start middle end'],
+        [  /Start middle end/, 'Start middle end'],
+        [ /^Start middle end/, 'Start middle end'],
+        [/^Start middle end$/, 'Start middle end'],
       ]
     end
+    alias_method :assertNotMatchFailData, :assertMatchData
 
     def assertMatchFailData
       [
-        
+        [            /Start$/, 'Start middle end'],
+        [           /^Start$/, 'Start middle end'],
+        [           /^middle/, 'Start middle end'],
+        [           /$middle/, 'Start middle end'],
+        [          /^middle$/, 'Start middle end'],
+        [              /^end/, 'Start middle end'],
+        [             /^end$/, 'Start middle end'],
+        [    /^Start middle$/, 'Start middle end'],
+        [     /Start middle$/, 'Start middle end'],
+        [      /^middle end$/, 'Start middle end'],
+        [       /^middle end/, 'Start middle end'],
       ]
     end
+    alias_method :assertNotMatchData, :assertMatchFailData
 
     def assertMatchWithMessageData
       add_parameter assertMatchData
     end
+    alias_method :assertNotMatchWithMessageFailData, :assertMatchWithMessageData
 
     def assertMatchWithMessageFailData
       add_parameter assertMatchFailData
     end
-
-    def assertNotMatchData
-      [
-        
-      ]
-    end
-
-    def assertNotMatchFailData
-      [
-        
-      ]
-    end
-
-    def assertNotMatchWithMessageData
-      add_parameter assertNotMatchData
-    end
-
-    def assertNotMatchWithMessageFailData
-      add_parameter assertNotMatchFailData
-    end
+    alias_method :assertNotMatchWithMessageData, :assertMatchWithMessageFailData
 
     def assertSameData
-      [
-        
-      ]
+      non_classes + classObjects
     end
+    alias_method :assertNotSameFailData, :assertSameData
 
     def assertSameFailData
-      [
-        
+      data =
+      timeObjects     +
+      stringObjects   +
+      rangeObjects    +
+      arrayObjects    +
+      hashObjects
+
+      regexpObjects   +
+
+
+      data.each do |param|
+        param << param.first.clone
+      end
+      data + [
+        # Specific
+        [  nil,  true],
+        [ true, false],
+        [false,   nil],
+        # Numbers
+        [               42, 42000000000000000],
+        [42000000000000000,               4.2],
+        [              4.2,   Rational(21, 5)],
+        # Complex
+        [         Complex(1),       Complex(2, 3)],
+        [      Complex(2, 3), Complex.polar(2, 3)],
+        [Complex.polar(2, 3),        Complex(0.3)],
+        [       Complex(0.3), Complex('0.3-0.5i')],
+        [Complex('0.3-0.5i'), Complex('2/3+3/4i')],
+        [Complex('2/3+3/4i'),      Complex('1@2')],
+        [     Complex('1@2'),          Complex(1)],
+        # Regexp
+        [                          //,                   /Regexp 1/],
+        [                  /Regexp 1/,             /\AStart Regexp/],
+        [            /\AStart Regexp/,                /END regexp$/],
+        [               /END regexp$/, /^#{'interpolated'} REGEXP$/],
+        [/^#{'interpolated'} REGEXP$/,                           //],
       ]
     end
-
+    alias_method :assertNotSameData, :assertSameFailData
+    
     def assertSameWithMessageData
       add_parameter assertSameData
     end
+    alias_method :assertNotSameWithMessageFailData, :assertSameWithMessageData
 
     def assertSameWithMessageFailData
       add_parameter assertSameFailData
     end
-
-    def assertNotSameData
-      [
-        
-      ]
-    end
-
-    def assertNotSameFailData
-      [
-        
-      ]
-    end
-
-    def assertNotSameWithMessageData
-      add_parameter assertNotSameData
-    end
-
-    def assertNotSameWithMessageFailData
-      add_parameter assertNotSameFailData
-    end
+    alias_method :assertNotSameWithMessageData, :assertSameWithMessageFailData
   end
 end
