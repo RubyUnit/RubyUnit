@@ -105,7 +105,26 @@ module AssertionsTests
 
     def assertLessThanData
       [
-        
+        # Fixnum
+        [-420, -42],
+        [ -42,  42],
+        [   0,  42],
+        # Bignum
+        [-420000000000000000, -42000000000000000],
+        [ -42000000000000000,  42000000000000000],
+        [                  0,  42000000000000000],
+        # Float
+        [-42.0, -4.2],
+        [ -4.2,  4.2],
+        [  0.0,  4.2],
+        # Rational
+        [Rational(-42,4), Rational(-4,2)],
+        [ Rational(-4,2),  Rational(4,2)],
+        [  Rational(0,1),  Rational(4,2)],
+        # Time
+        [Time.new(2001, 12, 31),         Time.new(2002)],
+        [     Time.new(2002, 9),     Time.new(2002, 10)],
+        [        Time.new(2001), Time.new(2002, 10, 31)],
       ]
     end
 

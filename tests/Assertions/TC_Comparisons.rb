@@ -76,7 +76,7 @@ module AssertionsTests
 
     def assertGreaterThanOrEqualFailTest greater, value
       rescue_assertion ASSERT_GREATERTHANOREQUAL_ERROR do
-        assertGreaterOrEqualThan greater, value
+        assertGreaterThanOrEqual greater, value
       end
     end
 
@@ -86,7 +86,7 @@ module AssertionsTests
 
     def assertGreaterThanOrEqualWithMessageFailTest greater, value, message
       rescue_assertion ASSERT_GREATERTHANOREQUAL_ERROR, message do
-        assertGreaterOrEqualThan greater, value, message
+        assertGreaterThanOrEqual greater, value, message
       end
     end
 
