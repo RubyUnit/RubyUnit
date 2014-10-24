@@ -15,6 +15,9 @@ module AssertionsTests
     end
 
     def assertEqualFailTest expected, value
+      rescue_assertion ASSERT_EQUAL_ERROR do
+        assertEqual expected, value
+      end
     end
 
     def assertEqualWithMessageTest expected, value, message
@@ -22,6 +25,9 @@ module AssertionsTests
     end
 
     def assertEqualWithMessageFailTest expected, value, message
+      rescue_assertion ASSERT_EQUAL_ERROR, message do
+        assertEqual expected, value, message
+      end
     end
 
     def assertNotEqualTest expected, value
@@ -35,6 +41,7 @@ module AssertionsTests
     end
 
     def assertNotEqualWithMessageTest expected, value, message
+      assertNotEqual expected, value, message
     end
 
     def assertNotEqualWithMessageFailTest expected, value, message
@@ -43,52 +50,84 @@ module AssertionsTests
       end
     end
 
-    def assertGreaterThanTest expected, value
+    def assertGreaterThanTest greater, value
+      assertGreaterThan greater, value
     end
 
-    def assertGreaterThanFailTest expected, value
+    def assertGreaterThanFailTest greater, value
+      rescue_assertion ASSERT_GREATERTHAN_ERROR do
+        assertGreaterThan greater, value
+      end
     end
 
-    def assertGreaterThanWithMessageTest expected, value, message
+    def assertGreaterThanWithMessageTest greater, value, message
+      assertGreaterThan greater, value, message
     end
 
-    def assertGreaterThanWithMessageFailTest expected, value, message
+    def assertGreaterThanWithMessageFailTest greater, value, message
+      rescue_assertion ASSERT_GREATERTHAN_ERROR, message do
+        assertGreaterThan greater, value, message
+      end
     end
 
-    def assertGreaterThanOrEqualTest expected, value
+    def assertGreaterThanOrEqualTest greater, value
+      assertGreaterThanOrEqual greater, value
     end
 
-    def assertGreaterThanOrEqualFailTest expected, value
+    def assertGreaterThanOrEqualFailTest greater, value
+      rescue_assertion ASSERT_GREATERTHAN_OR_EQUAL_ERROR do
+        assertGreaterOrEqualThan greater, value
+      end
     end
 
-    def assertGreaterOrThanEqualWithMessageTest expected, value, message
+    def assertGreaterThanOrEqualWithMessageTest greater, value, message
+      assertGreaterThanOrEqual greater, value, message
     end
 
-    def assertGreaterThanOrEqualWithMessageFailTest expected, value, message
+    def assertGreaterThanOrEqualWithMessageFailTest greater, value, message
+      rescue_assertion ASSERT_GREATERTHAN_OR_EQUAL_ERROR, message do
+        assertGreaterOrEqualThan greater, value, message
+      end
     end
 
-    def assertLessThanTest expected, value
+    def assertLessThanTest less, value
+      assertLessThan less, value
     end
 
-    def assertLessThanFailTest expected, value
+    def assertLessThanFailTest less, value
+      rescue_assertion ASSERT_LESSTHAN_ERROR do
+        assertLessThan less, value
+      end
     end
 
-    def assertLessThanWithMessageTest expected, value, message
+    def assertLessThanWithMessageTest less, value, message
+      assertLessThan less, value, message
     end
 
-    def assertLessThanWithMessageFailTest expected, value, message
+    def assertLessThanWithMessageFailTest less, value, message
+      rescue_assertion ASSERT_LESSTHAN_ERROR, message do
+        assertLessThan less, value, message
+      end
     end
 
-    def assertLessThanOrEqualTest expected, value
+    def assertLessThanOrEqualTest less, value
+      assertLessThanOrEqual less, value
     end
 
-    def assertLessThanOrEqualFailTest expected, value
+    def assertLessThanOrEqualFailTest less, value
+      rescue_assertion ASSERT_LESSTHAN_OR_EQUAL_ERROR do
+        assertLessThanOrEqual less, value
+      end
     end
 
-    def assertLessThanOrEqualWithMessageTest expected, value, message
+    def assertLessThanOrEqualWithMessageTest less, value, message
+      assertLessThanOrEqual less, value, message
     end
 
-    def assertLessThanOrEqualWithMessageFailTest expected, value, message
+    def assertLessThanOrEqualWithMessageFailTest less, value, message
+      rescue_assertion ASSERT_LESSTHAN_OR_EQUAL_ERROR, message do
+        assertLessThanOrEqual less, value, message
+      end
     end
 
     def assertMatchTest pattern, value
