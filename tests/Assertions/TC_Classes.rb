@@ -238,7 +238,7 @@ module AssertionsTests
     #   Class to be asserted
     #
     def assertDescendentInvalidTest klass, descendent
-      assertRaiseKindOf ArgumentError do
+      assertRaiseKindOf TypeError do
         assertDescendent klass, descendent
       end
     end
@@ -290,7 +290,7 @@ module AssertionsTests
     #   The assertion message
     #
     def assertDescendentWithMessageInvalidTest klass, descendent, message
-      assertRaiseKindOf ArgumentError, message do
+      assertRaiseKindOf TypeError, message do
         assertDescendent klass, descendent, message
       end
     end
@@ -333,7 +333,7 @@ module AssertionsTests
     #   Class to be asserted
     #
     def assertNotDescendentInvalidTest klass, descendent
-      assertRaiseKindOf ArgumentError do
+      assertRaiseKindOf TypeError do
         assertNotDescendent klass, descendent
       end
     end
@@ -385,7 +385,7 @@ module AssertionsTests
     #   The assertion message
     #
     def assertNotDescendentWithMessageInvalidTest klass, descendent, message
-      assertRaiseKindOf ArgumentError, message do
+      assertRaiseKindOf TypeError, message do
         assertNotDescendent klass, descendent, message
       end
     end
