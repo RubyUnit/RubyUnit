@@ -51,6 +51,7 @@ module RubyUnit
 
     ##
     # Exception assertions
+    ASSERT_RAISE_ERROR          = 'Exception WAS raised'
     ASSERT_NOTHING_RAISED_ERROR = 'Exception WAS NOT raised'
     ASSERT_RAISE_MESSAGE_ERROR  = 'Exception message WAS raised'
     ASSERT_RAISE_KIND_OF_ERROR  = 'Exception Class WAS raised'

@@ -49,7 +49,7 @@ module RubyUnit
       #  end
       #
       def assertRaiseMessage pattern, message = nil, &block
-        assertRaiseExpected Exception, pattern, message, &block
+        __assert_exception ASSERT_RAISE_MESSAGE_ERROR, Exception, pattern, message, &block
       end
 
       ##
@@ -70,7 +70,7 @@ module RubyUnit
       #  end
       #
       def assertRaiseKindOf exception, message = nil, &block
-        assertRaiseExpected exception, '', message, &block
+        __assert_exception ASSERT_RAISE_KIND_OF_ERROR, exception, '', message, &block
       end
 
       ##
@@ -93,18 +93,8 @@ module RubyUnit
       #    raise StandardError, 'Invalid Retroincabulator'
       #  end
       #
-      def assertRaiseExpected exception, pattern, message = nil &block
-        __assert_exception pattern, exception
-        __assert_block ASSERT_RAISE_EXPECTED_ERROR, message, {:exception=>exception, :pattern=>pattern} do
-          e = false
-          begin
-            yield
-          rescue exception => e
-            assertEqual pattern, e.message, message if pattern.is_a? String and pattern.length > 0
-            assertMatch pattern, e.message, message if pattern.is_a? Regexp
-          end
-          e
-        end
+      def assertRaiseExpected exception, pattern, message = nil, &block
+        __assert_exception ASSERT_RAISE_EXPECTED_ERROR, exception, pattern, message, &block
       end
 
       private
@@ -113,9 +103,34 @@ module RubyUnit
       # * raises TypeError if _pattern_ is not a String or Regexp
       # * raises TypeError unless _e_ is a descendent of the Exception class
       #
-      def __assert_exception pattern, e = Exception # :nodoc:
-        raise TypeError, "Message patter must be a Regexp or String, got #{pattern.class}" unless pattern.is_a? Regexp or pattern.is_a? String
-        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless e <= Exception
+      def __validate_exception pattern, exception = Exception # :nodoc:
+        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless exception <= Exception
+        regex = pattern
+        if pattern.is_a? String
+          regex = pattern.length.zero? ? /#{pattern}/ : /^#{pattern}$/
+        elsif not pattern.is_a? Regexp
+          raise TypeError, "Message patter must be a Regexp or String, got #{pattern.class}"
+        end
+        regex
+      end
+
+      def __assert_exception error, exception, pattern, message = nil, &block # :nodoc:
+        pattern = __validate_exception pattern, exception
+        Assertions.add_assertion
+        errors  = []
+        failure = false
+        begin
+          yield
+          errors << ASSERT_RAISE_ERROR
+        rescue exception => failure
+          errors << ASSERT_RAISE_MESSAGE_ERROR unless pattern =~ failure.message
+        rescue => failure
+          errors << ASSERT_RAISE_KIND_OF_ERROR
+        else
+          errors.unshift error unless errors.count.zero?
+        end
+        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure, :trace=>failure.backtrace.first} unless errors.count.zero?
+        failure
       end
     end
   end
