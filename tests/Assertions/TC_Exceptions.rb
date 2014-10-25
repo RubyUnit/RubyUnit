@@ -4,7 +4,7 @@ require 'RubyUnit/Assertions'
 require_relative 'data/Exceptions'
 
 module AssertionsTests
-  #
+  ##
   # Test Case for RubyUnit::Assertions Exceptions assertions
   #
   class TC_Exceptions < AssertionsTestCase
