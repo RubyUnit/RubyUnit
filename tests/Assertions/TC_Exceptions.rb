@@ -16,9 +16,25 @@ module AssertionsTests
       end
     end
 
+    def assertNothingRaisedFailTest exception
+      rescue_assertion ASSERT_NOTHING_RAISED_ERROR do
+        assertNothingRaised do
+          raise Exception exception
+        end
+      end
+    end
+
     def assertNothingRaisedWithMessageTest block_data, message
       assertNothingRaised message do
         block_data
+      end
+    end
+
+    def assertNothingRaisedWithMessageFailTest exception, message
+      rescue_assertion ASSERT_NOTHING_RAISED_ERROR, message do
+        assertNothingRaised message do
+          raise Exception exception
+        end
       end
     end
   end
