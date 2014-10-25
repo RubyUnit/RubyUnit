@@ -5,9 +5,9 @@ module RubyUnit
       ##
       # Builds the message that will be used with the assertion
       # * raises RubyUnit::AssertionFailure
-      # * raises OREQUAL unless error is a String
-      # * raises OREQUAL unless message is nil or a String
-      # * raises OREQUAL unless data is a Hash
+      # * raises TypeError unless error is a String
+      # * raises TypeError unless message is nil or a String
+      # * raises TypeError unless data is a Hash
       #
       # error::
       #   The assertion description
@@ -21,9 +21,9 @@ module RubyUnit
       #  __fail 'Failing Test', message, {'expected' => expected, 'actual' => actual }
       #
       def __fail error, message, data = {} # :nodoc:
-        raise OREQUAL, 'Error description must be a String' unless error.is_a? String
-        raise OREQUAL, 'Failure message must be String' unless message.nil? or message.is_a? String
-        raise OREQUAL, 'Failure data must be a Hash' unless data.is_a? Hash
+        raise TypeError, 'Error description must be a String' unless error.is_a? String
+        raise TypeError, 'Failure message must be String' unless message.nil? or message.is_a? String
+        raise TypeError, 'Failure data must be a Hash' unless data.is_a? Hash
         raise AssertionFailure.new({'Assertion Failure'=>message}.merge data), error
       end
 
