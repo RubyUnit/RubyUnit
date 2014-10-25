@@ -56,7 +56,7 @@ module RubyUnit
       # Assert that a specified exception type is raised.
       # * raises RubyUnit::AssertionFailure unless the correct Exception type is raised
       #
-      # e::
+      # exception::
       #   The Exception class that is expected.
       #
       # message::
@@ -69,8 +69,8 @@ module RubyUnit
       #    # do something
       #  end
       #
-      def assertRaiseKindOf e, message = nil, &block
-        assertRaiseExpected e, '', message, &block
+      def assertRaiseKindOf exception, message = nil, &block
+        assertRaiseExpected exception, '', message, &block
       end
 
       ##
@@ -115,7 +115,7 @@ module RubyUnit
       #
       def __assert_exception pattern, e = Exception # :nodoc:
         raise TypeError, "Message patter must be a Regexp or String, got #{pattern.class}" unless pattern.is_a? Regexp or pattern.is_a? String
-        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless e < Exception
+        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless e <= Exception
       end
     end
   end
