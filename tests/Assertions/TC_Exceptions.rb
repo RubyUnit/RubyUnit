@@ -37,5 +37,17 @@ module AssertionsTests
         end
       end
     end
+
+    def assertRaiseMessageTest pattern, exception, error
+      assertRaiseMessage pattern do
+        raise exception, error
+      end
+    end
+
+    def assertRaiseMessageWithMessageTest pattern, exception, error, message
+      assertRaiseMessage pattern, message do
+        raise exception, error, message
+      end
+    end
   end
 end

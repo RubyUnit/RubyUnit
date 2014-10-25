@@ -22,5 +22,17 @@ module AssertionsTests
     def assertNothingRaisedWithMessageFailData
       add_parameter stringObjects
     end
+
+    def assertRaiseMessageData
+      [
+        [      /^Message/,     Exception, 'Message thrown'],
+        [      / thrown$/, StandardError, 'Message thrown'],
+        ['Message thrown', ArgumentError, 'Message thrown'],
+      ]
+    end
+
+    def assertRaiseMessageWithMessageData
+      add_parameter assertRaiseMessageData
+    end
   end
 end
