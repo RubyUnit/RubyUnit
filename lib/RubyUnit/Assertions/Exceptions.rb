@@ -110,12 +110,12 @@ module RubyUnit
       private
       ##
       # Validate the parameters for exception assertions
-      # * raises ArgumentError if _pattern_ is not a String or Regexp
-      # * raises ArgumentError unless _e_ is a descendent of the Exception class
+      # * raises TypeError if _pattern_ is not a String or Regexp
+      # * raises TypeError unless _e_ is a descendent of the Exception class
       #
       def __assert_exception pattern, e = Exception # :nodoc:
-        raise ArgumentError, "Message patter must be a Regexp or String, got #{pattern.class}" unless pattern.is_a? Regexp or pattern.is_a? String
-        raise ArgumentError, "Expected subclass of Exception, got #{e.class}" unless e < Exception
+        raise TypeError, "Message patter must be a Regexp or String, got #{pattern.class}" unless pattern.is_a? Regexp or pattern.is_a? String
+        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless e < Exception
       end
     end
   end
