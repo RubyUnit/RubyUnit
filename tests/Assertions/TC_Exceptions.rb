@@ -44,6 +44,14 @@ module AssertionsTests
       end
     end
 
+    def assertRaiseMessageFailTest pattern, exception, error
+      rescue_assertion ASSERT_RAISE_MESSAGE_ERROR do
+        assertRaiseMessage pattern do
+          raise exception, error
+        end
+      end
+    end
+
     def assertRaiseMessageWithMessageTest pattern, exception, error, message
       assertRaiseMessage pattern, message do
         raise exception, error, message

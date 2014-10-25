@@ -31,8 +31,21 @@ module AssertionsTests
       ]
     end
 
+    def assertRaiseMessageFailData
+      [
+        [      /Message$/,     Exception, 'Message thrown'],
+        [      /No Match/, StandardError, 'Message thrown'],
+        [       'Message', ArgumentError, 'Message thrown'],
+        [      'No Match',     Exception, 'Message thrown'],
+      ]
+    end
+
     def assertRaiseMessageWithMessageData
       add_parameter assertRaiseMessageData
+    end
+
+    def assertRaiseMessageWithMessageFailData
+      add_parameter assertRaiseMessageFailData
     end
   end
 end
