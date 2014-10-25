@@ -9,5 +9,17 @@ module AssertionsTests
   #
   class TC_Exceptions < AssertionsTestCase
     include ExceptionsData
+
+    def assertNothingRaisedTest block_data
+      assertNothingRaised do
+        block_data
+      end
+    end
+
+    def assertNothingRaisedWithMessageTest block_data, message
+      assertNothingRaised message do
+        block_data
+      end
+    end
   end
 end

@@ -1,7 +1,7 @@
 require_relative 'ObjectTypes'
 
 module AssertionsTests
-  #
+  ##
   # Data provider for RubyUnit::Assertions Comparisons assertions
   #
   module ComparisonsData
