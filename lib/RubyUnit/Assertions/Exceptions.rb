@@ -153,8 +153,7 @@ module RubyUnit
           errors << ASSERT_RAISE_KIND_OF_ERROR
         end
         errors.unshift error unless errors.count.zero?
-        trace = failure ? failure.backtrace.first : ''
-        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure, :trace=>trace} unless errors.count.zero?
+        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure} unless errors.count.zero?
         failure
       end
     end
