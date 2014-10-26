@@ -52,6 +52,14 @@ module AssertionsTests
       end
     end
 
+    def assertRaiseMessageInvalidTest exception
+      rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/ do
+        assertRaiseMessage /Message pattern must be a Regexp or String/ do
+          raise exception, 'Message raised'
+        end
+      end
+    end
+
     def assertRaiseMessageWithMessageTest pattern, exception, error, message
       assertRaiseMessage pattern, message do
         raise exception, error, message
@@ -66,5 +74,12 @@ module AssertionsTests
       end
     end
 
+    def assertRaiseMessageWithMessageInvalidTest exception, message
+      rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/, message do
+        assertRaiseMessage /Message pattern must be a Regexp or String/, message do
+          raise exception, 'Message raised'
+        end
+      end
+    end
   end
 end

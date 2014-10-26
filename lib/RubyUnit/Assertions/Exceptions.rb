@@ -118,7 +118,7 @@ module RubyUnit
         if pattern.is_a? String
           regex = pattern.length.zero? ? /#{pattern}/ : /^#{pattern}$/
         elsif not pattern.is_a? Regexp
-          raise TypeError, "Message patter must be a Regexp or String, got #{pattern.class}"
+          raise TypeError, "Message pattern must be a Regexp or String, got #{pattern.class}"
         end
         regex
       end

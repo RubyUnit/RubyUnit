@@ -56,6 +56,15 @@ module AssertionsTests
         [     Range],
         [     Array],
         [      Hash],
+        ] +
+        exceptionObjects
+    end
+
+    def exceptionObjects
+      [
+        [    Exception],
+        [StandardError],
+        [ArgumentError],
       ]
     end
 

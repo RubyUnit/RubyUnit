@@ -25,18 +25,35 @@ module AssertionsTests
 
     def assertRaiseMessageData
       [
-        [      /^Message/,     Exception, 'Message thrown'],
-        [      / thrown$/, StandardError, 'Message thrown'],
-        ['Message thrown', ArgumentError, 'Message thrown'],
+        [      /^Message/,     Exception, 'Message raised'],
+        [      / raised$/, StandardError, 'Message raised'],
+        ['Message raised', ArgumentError, 'Message raised'],
       ]
+    end
+
+    def assertRaiseMessageInvalidData
+      data =
+      exceptionObjects +
+      nilObjects       +
+      trueObjects      +
+      falseObjects     +
+      fixnumObjects    +
+      bignumObjects    +
+      floatObjects     +
+      rationalObjects  +
+      complexObjects   +
+      timeObjects      +
+      rangeObjects     +
+      arrayObjects     +
+      hashObjects
     end
 
     def assertRaiseMessageFailData
       [
-        [      /Message$/,     Exception, 'Message thrown'],
-        [      /No Match/, StandardError, 'Message thrown'],
-        [       'Message', ArgumentError, 'Message thrown'],
-        [      'No Match',     Exception, 'Message thrown'],
+        [      /Message$/,     Exception, 'Message raised'],
+        [      /No Match/, StandardError, 'Message raised'],
+        [       'Message', ArgumentError, 'Message raised'],
+        [      'No Match',     Exception, 'Message raised'],
       ]
     end
 
@@ -46,6 +63,10 @@ module AssertionsTests
 
     def assertRaiseMessageWithMessageFailData
       add_parameter assertRaiseMessageFailData
+    end
+
+    def assertRaiseMessageWithMessageInvalidData
+      add_parameter assertRaiseMessageInvalidData
     end
   end
 end
