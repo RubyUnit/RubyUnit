@@ -26,6 +26,7 @@ module AssertionsTests
         ['Message raised', ArgumentError, 'Message raised'],
       ]
     end
+    alias_method :assertRaiseExpectedData, :assertRaiseMessageData
 
     def assertRaiseMessageInvalidData
       exceptionObjects +
@@ -48,7 +49,7 @@ module AssertionsTests
         [      /Message$/,     Exception],
         [      /No Match/, StandardError],
         [       'Message', ArgumentError],
-        [      'No Match',     Exception],
+        [      'No Match',     TypeError],
       ]
     end
 
