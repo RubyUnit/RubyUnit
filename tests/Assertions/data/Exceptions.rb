@@ -73,8 +73,29 @@ module AssertionsTests
       exceptionObjects
     end
 
+    def assertRaiseKindOfFailData
+      nilObjects      +
+      trueObjects     +
+      falseObjects    +
+      fixnumObjects   +
+      bignumObjects   +
+      floatObjects    +
+      rationalObjects +
+      complexObjects  +
+      timeObjects     +
+      stringObjects   +
+      rangeObjects    +
+      regexpObjects   +
+      arrayObjects    +
+      hashObjects
+    end
+
     def assertRaiseKindOfWithMessageData
       add_parameter assertRaiseKindOfData
+    end
+
+    def assertRaiseKindOfWithMessageFailData
+      add_parameter assertRaiseKindOfFailData
     end
   end
 end
