@@ -15,7 +15,7 @@ module RubyUnit
     #   The data associated with the assertion
     #
     def initialize data = {}
-      raise ArgumentError, 'Data for AssertionFailure must be a Hash' unless data.is_a? Hash
+      raise TypeError, 'Data for AssertionFailure must be a Hash' unless data.is_a? Hash
       @data = data
     end
 

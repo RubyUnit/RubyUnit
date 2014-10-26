@@ -35,7 +35,7 @@ module RubyUnitTests
     #
     def invalidDebugModeTest mode
       old_mode = RubyUnit.debug
-      assertRaiseExpected ArgumentError, RubyUnit::INVALID_DEBUG_MODE, RubyUnit::INVALID_DEBUG_MODE do
+      assertRaiseExpected TypeError, RubyUnit::INVALID_DEBUG_MODE, RubyUnit::INVALID_DEBUG_MODE do
         RubyUnit.debug = mode
       end
       assertEqual old_mode, RubyUnit.debug, 'Invalid debug mode should not change debug mode'

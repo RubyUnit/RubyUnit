@@ -17,13 +17,13 @@ module RubyUnit
 
   ##
   # Set debug mode
-  # * raises ArgumentError if _bool_ is not a Boolean
+  # * raises TypeError if _bool_ is not a Boolean
   #
   # bool::
   #   New value for debug mode
   #
   def self.debug= bool
-    raise ArgumentError, INVALID_DEBUG_MODE unless [true, false].include? bool
+    raise TypeError, INVALID_DEBUG_MODE unless [true, false].include? bool
     @@debug = bool
   end
 

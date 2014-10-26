@@ -40,8 +40,8 @@ module RubyUnit
       public
       #
       # The static test runner
-      # * raises ArgumentError if any data method doesn't return an array
-      # * raises ArgumentError if any data method doesn't return an array of arrays
+      # * raises TypeError if any data method doesn't return an array
+      # * raises TypeError if any data method doesn't return an array of arrays
       # * Returns the sum of the failure and error counts
       #
       #  RubyUnit::Runner.run
@@ -63,9 +63,9 @@ module RubyUnit
             if data_methods.include? data_method
               data = object.send data_method
 
-              raise ArgumentError, "Data method #{data_method} must return an array" unless data.is_a? Array
+              raise TypeError, "Data method #{data_method} must return an array" unless data.is_a? Array
               data.each do |params|
-                raise ArgumentError, "Data method #{data_method} must return an array of arrays" unless data.is_a? Array
+                raise TypeError, "Data method #{data_method} must return an array of arrays" unless data.is_a? Array
                 runner.run test_case, test, params
               end
             else
@@ -143,7 +143,7 @@ module RubyUnit
     # Run a test and record the results. The test object is instantiated and
     # TestCaseObject.setup is called. TestCaseObject.teardown is called after
     # the test has finished. This is called by the static runner.
-    # * raises ArgumentError unless _params_ is an Array
+    # * raises TypeError unless _params_ is an Array
     #
     # test_case_class::
     #   The test case class that has the test
@@ -157,7 +157,7 @@ module RubyUnit
     #  run TestCaseClass, :myTest, [param1, param2]
     #
     def run test_case_class, test, params = []
-      raise ArgumentError, "Parameter list for #{object.class}::#{test} must be an array" unless params.is_a? Array
+      raise TypeError, "Parameter list for #{object.class}::#{test} must be an array" unless params.is_a? Array
       test_case = test_case_class.new
 
       begin

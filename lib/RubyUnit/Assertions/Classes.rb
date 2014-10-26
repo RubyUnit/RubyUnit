@@ -205,8 +205,21 @@ module RubyUnit
       private
       ##
       # Helper for asserting descendents
-      def __assert_descendent error, klass, descendent, message
-        raise ArgumentError, "Expecting Class, got #{klass.class}" unless klass.is_a? Class
+      #
+      # error::
+      #   The error message
+      #
+      # klass::
+      #   The parent class
+      #
+      # descendent::
+      #   The descendent class
+      #
+      # message::
+      #   The message provided to be reported for a failure
+      #
+      def __assert_descendent error, klass, descendent, message # :nodoc:
+        raise TypeError, "Expecting Class, got #{klass.class}" unless klass.is_a? Class
         __assert_block error, message, {:class=>klass, :descendent=>descendent} do
           yield
         end
