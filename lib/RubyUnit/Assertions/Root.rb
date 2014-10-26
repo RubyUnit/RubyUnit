@@ -6,7 +6,7 @@ module RubyUnit
       # Builds the message that will be used with the assertion
       # * raises RubyUnit::AssertionFailure
       # * raises TypeError unless error is a String
-      # * raises TypeError unless message is nil or a String
+      # * raises TypeError unless message responds to to_s
       # * raises TypeError unless data is a Hash
       #
       # error::
@@ -22,9 +22,9 @@ module RubyUnit
       #
       def __fail error, message, data = {} # :nodoc:
         raise TypeError, 'Error description must be a String' unless error.is_a? String
-        raise TypeError, 'Failure message must be String' unless message.nil? or message.is_a? String
+        raise TypeError, 'Failure message must be String' unless message.respond_to? :to_s
         raise TypeError, 'Failure data must be a Hash' unless data.is_a? Hash
-        raise AssertionFailure.new({'Assertion Failure'=>message}.merge data), error
+        raise AssertionFailure.new({'Assertion Failure'=>message.to_s}.merge data), error
       end
 
       ##
