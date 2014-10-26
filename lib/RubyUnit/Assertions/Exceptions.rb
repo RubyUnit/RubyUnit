@@ -113,12 +113,12 @@ module RubyUnit
       #   The message provided to be reported for a failure
       #
       def __validate_exception pattern, exception = Exception # :nodoc:
-        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless exception <= Exception
+        raise TypeError, "Expected subclass of Exception, got #{exception.class}" unless exception.instance_of? Class and exception <= Exception
         regex = pattern
         if pattern.is_a? String
           regex = pattern.length.zero? ? /#{pattern}/ : /^#{pattern}$/
         elsif not pattern.is_a? Regexp
-          raise TypeError, "Message patter must be a Regexp or String, got #{pattern.class}"
+          raise TypeError, "Message pattern must be a Regexp or String, got #{pattern.class}"
         end
         regex
       end
@@ -148,12 +148,12 @@ module RubyUnit
           errors << ASSERT_RAISE_ERROR
         rescue exception => failure
           errors << ASSERT_RAISE_MESSAGE_ERROR unless pattern =~ failure.message
-        rescue => failure
+        # we'll need to revisit this.
+        rescue Exception => failure
           errors << ASSERT_RAISE_KIND_OF_ERROR
-        else
-          errors.unshift error unless errors.count.zero?
         end
-        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure, :trace=>failure.backtrace.first} unless errors.count.zero?
+        errors.unshift error unless errors.count.zero?
+        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure} unless errors.count.zero?
         failure
       end
     end

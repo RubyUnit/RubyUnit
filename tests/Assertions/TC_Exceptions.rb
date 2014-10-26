@@ -1,7 +1,10 @@
 require 'RubyUnit/Assertions'
 
-# Data provider for RubyUnit::TestCase tests
+# Data provider for RubyUnit::Assertions Exceptions tests
 require_relative 'data/Exceptions'
+
+# Fixture for Exceptions tests
+require_relative 'fixture/Exceptions'
 
 module AssertionsTests
   ##
@@ -16,10 +19,10 @@ module AssertionsTests
       end
     end
 
-    def assertNothingRaisedFailTest exception
+    def assertNothingRaisedFailTest
       rescue_assertion /#{ASSERT_NOTHING_RAISED_ERROR}/ do
         assertNothingRaised do
-          raise Exception exception
+          raise
         end
       end
     end
@@ -30,10 +33,10 @@ module AssertionsTests
       end
     end
 
-    def assertNothingRaisedWithMessageFailTest exception, message
+    def assertNothingRaisedWithMessageFailTest message
       rescue_assertion /#{ASSERT_NOTHING_RAISED_ERROR}/, message do
         assertNothingRaised message do
-          raise Exception exception
+          raise
         end
       end
     end
@@ -44,27 +47,92 @@ module AssertionsTests
       end
     end
 
-    def assertRaiseMessageFailTest pattern, exception, error
+    def assertRaiseMessageFailTest pattern, exception
       rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/ do
         assertRaiseMessage pattern do
-          raise exception, error
+          raise exception
+        end
+      end
+    end
+
+    def assertRaiseMessageInvalidTest pattern
+      assertRaiseKindOf TypeError do
+        assertRaiseMessage pattern do
+          raise
         end
       end
     end
 
     def assertRaiseMessageWithMessageTest pattern, exception, error, message
       assertRaiseMessage pattern, message do
-        raise exception, error, message
+        raise exception, error
       end
     end
 
-    def assertRaiseMessageWithMessageFailTest pattern, exception, error, message
+    def assertRaiseMessageWithMessageFailTest pattern, exception, message
       rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/, message do
         assertRaiseMessage pattern, message do
-          raise exception, error
+          raise exception
         end
       end
     end
 
+    def assertRaiseMessageWithMessageInvalidTest pattern, message
+      assertRaiseKindOf TypeError do
+        assertRaiseMessage pattern, message do
+          raise
+        end
+      end
+    end
+
+    def assertRaiseKindOfTest exception
+      assertRaiseKindOf exception do
+        raise exception
+      end
+    end
+
+    def assertRaiseKindOfFailTest exception
+      rescue_assertion /#{ASSERT_RAISE_KIND_OF_ERROR}/ do
+        assertRaiseKindOf AssertionsTestsError do
+          raise exception
+        end
+      end
+    end
+
+    def assertRaiseKindOfInvalidTest exception
+      assertRaiseKindOf TypeError do
+        assertRaiseKindOf exception do
+          raise
+        end
+      end
+    end
+
+    def assertRaiseKindOfWithMessageTest exception, message
+      assertRaiseKindOf exception, message do
+        raise exception
+      end
+    end
+
+    def assertRaiseKindOfWithMessageFailTest exception, message
+      rescue_assertion /#{ASSERT_RAISE_KIND_OF_ERROR}/, message do
+        assertRaiseKindOf AssertionsTestsError, message do
+          raise exception
+        end
+      end
+    end
+
+    def assertRaiseKindOfWithMessageInvalidTest exception, message
+      assertRaiseKindOf TypeError do
+        assertRaiseKindOf exception, message do
+          raise
+        end
+      end
+    end
+
+    def assertRaiseExpectedTest pattern, exception, error
+      assertRaisedExpected exception, pattern do
+        raise exception, error
+      end
+    end
   end
 end
