@@ -22,7 +22,7 @@ module AssertionsTests
     def assertNothingRaisedFailTest exception
       rescue_assertion /#{ASSERT_NOTHING_RAISED_ERROR}/ do
         assertNothingRaised do
-          raise Exception
+          raise
         end
       end
     end
@@ -36,7 +36,7 @@ module AssertionsTests
     def assertNothingRaisedWithMessageFailTest exception, message
       rescue_assertion /#{ASSERT_NOTHING_RAISED_ERROR}/, message do
         assertNothingRaised message do
-          raise Exception
+          raise
         end
       end
     end
@@ -55,10 +55,10 @@ module AssertionsTests
       end
     end
 
-    def assertRaiseMessageInvalidTest exception
-      rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/ do
-        assertRaiseMessage /Message pattern must be a Regexp or String/ do
-          raise exception
+    def assertRaiseMessageInvalidTest pattern
+      assertRaiseKindOf TypeError do
+        assertRaiseMessage pattern do
+          raise
         end
       end
     end
@@ -77,10 +77,10 @@ module AssertionsTests
       end
     end
 
-    def assertRaiseMessageWithMessageInvalidTest exception, message
-      rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/, message do
-        assertRaiseMessage /Message pattern must be a Regexp or String/, message do
-          raise exception, 'Message raised'
+    def assertRaiseMessageWithMessageInvalidTest pattern, message
+      assertRaiseKindOf TypeError do
+        assertRaiseMessage pattern, message do
+          raise
         end
       end
     end
@@ -99,6 +99,14 @@ module AssertionsTests
       end
     end
 
+    def assertRaiseKindOfInvalidTest exception
+      assertRaiseKindOf TypeError do
+        assertRaiseKindOf exception do
+          raise
+        end
+      end
+    end
+
     def assertRaiseKindOfWithMessageTest exception, message
       assertRaiseKindOf exception, message do
         raise exception
@@ -112,5 +120,13 @@ module AssertionsTests
         end
       end
     end
+
+    # def assertRaiseKindOfWithMessageInvalidTest exception, message
+    #   assertRaiseKindOf TypeError do
+    #     assertRaiseKindOf exception, message do
+    #       raise
+    #     end
+    #   end
+    # end
   end
 end

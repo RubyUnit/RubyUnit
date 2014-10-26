@@ -32,7 +32,6 @@ module AssertionsTests
     end
 
     def assertRaiseMessageInvalidData
-      data =
       exceptionObjects +
       nilObjects       +
       trueObjects      +
@@ -97,6 +96,10 @@ module AssertionsTests
 
     def assertRaiseKindOfWithMessageFailData
       add_parameter assertRaiseKindOfFailData
+    end
+
+    def assertRaiseKindOfWithMessageInvalidData
+      add_parameter assertRaiseKindOfInvalidData
     end
   end
 end

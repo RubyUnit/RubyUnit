@@ -113,7 +113,7 @@ module RubyUnit
       #   The message provided to be reported for a failure
       #
       def __validate_exception pattern, exception = Exception # :nodoc:
-        raise TypeError, "Expected subclass of Exception, got #{e.class}" unless exception <= Exception
+        raise TypeError, "Expected subclass of Exception, got #{exception.class}" unless exception.instance_of? Class and exception <= Exception
         regex = pattern
         if pattern.is_a? String
           regex = pattern.length.zero? ? /#{pattern}/ : /^#{pattern}$/
