@@ -81,5 +81,17 @@ module AssertionsTests
         end
       end
     end
+
+    def assertRaiseKindOfTest exception
+      assertRaiseKindOf exception do
+        raise assertRaiseKindOf
+      end
+    end
+
+    def assertRaiseKindOfWithMessageTest exception, message
+      assertRaiseKindOf exception, message do
+        raise assertRaiseKindOf
+      end
+    end
   end
 end

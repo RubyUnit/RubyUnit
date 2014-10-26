@@ -68,5 +68,13 @@ module AssertionsTests
     def assertRaiseMessageWithMessageInvalidData
       add_parameter assertRaiseMessageInvalidData
     end
+
+    def assertRaiseKindOfData
+      exceptionObjects
+    end
+
+    def assertRaiseKindOfWithMessageData
+      add_parameter assertRaiseKindOfData
+    end
   end
 end
