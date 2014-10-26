@@ -11,16 +11,12 @@ module AssertionsTests
       non_classes + classObjects
     end
 
-    def assertNothingRaisedFailData
-      stringObjects
-    end
-
     def assertNothingRaisedWithMessageData
       add_parameter assertNothingRaisedData
     end
 
     def assertNothingRaisedWithMessageFailData
-      add_parameter stringObjects
+      MESSAGE
     end
 
     def assertRaiseMessageData
@@ -100,6 +96,12 @@ module AssertionsTests
 
     def assertRaiseKindOfWithMessageInvalidData
       add_parameter assertRaiseKindOfInvalidData
+    end
+
+    def assertRaiseExpectedData
+      [
+        
+      ]
     end
   end
 end

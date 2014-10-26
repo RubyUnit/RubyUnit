@@ -19,7 +19,7 @@ module AssertionsTests
       end
     end
 
-    def assertNothingRaisedFailTest exception
+    def assertNothingRaisedFailTest
       rescue_assertion /#{ASSERT_NOTHING_RAISED_ERROR}/ do
         assertNothingRaised do
           raise
@@ -33,7 +33,7 @@ module AssertionsTests
       end
     end
 
-    def assertNothingRaisedWithMessageFailTest exception, message
+    def assertNothingRaisedWithMessageFailTest message
       rescue_assertion /#{ASSERT_NOTHING_RAISED_ERROR}/, message do
         assertNothingRaised message do
           raise
@@ -65,7 +65,7 @@ module AssertionsTests
 
     def assertRaiseMessageWithMessageTest pattern, exception, error, message
       assertRaiseMessage pattern, message do
-        raise exception, error, message
+        raise exception, error
       end
     end
 
@@ -121,12 +121,16 @@ module AssertionsTests
       end
     end
 
-    # def assertRaiseKindOfWithMessageInvalidTest exception, message
-    #   assertRaiseKindOf TypeError do
-    #     assertRaiseKindOf exception, message do
-    #       raise
-    #     end
-    #   end
-    # end
+    def assertRaiseKindOfWithMessageInvalidTest exception, message
+      assertRaiseKindOf TypeError do
+        assertRaiseKindOf exception, message do
+          raise
+        end
+      end
+    end
+
+    def assertRaiseExpectedTest pattern, exception
+      assertRaisedExpected exception, pattern
+    end
   end
 end
