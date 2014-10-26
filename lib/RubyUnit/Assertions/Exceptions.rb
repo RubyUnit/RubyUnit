@@ -103,6 +103,15 @@ module RubyUnit
       # * raises TypeError if _pattern_ is not a String or Regexp
       # * raises TypeError unless _e_ is a descendent of the Exception class
       #
+      # pattern:
+      #   The regular expression which validates the exception message
+      #
+      # exception:
+      #   The exception type that is expected to be raised
+      #
+      # message:
+      #   The message provided to be reported for a failure
+      #
       def __validate_exception pattern, exception = Exception # :nodoc:
         raise TypeError, "Expected subclass of Exception, got #{e.class}" unless exception <= Exception
         regex = pattern
@@ -114,6 +123,21 @@ module RubyUnit
         regex
       end
 
+      ##
+      # Common method to get catch exceptions and build error message
+      #
+      # error:
+      #   The error message for the current assertion
+      #
+      # exception:
+      #   The exception type that is expected to be raised
+      #
+      # pattern:
+      #   The regular expression which validates the exception message
+      #
+      # message:
+      #   The message provided to be reported for a failure
+      #
       def __assert_exception error, exception, pattern, message = nil, &block # :nodoc:
         pattern = __validate_exception pattern, exception
         Assertions.add_assertion
