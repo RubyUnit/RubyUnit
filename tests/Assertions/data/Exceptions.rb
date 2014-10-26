@@ -50,10 +50,10 @@ module AssertionsTests
 
     def assertRaiseMessageFailData
       [
-        [      /Message$/,     Exception, 'Message raised'],
-        [      /No Match/, StandardError, 'Message raised'],
-        [       'Message', ArgumentError, 'Message raised'],
-        [      'No Match',     Exception, 'Message raised'],
+        [      /Message$/,     Exception],
+        [      /No Match/, StandardError],
+        [       'Message', ArgumentError],
+        [      'No Match',     Exception],
       ]
     end
 
@@ -72,8 +72,9 @@ module AssertionsTests
     def assertRaiseKindOfData
       exceptionObjects
     end
+    alias_method :assertRaiseKindOfFailData, :assertRaiseKindOfData
 
-    def assertRaiseKindOfFailData
+    def assertRaiseKindOfInvalidData
       nilObjects      +
       trueObjects     +
       falseObjects    +

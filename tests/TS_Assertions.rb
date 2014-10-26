@@ -36,9 +36,7 @@ module AssertionsTests
     # Wrapper to rescue assertions
     #
     def rescue_assertion pattern = '', message = nil, data = {}, &block
-      failure = assertRaiseExpected RubyUnit::AssertionFailure, pattern, message do
-        yield
-      end
+      failure = assertRaiseExpected RubyUnit::AssertionFailure, pattern, message, &block
       info = failure.info
       assertMatch /#{message}/, info, 'Assertion failure message mismatch'
       data.each do |key, value|

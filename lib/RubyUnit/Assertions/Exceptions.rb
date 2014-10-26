@@ -148,12 +148,13 @@ module RubyUnit
           errors << ASSERT_RAISE_ERROR
         rescue exception => failure
           errors << ASSERT_RAISE_MESSAGE_ERROR unless pattern =~ failure.message
-        rescue => failure
+        # we'll need to revisit this.
+        rescue Exception => failure
           errors << ASSERT_RAISE_KIND_OF_ERROR
-        else
-          errors.unshift error unless errors.count.zero?
         end
-        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure, :trace=>failure.backtrace.first} unless errors.count.zero?
+        errors.unshift error unless errors.count.zero?
+        trace = failure ? failure.backtrace.first : ''
+        __fail errors.join("\n"), message, {:exception=>exception, :pattern=>pattern, :raised=>failure, :trace=>trace} unless errors.count.zero?
         failure
       end
     end
