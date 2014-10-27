@@ -10,24 +10,8 @@ module RubyUnit
   class Runner
     class << self
       protected
-      #--
-      # Most of these variables need to be refactored.  This is made so it can
-      # be used, but it's not very far along.
-      #++
       # The list of Test Cases that have been run are are currently running
       @@test_cases  = []
-      # The list of RubyUnit::AssertionFailure exceptions that were caught by the
-      # test runner during testing
-      @@failures    = []
-      # The list of RubyUnit::SkippedTest exceptions that were caught by the test
-      # runner during testing
-      @@skips       = []
-      # The list of RubyUnit::IncompleteTest exceptions that were caught by the test
-      # runner during testing
-      @@incompletes = []
-      # The list of non RubyUnit::AssertionFailure exceptions that were caught by
-      # the test runner during testing
-      @@errors      = []
       # Whether or not the test suite still needs to be run. This is used by the
       # automatic runner to determine if it must be run before the program exits.
       @@autorun     = true
@@ -73,7 +57,7 @@ module RubyUnit
         end
         Report.finish
         report unless Report.tests.zero?
-        @@failures.count + @@errors.count
+        Report.status
       end
 
       #

@@ -13,7 +13,7 @@ module RubyUnit
 
   ##
   # Current RubyUnit version
-  VERSION            = '0.3.21'
+  VERSION            = '0.4.23'
 
   ##
   # Set debug mode
