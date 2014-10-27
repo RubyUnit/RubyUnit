@@ -11,7 +11,7 @@ module AssertionsTests
     include ComparisonsData
 
     ##
-    # Test assertEqualTest
+    # Test assertEqual
     #
     # expected::
     #   The expected value
@@ -24,7 +24,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertEqualFailTest
+    # Test assertEqual failure
     #
     # expected::
     #   The expected value
@@ -39,7 +39,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertEqualWithMessageTest
+    # Test assertEqual with message
     #
     # expected::
     #   The expected value
@@ -55,7 +55,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertEqualWithMessageFailTest
+    # Test assertEqual with message failure
     #
     # expected::
     #   The expected value
@@ -73,7 +73,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotEqualTest
+    # Test assertNotEqual
     #
     # expected::
     #   The expected value
@@ -86,7 +86,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotEqualFailTest
+    # Test assertNotEqual failure
     #
     # expected::
     #   The expected value
@@ -101,7 +101,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotEqualWithMessageTest
+    # Test assertNotEqual with message
     #
     # expected::
     #   The expected value
@@ -117,7 +117,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotEqualWithMessageFailTest
+    # Test assertNotEqual with message failure
     #
     # expected::
     #   The expected value
@@ -135,7 +135,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanTest
+    # Test assertGreaterThan
     #
     # greater::
     #   The greater value
@@ -148,7 +148,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanFailTest
+    # Test assertGreaterThan failure
     #
     # greater::
     #   The greater value
@@ -163,7 +163,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanWithMessageTest
+    # Test assertGreaterThan with message
     #
     # greater::
     #   The greater value
@@ -179,7 +179,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanWithMessageFailTest
+    # Test assertGreaterThan with message failure
     #
     # greater::
     #   The greater value
@@ -197,7 +197,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanOrEqualTest
+    # Test assertGreaterThanOrEqual
     #
     # greater::
     #   The greater value
@@ -210,7 +210,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanOrEqualFailTest
+    # Test assertGreaterThanOrEqual failure
     #
     # greater::
     #   The greater value
@@ -225,7 +225,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanOrEqualWithMessageTest
+    # Test assertGreaterThanOrEqual with message
     #
     # greater::
     #   The greater value
@@ -241,7 +241,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertGreaterThanOrEqualWithMessageFailTest
+    # Test assertGreaterThanOrEqual with message failure
     #
     # greater::
     #   The greater value
@@ -259,7 +259,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanTest
+    # Test assertLessThan
     #
     # lesser::
     #   The lesser value
@@ -272,7 +272,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanFailTest
+    # Test assertLessThan failure
     #
     # lesser::
     #   The lesser value
@@ -287,7 +287,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanWithMessageTest
+    # Test assertLessThan with message
     #
     # lesser::
     #   The lesser value
@@ -303,7 +303,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanWithMessageFailTest
+    # Test assertLessThan with message failure
     #
     # lesser::
     #   The lesser value
@@ -321,7 +321,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanOrEqualTest
+    # Test assertLessThanOrEqual
     #
     # lesser::
     #   The lesser value
@@ -334,7 +334,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanOrEqualFailTest
+    # Test assertLessThanOrEqual failure
     #
     # lesser::
     #   The lesser value
@@ -349,7 +349,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanOrEqualWithMessageTest
+    # Test assertLessThanOrEqual with message
     #
     # lesser::
     #   The lesser value
@@ -365,7 +365,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertLessThanOrEqualWithMessageFailTest
+    # Test assertLessThanOrEqual with message failure
     #
     # lesser::
     #   The lesser value
@@ -383,7 +383,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertMatchTest
+    # Test assertMatch
     #
     # pattern::
     #   The pattern to check against
@@ -396,7 +396,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertMatchFailTest
+    # Test assertMatch failure
     #
     # pattern::
     #   The pattern to check against
@@ -411,7 +411,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertMatchWithMessageTest
+    # Test assertMatch with message
     #
     # pattern::
     #   The pattern to check against
@@ -427,7 +427,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertMatchWithMessageFailTest
+    # Test assertMatch with message failure
     #
     # pattern::
     #   The pattern to check against
@@ -445,7 +445,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotMatchTest
+    # Test assertNotMatch
     #
     # pattern::
     #   The pattern to check against
@@ -458,7 +458,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotMatchFailTest
+    # Test assertNotMatch failure
     #
     # pattern::
     #   The pattern to check against
@@ -473,7 +473,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotMatchWithMessageTest
+    # Test assertNotMatch with message
     #
     # pattern::
     #   The pattern to check against
@@ -489,7 +489,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotMatchWithMessageFailTest
+    # Test assertNotMatch with message failure
     #
     # pattern::
     #   The pattern to check against
@@ -507,7 +507,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertSameTest
+    # Test assertSame
     #
     # object::
     #   The object to check
@@ -517,7 +517,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertSameFailTest
+    # Test assertSame failure
     #
     # expected::
     #   The expected object to check against
@@ -532,7 +532,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertSameWithMessageTest
+    # Test assertSame with message
     #
     # object::
     #   The object to check
@@ -545,7 +545,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertSameWithMessageFailTest
+    # Test assertSame with message failure
     #
     # expected::
     #   The expected object to check against
@@ -563,7 +563,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotSameTest
+    # Test assertNotSame
     #
     # expected::
     #   The expected object to check against
@@ -576,7 +576,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotSameFailTest
+    # Test assertNotSame failure
     #
     # object::
     #   The object to check
@@ -588,7 +588,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotSameWithMessageTest
+    # Test assertNotSame with message
     #
     # expected::
     #   The expected object to check against
@@ -604,7 +604,7 @@ module AssertionsTests
     end
 
     ##
-    # Test assertNotSameWithMessageFailTest
+    # Test assertNotSame with message failure
     #
     # object::
     #   The object to check
