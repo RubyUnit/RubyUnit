@@ -143,6 +143,30 @@ module AssertionsTests
       end
     end
 
+    def assertRaiseExpectedInvalidExceptionTest pattern, expected
+      assertRaiseKindOf TypeError do
+        assertRaiseExpected expected, pattern do
+          raise StandardError, pattern
+        end
+      end
+    end
+
+    def assertRaiseExpectedInvalidErrorTest pattern, expected
+      assertRaiseKindOf TypeError do
+        assertRaiseExpected expected, pattern do
+          raise StandardError, pattern
+        end
+      end
+    end
+
+    def assertRaiseExpectedInvalidBothTest pattern, expected
+      assertRaiseKindOf TypeError do
+        assertRaiseExpected expected, pattern do
+          raise StandardError, pattern
+        end
+      end
+    end
+
     def assertRaiseExpectedWithMessageTest pattern, exception, error, message
       assertRaiseExpected exception, pattern, message do
         raise exception, error
@@ -154,6 +178,30 @@ module AssertionsTests
         assertRaiseExpected expected, pattern, message do
           raise exception, error
         end
+      end
+    end
+  end
+
+  def assertRaiseExpectedInvalidExceptionWithMessageTest pattern, expected, message
+    assertRaiseKindOf TypeError do
+      assertRaiseExpected expected, pattern, message do
+        raise StandardError, pattern
+      end
+    end
+  end
+
+  def assertRaiseExpectedInvalidErrorWithMessageTest pattern, expected, message
+    assertRaiseKindOf TypeError do
+      assertRaiseExpected expected, pattern, message do
+        raise StandardError, pattern
+      end
+    end
+  end
+
+  def assertRaiseExpectedInvalidBothWithMessageTest pattern, expected, message
+    assertRaiseKindOf TypeError do
+      assertRaiseExpected expected, pattern, message do
+        raise StandardError, pattern
       end
     end
   end

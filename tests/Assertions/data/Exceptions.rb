@@ -116,8 +116,32 @@ module AssertionsTests
       ]
     end
 
+    def assertRaiseExpectedInvalidExceptionData
+      add_parameter MESSAGE, assertRaiseKindOfInvalidData
+    end
+
+    def assertRaiseExpectedInvalidErrorData
+      add_parameter assertRaiseMessageInvalidData, [[StandardError]]
+    end
+
+    def assertRaiseExpectedInvalidBothData
+      add_parameter assertRaiseMessageInvalidData, assertRaiseKindOfInvalidData
+    end
+
     def assertRaiseExpectedWithMessageFailData
       add_parameter assertRaiseExpectedFailData
+    end
+
+    def assertRaiseExpectedInvalidExceptionWithMessageData
+      add_parameter assertRaiseExpectedInvalidExceptionData
+    end
+
+    def assertRaiseExpectedInvalidErrorWithMessageData
+      add_parameter assertRaiseExpectedInvalidErrorData
+    end
+
+    def assertRaiseExpectedInvalidBothWithMessageData
+      add_parameter assertRaiseExpectedInvalidBothData
     end
   end
 end

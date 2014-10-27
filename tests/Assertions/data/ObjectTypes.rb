@@ -151,7 +151,6 @@ module AssertionsTests
         [                   ''],
         [         'string one'],
         [           "STRING 2"],
-        [       "String #{42}"],
         [    'Two Word string'],
         ["Three\nLINE\nString"],
       ]
@@ -169,11 +168,10 @@ module AssertionsTests
 
     def regexpObjects
       [
-        [                          //],
-        [                  /Regexp 1/],
-        [            /\AStart Regexp/],
-        [               /END regexp$/],
-        [/^#{'interpolated'} REGEXP$/],
+        [              //],
+        [      /Regexp 1/],
+        [/\AStart Regexp/],
+        [   /END regexp$/],
       ]
     end
 
