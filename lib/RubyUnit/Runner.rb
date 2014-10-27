@@ -58,8 +58,8 @@ module RubyUnit
           object = test_case.new
           test_case.setup
 
-          data_methods = test_case.instance_methods.grep /Data\Z/
-          test_methods = test_case.instance_methods.grep /Test\Z/
+          data_methods = test_case.instance_methods.grep /Data$/
+          test_methods = test_case.instance_methods.grep /Test$/
 
           test_methods.each do |test|
             data_method = "#{test.slice(0..-5)}Data".to_sym
