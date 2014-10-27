@@ -4,7 +4,7 @@ require 'RubyUnit/Assertions'
 require_relative 'data/Comparisons'
 
 module AssertionsTests
-  #
+  ##
   # Test Case for RubyUnit::Assertions Comparisons assertions
   #
   class TC_Comparisons < AssertionsTestCase
