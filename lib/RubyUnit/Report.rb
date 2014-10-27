@@ -71,6 +71,10 @@ module RubyUnit
       report 'Incomplete Tests', @@incomplete, false
     end
 
+    def self.status
+      @@fail.count + @@errors.count
+    end
+
     def self.stats
       elapsed  = @@finish - @@start
       inverse  = Rational(elapsed.to_r.denominator,elapsed.to_r.numerator)
