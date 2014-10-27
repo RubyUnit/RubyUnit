@@ -56,6 +56,7 @@ module AssertionsTests
     def assertRaiseMessageWithMessageData
       add_parameter assertRaiseMessageData
     end
+    alias_method :assertRaiseExpectedWithMessageData, :assertRaiseMessageWithMessageData
 
     def assertRaiseMessageWithMessageFailData
       add_parameter assertRaiseMessageFailData
@@ -97,12 +98,6 @@ module AssertionsTests
 
     def assertRaiseKindOfWithMessageInvalidData
       add_parameter assertRaiseKindOfInvalidData
-    end
-
-    def assertRaiseExpectedData
-      [
-        
-      ]
     end
   end
 end

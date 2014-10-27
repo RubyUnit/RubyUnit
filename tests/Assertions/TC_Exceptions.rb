@@ -130,7 +130,13 @@ module AssertionsTests
     end
 
     def assertRaiseExpectedTest pattern, exception, error
-      assertRaisedExpected exception, pattern do
+      assertRaiseExpected exception, pattern do
+        raise exception, error
+      end
+    end
+
+    def assertRaiseExpectedWithMessageTest pattern, exception, error, message
+      assertRaiseExpected exception, pattern, message do
         raise exception, error
       end
     end
