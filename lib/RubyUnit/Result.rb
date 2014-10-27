@@ -11,10 +11,10 @@ module RubyUnit
     @error
 
     def initialize test_case, test, params = [], error = nil
-      raise TypeError "Test Case name must be a string, got #{test_case.class}" unless test_case is_a? String
-      raise TypeError "Test must be a symbol, got #{test.class}" unless test.is_a? Symbol
-      raise TypeError "Test Parameters must be an Array, got #{params.class}" unless params.is_a? Array
-      raise TypeError "Error must be an Exception or nil, got #{error.class}" unless error.nil? or error <= Exception
+      raise TypeError, "Test Case name must be a RubyUnit::TestCase, got #{test_case.class}" unless test_case <= RubyUnit::TestCase
+      raise TypeError, "Test must be a symbol, got #{test.class}" unless test.is_a? Symbol
+      raise TypeError, "Test Parameters must be an Array, got #{params.class}" unless params.is_a? Array
+      raise TypeError, "Error must be an Exception or nil, got #{error.class}" unless error.nil? or error <= Exception
 
       @test_case = test_case
       @test      = test

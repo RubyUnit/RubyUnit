@@ -1,5 +1,6 @@
 require_relative 'TestCase'
 require_relative 'AssertionFailure'
+require_relative 'Report'
 
 module RubyUnit
   #
@@ -27,12 +28,6 @@ module RubyUnit
       # The list of non RubyUnit::AssertionFailure exceptions that were caught by
       # the test runner during testing
       @@errors      = []
-      # The total number of tests that have been run
-      @@tests       = 0
-      # The time the tests were started
-      @@start       = nil
-      # The time the tests completed
-      @@finish      = nil
       # Whether or not the test suite still needs to be run. This is used by the
       # automatic runner to determine if it must be run before the program exits.
       @@autorun     = true
@@ -48,10 +43,9 @@ module RubyUnit
       #
       def run
         @@autorun = false
-        @@start   = Time.new
         runner    = new
         puts "RubyUnit #{RubyUnit::VERSION}"
-        puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
+        puts "Started Tests #{Report.start.strftime("%Y-%m-%d %H:%M:%S")}"
 
         TestCase.descendents.each do |test_case|
           @@test_cases << test_case
@@ -77,8 +71,8 @@ module RubyUnit
           end
           test_case.teardown
         end
-        @@finish = Time.new
-        report unless @@tests.zero?
+        Report.finish
+        report unless Report.tests.zero?
         @@failures.count + @@errors.count
       end
 
@@ -126,15 +120,8 @@ module RubyUnit
           puts failure[3].info
           puts failure[3].backtrace.join("\n")
         end
-        
-        elapsed  = @@finish - @@start
-        inverse  = Rational(elapsed.to_r.denominator,elapsed.to_r.numerator)
-        puts
-        puts "Tests Complete in #{elapsed} seconds!"
-        puts "%.3f tests/s, %.3f assertions/s" % [(@@tests * inverse).to_f, (TestCase.assertions * inverse).to_f]
-        puts "%d Assertions, %d Skipped Tests, %d Incomplete Tests" % [TestCase.assertions, @@skips.count, @@incompletes.count]
-        puts "%d Tests, %d Errors, %d Failures" % [@@tests, @@errors.count, @@failures.count]
-        puts
+
+        puts Report.stats
       end
     end
 
@@ -156,24 +143,18 @@ module RubyUnit
     #
     #  run TestCaseClass, :myTest, [param1, param2]
     #
-    def run test_case_class, test, params = []
+    def run klass, test, params = []
       raise TypeError, "Parameter list for #{object.class}::#{test} must be an array" unless params.is_a? Array
-      test_case = test_case_class.new
+      test_case = klass.new
 
+      error = nil
       begin
-        @@tests += 1
         test_case.setup
         test_case.send test, *params
         test_case.teardown
-      rescue AssertionFailure => failure
-        @@failures << [test_case.class.name, test, params, failure]
-      rescue SkippedTest => skip
-        @@skips << [test_case.class.name, test, params, skip]
-      rescue IncompleteTest => incomplete
-        @@incompletes << [test_case.class.name, test, params, incomplete]
       rescue Exception => error
-        @@errors << [test_case.class.name, test, params, error]
       end
+      Result.new test_case.class, test, params, error
     end
   end
 end
