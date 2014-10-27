@@ -28,6 +28,15 @@ module AssertionsTests
     end
     alias_method :assertRaiseExpectedData, :assertRaiseMessageData
 
+    def assertRaiseMessageFailData
+      [
+        [/Message$/,     Exception, 'Message raised'],
+        [/No Match/, StandardError, 'Message raised'],
+        [ 'Message', ArgumentError, 'Message raised'],
+        ['No Match',     TypeError, 'Message raised'],
+      ]
+    end
+
     def assertRaiseMessageInvalidData
       exceptionObjects +
       nilObjects       +
@@ -42,15 +51,6 @@ module AssertionsTests
       rangeObjects     +
       arrayObjects     +
       hashObjects
-    end
-
-    def assertRaiseMessageFailData
-      [
-        [      /Message$/,     Exception],
-        [      /No Match/, StandardError],
-        [       'Message', ArgumentError],
-        [      'No Match',     TypeError],
-      ]
     end
 
     def assertRaiseMessageWithMessageData
@@ -98,6 +98,50 @@ module AssertionsTests
 
     def assertRaiseKindOfWithMessageInvalidData
       add_parameter assertRaiseKindOfInvalidData
+    end
+
+    def assertRaiseExpectedFailData
+      [
+        [      /Message$/,     Exception,     Exception, 'Message raised'],
+        [      /No Match/, StandardError, StandardError, 'Message raised'],
+        [       'Message', ArgumentError, ArgumentError, 'Message raised'],
+        [      'No Match',     TypeError,     TypeError, 'Message raised'],
+        ['Message raised', StandardError,     Exception, 'Message raised'],
+        ['Message raised', ArgumentError, StandardError, 'Message raised'],
+        ['Message raised',     TypeError, ArgumentError, 'Message raised'],
+        [      /Message$/, StandardError,     Exception, 'Message raised'],
+        [      /No Match/, ArgumentError, StandardError, 'Message raised'],
+        [       'Message',     TypeError, ArgumentError, 'Message raised'],
+        [      'No Match',     Exception,     TypeError, 'Message raised'],
+      ]
+    end
+
+    def assertRaiseExpectedInvalidExceptionData
+      add_parameter MESSAGE, assertRaiseKindOfInvalidData
+    end
+
+    def assertRaiseExpectedInvalidErrorData
+      add_parameter assertRaiseMessageInvalidData, [[StandardError]]
+    end
+
+    def assertRaiseExpectedInvalidBothData
+      add_parameter assertRaiseMessageInvalidData, assertRaiseKindOfInvalidData
+    end
+
+    def assertRaiseExpectedWithMessageFailData
+      add_parameter assertRaiseExpectedFailData
+    end
+
+    def assertRaiseExpectedInvalidExceptionWithMessageData
+      add_parameter assertRaiseExpectedInvalidExceptionData
+    end
+
+    def assertRaiseExpectedInvalidErrorWithMessageData
+      add_parameter assertRaiseExpectedInvalidErrorData
+    end
+
+    def assertRaiseExpectedInvalidBothWithMessageData
+      add_parameter assertRaiseExpectedInvalidBothData
     end
   end
 end
