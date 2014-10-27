@@ -180,28 +180,28 @@ module AssertionsTests
         end
       end
     end
-  end
 
-  def assertRaiseExpectedInvalidExceptionWithMessageTest pattern, expected, message
-    assertRaiseKindOf TypeError do
-      assertRaiseExpected expected, pattern, message do
-        raise StandardError, pattern
+    def assertRaiseExpectedInvalidExceptionWithMessageTest pattern, expected, message
+      assertRaiseKindOf TypeError do
+        assertRaiseExpected expected, pattern, message do
+          raise StandardError, pattern
+        end
       end
     end
-  end
 
-  def assertRaiseExpectedInvalidErrorWithMessageTest pattern, expected, message
-    assertRaiseKindOf TypeError do
-      assertRaiseExpected expected, pattern, message do
-        raise StandardError, pattern
+    def assertRaiseExpectedInvalidErrorWithMessageTest pattern, expected, message
+      assertRaiseKindOf TypeError do
+        assertRaiseExpected expected, pattern, message do
+          raise StandardError, pattern
+        end
       end
     end
-  end
 
-  def assertRaiseExpectedInvalidBothWithMessageTest pattern, expected, message
-    assertRaiseKindOf TypeError do
-      assertRaiseExpected expected, pattern, message do
-        raise StandardError, pattern
+    def assertRaiseExpectedInvalidBothWithMessageTest pattern, expected, message
+      assertRaiseKindOf TypeError do
+        assertRaiseExpected expected, pattern, message do
+          raise StandardError, pattern
+        end
       end
     end
   end
