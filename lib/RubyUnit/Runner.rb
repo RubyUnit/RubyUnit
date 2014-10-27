@@ -50,6 +50,9 @@ module RubyUnit
         @@autorun = false
         @@start   = Time.new
         runner    = new
+        puts "RubyUnit #{RubyUnit::VERSION}"
+        puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
+
         TestCase.descendents.each do |test_case|
           @@test_cases << test_case
           object = test_case.new
@@ -98,9 +101,6 @@ module RubyUnit
       #
       def report
         # haven't figured out what I want to do for reporting yet but I need some results
-        puts "RubyUnit #{RubyUnit::VERSION}"
-        puts "Started Tests #{@@start.strftime("%Y-%m-%d %H:%M:%S")}"
-
         puts "#{@@errors.count} Errors:\n" if @@errors.count > 0
         @@errors.each_with_index do |error, i|
           puts "#{i + 1}) #{error[0]}::#{error[1]}(#{error[2]})"
