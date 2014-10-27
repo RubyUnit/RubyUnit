@@ -47,10 +47,10 @@ module AssertionsTests
       end
     end
 
-    def assertRaiseMessageFailTest pattern, exception
+    def assertRaiseMessageFailTest pattern, exception, error
       rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/ do
         assertRaiseMessage pattern do
-          raise exception
+          raise exception, error
         end
       end
     end
@@ -69,10 +69,10 @@ module AssertionsTests
       end
     end
 
-    def assertRaiseMessageWithMessageFailTest pattern, exception, message
+    def assertRaiseMessageWithMessageFailTest pattern, exception, error, message
       rescue_assertion /#{ASSERT_RAISE_MESSAGE_ERROR}/, message do
         assertRaiseMessage pattern, message do
-          raise exception
+          raise exception, error
         end
       end
     end
@@ -135,9 +135,25 @@ module AssertionsTests
       end
     end
 
+    def assertRaiseExpectedFailTest pattern, expected, exception, error
+      rescue_assertion /#{ASSERT_RAISE_EXPECTED_ERROR}/ do
+        assertRaiseExpected expected, pattern do
+          raise exception, error
+        end
+      end
+    end
+
     def assertRaiseExpectedWithMessageTest pattern, exception, error, message
       assertRaiseExpected exception, pattern, message do
         raise exception, error
+      end
+    end
+
+    def assertRaiseExpectedWithMessageFailTest pattern, expected, exception, error, message
+      rescue_assertion /#{ASSERT_RAISE_EXPECTED_ERROR}/ do
+        assertRaiseExpected expected, pattern, message do
+          raise exception, error
+        end
       end
     end
   end
