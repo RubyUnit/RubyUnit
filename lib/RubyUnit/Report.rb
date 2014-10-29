@@ -75,12 +75,17 @@ module RubyUnit
       @@fail.count + @@errors.count
     end
 
+    def self.per_second count
+      return 0 if @@start.nil?
+      finish  = @@finish.nil? ? Time.new : @@finish
+      elapsed = (finish - @@start).to_r
+      (count * (Rational(elapsed.denominator, elapsed.numerator))).to_f
+    end
+
     def self.stats
-      elapsed  = @@finish - @@start
-      inverse  = Rational(elapsed.to_r.denominator,elapsed.to_r.numerator)
       puts
-      puts "Tests Complete in #{elapsed} seconds!"
-      puts "%.3f tests/s, %.3f assertions/s" % [(tests * inverse).to_f, (TestCase.assertions * inverse).to_f]
+      puts "Tests Complete in #{@@finish - @@start} seconds!"
+      puts "%.3f tests/s, %.3f assertions/s" % [per_second(tests), per_second(TestCase.assertions)]
       puts "%d Assertions, %d Skipped Tests, %d Incomplete Tests" % [TestCase.assertions, @@skip.count, @@incomplete.count]
       puts "%d Tests, %d Errors, %d Failures" % [tests, @@errors.count, @@fail.count]
       puts
