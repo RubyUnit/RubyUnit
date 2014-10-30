@@ -4,8 +4,9 @@ module RubyUnit
   class TestSet
     TYPE = 'Test Case'
 
+    ##
+    # Create a test set and import test cases.
     def initialize test_cases
-      puts caller.first
       import test_cases
     end
 
