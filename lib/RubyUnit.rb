@@ -53,6 +53,8 @@ module RubyUnit
   end
 end
 
+require_relative 'RubyUnit/TestSuite'
+require_relative 'RubyUnit/TestSet'
 require_relative 'RubyUnit/TestCase'
 require_relative 'RubyUnit/Runner'
 

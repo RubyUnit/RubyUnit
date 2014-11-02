@@ -3,7 +3,4 @@
 require 'RubyUnit'
 
 # Test Cases
-Dir["#{File.dirname(__FILE__)}/TestCase/TC_*.rb"].each do |test_case|
-  puts "Adding Test Case #{test_case}" if RubyUnit.debug
-  require test_case
-end
+RubyUnit::TestSet.new Dir["#{File.dirname(__FILE__)}/TestCase/TC_*.rb"]
