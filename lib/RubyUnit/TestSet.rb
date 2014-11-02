@@ -7,6 +7,7 @@ module RubyUnit
     ##
     # Create a test set and import test cases.
     def initialize test_cases
+      $:.unshift '.' unless $:.include? '.'
       import test_cases
     end
 
