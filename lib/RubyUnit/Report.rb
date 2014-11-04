@@ -68,19 +68,19 @@ module RubyUnit
       end
     end
 
-    def self.errors
+    def self.report_errors
       report 'Errors in Tests', @@errors
     end
 
-    def self.failures
+    def self.report_failures
       report 'Failed Tests', @@fail
     end
 
-    def self.skips
+    def self.report_skips
       report 'Skipped Tests', @@skip, false
     end
 
-    def self.incompletes
+    def self.report_incompletes
       report 'Incomplete Tests', @@incomplete, false
     end
 
@@ -95,13 +95,60 @@ module RubyUnit
       (count * (Rational(elapsed.denominator, elapsed.numerator))).to_f
     end
 
+    def self.report_timed
+      timed_stats.each do |key, duration|
+        puts "#{key} in #{duration} seconds"
+      end
+    end
+
+    def self.timed_stats
+      timed = {}
+      timed['Tests Completed'] = @@finish - @@start
+      timed
+    end
+
+    def self.report_rated
+      s = ''
+      rated_stats.each do |rated, count|
+        s << "%.3f #{rated}/s" % [per_second(count)]
+        s << ', ' unless rated_stats.keys.last == rated
+      end
+      puts s
+    end
+
+    def self.rated_stats
+      rated = {}
+      rated['Tests']      = tests
+      rated['Assertions'] = TestCase.assertions
+      rated
+    end
+
+    def self.report_counted
+      s = ''
+      counted_stats.each do |counted, count|
+        s << "#{count} #{counted}"
+        s << ', ' unless counted_stats.keys.last == counted
+      end
+      puts s
+    end
+
+    def self.counted_stats
+      counted                     = rated_stats.clone
+      counted['Skipped Tests']    = @@skip.count unless @@skip.count.zero?
+      counted['Incomplete Tests'] = @@incomplete.count unless @@incomplete.count.zero?
+      counted['Failed Tests']     = @@fail.count
+      counted
+    end
+
+    def self.report_stats
+      puts
+      report_timed
+      report_rated
+      report_counted
+    end
+
     def self.stats
-      puts
-      puts "Tests Complete in #{@@finish - @@start} seconds!"
-      puts "%.3f tests/s, %.3f assertions/s" % [per_second(tests), per_second(TestCase.assertions)]
-      puts "%d Assertions, %d Skipped Tests, %d Incomplete Tests" % [TestCase.assertions, @@skip.count, @@incomplete.count]
-      puts "%d Tests, %d Errors, %d Failures" % [tests, @@errors.count, @@fail.count]
-      puts
+      {:timed=>timed_stats,:rate=>rated_stats,:count=>counted_stats}
     end
   end
 end
