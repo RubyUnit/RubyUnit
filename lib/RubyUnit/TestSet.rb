@@ -19,6 +19,8 @@ module RubyUnit
       end
     end
 
+    ##
+    # Defining type of files includes for RubyUnit::TestSuite used with --debug
     def self.type
       'Test Case'
     end

@@ -14,6 +14,7 @@ module RubyUnit
     @@start      = nil
     @@finish     = nil
 
+    @@i          = 0
     def self.record result
       @@results << result
 
@@ -46,12 +47,24 @@ module RubyUnit
       @@finish
     end
 
+    def self.report_head result
+      puts
+      puts "#{@@i += 1}) #{result.test_case}::#{result.test}(#{result.params})"
+      puts result.error.class.to_s + ": " + result.error.message
+    end
+
+    def self.report_info result, trace = true
+      puts
+      puts result.error.info if result.error.respond_to? :info
+      puts result.error.backtrace * "\n" if trace
+    end
+
     def self.report type, results = [], trace = true
+      @@i = 0
       puts "\n#{results.count} #{type}:\n" if results.count > 0
       results.each_with_index do |result, i|
-        puts "\n#{i + 1}) #{result.test_case}::#{result.test}(#{result.params})"
-        puts "#{result.error.class}: #{result.error.message}"
-        puts result.error.backtrace * "\n" if trace
+        report_head result
+        report_info result, trace
       end
     end
 

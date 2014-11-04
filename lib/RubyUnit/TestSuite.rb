@@ -7,6 +7,9 @@ module RubyUnit
   # Test Suites are a collection of test sets
   # TestSuite is a larger concept of TestSet
   class TestSuite < TestSet
+
+    ##
+    # Defining type of files includes for RubyUnit::TestSuite used with --debug
     def self.type
       'Test Set'
     end
