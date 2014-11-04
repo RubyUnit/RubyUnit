@@ -78,11 +78,11 @@ module RubyUnit
       #  report # => nice and simple
       #
       def report
-        Report.errors
-        Report.skips
-        Report.incompletes
-        Report.failures
-        Report.stats
+        Report.report_errors
+        Report.report_skips
+        Report.report_incompletes
+        Report.report_failures
+        Report.report_stats
       end
     end
 

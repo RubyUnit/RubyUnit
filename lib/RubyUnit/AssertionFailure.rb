@@ -23,12 +23,12 @@ module RubyUnit
     # Create a string from the assertion data
     #
     def info
-      s = "\n"
-      s = "#{FAILURE}: #{message}\n" if message.length > 0
+      data = []
+      data << message if message.length > 0
       @data.each do |key, value|
-        s << "\n#{key}:\n\t#{value.inspect}"
+        data << ":#{key} => #{value.inspect}"
       end
-      s
+      data.join "\n"
     end
   end
 end
