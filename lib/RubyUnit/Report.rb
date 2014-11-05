@@ -15,6 +15,7 @@ module RubyUnit
     @@finish     = nil
 
     @@i          = 0
+    @@trace      = true
     def self.record result
       @@results << result
 
